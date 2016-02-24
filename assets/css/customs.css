@@ -38,10 +38,6 @@ body {
 .navbar-right li{
   margin-left: .5em;
 }
-.btn-empty {
-  color: white;
-  background-color: black;
-}
 .container-main {
   background-color: white;
   /*margin-top: 1em;*/

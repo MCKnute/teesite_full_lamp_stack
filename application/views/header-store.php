@@ -18,6 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/customs.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-top">
@@ -45,7 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </li>
             <li><button class="btn btn-default navbar-btn">About Us</button></li> 
             <li><button class="btn btn-default navbar-btn">Log In</button></li> 
-            <li><button class="btn btn-lg btn-empty navbar-btn"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (0)</button></li>
+
+            <li><button class="btn btn-lg navbar-btn" id="btn-carttotal"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</button></li>
           </ul>
                 <!-- </div> -->
         </div><!--/.navbar-collapse -->
