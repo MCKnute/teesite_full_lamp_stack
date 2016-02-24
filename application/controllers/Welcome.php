@@ -5,6 +5,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		$this->load->library('cart');
+		$headerinfo['carttotal'] = $this->cart->total();
 		$headerinfo['title'] = "KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);
@@ -13,6 +15,7 @@ class Welcome extends CI_Controller {
 	}
 	public function product($id)
 	{
+		$this->load->library('cart');
 		$headerinfo['productid'] = $id;
 		$headerinfo['title'] = "Product $id | KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
