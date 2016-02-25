@@ -38,35 +38,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <img src="" id="hero-img" />
           <h4>Our Most Popular Tees!</h4>
           <div class="row">
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          </div>
-          <div class="row">
-            <? foreach($products as $product) { ?>
-              <div class="col-xs-6 col-md-3">
-                  <a href="product/<?=$product['id']?>" class="thumbnail">
-                    <img src="assets/img/products/<?=$product['id']?>-med.png" alt="<?=$product['name']?>">
-                  </a>
-                </div>
-            <? } ?>
+            <?
+              $count = 0; 
+              foreach($products as $product) { ?>
+                    <div class="col-xs-6 col-md-3">
+                        <a href="product/<?=$product['id']?>" class="thumbnail">
+                          <img src="assets/img/products/<?=$product['id']?>-med.png" alt="<?=$product['name']?>">
+                        </a>
+                      </div> <?
+                $count++;
+                if ($count == 4){ ?>
+                  </div>
+                  <div class="row">
+                  <?
+                  $count = 0;
+                  }
+              } ?>
           </div>
           <div class="row text-center">
             <nav>

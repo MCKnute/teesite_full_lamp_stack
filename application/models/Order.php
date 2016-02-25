@@ -10,7 +10,10 @@ class Order extends CI_Model {
 	}
 	public function get_orders_from_user($id)
 	{
-		//placeholder
+		$query = "SELECT * FROM order
+				  JOIN users ON orders.user_id = users.id 
+				  WHERE users.id = ?";
+		return $this->db->query($query, array($id))->result_array();
 	}
 
 }
