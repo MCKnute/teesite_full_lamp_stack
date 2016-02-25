@@ -10,8 +10,8 @@ class Product extends CI_Model {
 	}
 	public function get_one_product($id)
 	{
-		$query = "SELECT * FROM products WHERE id == $id";
-		return $this->db->query($query)->result_array();
+		$query = "SELECT * FROM products WHERE id = $id";
+		return $this->db->query($query)->row_array();
 	}
 	public function get_some_products($num, $offset)
 	{

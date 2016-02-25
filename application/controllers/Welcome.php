@@ -12,9 +12,8 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
-		$products = $this->Product->get_all_products();
+		$products = $this->Product->get_some_products(8,0);
 		$info['products'] = $products;
-		$headerinfo['carttotal'] = $this->cart->total();
 		$headerinfo['title'] = "KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);
@@ -23,13 +22,14 @@ class Welcome extends CI_Controller {
 	}
 	public function product($id)
 	{
-		$headerinfo['productid'] = $id;
-		$headerinfo['title'] = "Product $id | KMK Tees";
-		$headerinfo['description'] = "Get excellent tees from us!";
+
+		$thisproduct = $this->Product->get_one_product($id);
 		$suggestprods = $this->Product->get_some_products(4,0);
+		$productinfo['thisid'] = $id;
+		$productinfo['thisproduct'] = $thisproduct;
 		$productinfo['suggestprods'] = $suggestprods;
-		$productinfo['productname'] = "Cool Shirt!";
-		$productinfo['proddescrip'] = "This is an awesome shirt!";
+		$headerinfo['title'] = " | KMK Tees";
+		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);
 		$this->load->view('product_message', $productinfo);
 		$this->load->view('footer-store');
