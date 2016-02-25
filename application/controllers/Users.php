@@ -5,7 +5,7 @@ class Users extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/products');
+		$this->load->view('store_message');
 	}
 
 	public function user_registration()
@@ -83,7 +83,7 @@ class Users extends CI_Controller {
 				$this->session->set_userdata('user_session', $user_data);
 				$data['status'] = TRUE;
 
-				if ($user_data['is_admin'] > 0) 
+				if ($_SESSION['user_session']['is_admin'] > 0) 
 				{
 					$data['redirect_url'] = base_url('/Orders/index');
 				}
@@ -116,6 +116,12 @@ class Users extends CI_Controller {
 		}
 		else
 			show_404();
+	}
+
+	public function logout()
+	{
+		$this->session->sess_destroy();
+		redirect(base_url('/'));
 	}
 
 }

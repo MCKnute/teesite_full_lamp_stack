@@ -1,68 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+if ($user_data['is_admin'] != 1) 
+{
+  $data['redirect_url'] = base_url('/');
+}
 ?>
 <!DOCTYPE html>
-
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Inventory Page / ADMIN</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <!-- Le styles -->
-    <style type="text/css">
-      body {
-        padding-top: 60px;
-        padding-bottom: 40px;
-      }
-    </style>
-    <link href="/assets/css/bootstrap.css" rel="stylesheet">
-    <link href="/assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="/assets/stylesheets/admin.css" rel="stylesheet">
-
-  	<!--  AJAX -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <!-- Latest compiled and minified Bootstrap JavaScript -->
-
-    <!-- Fav and touch icons -->
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="../assets/ico/apple-touch-icon-144-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="../assets/ico/apple-touch-icon-114-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="../assets/ico/apple-touch-icon-72-precomposed.png">
-    <link rel="apple-touch-icon-precomposed" href="../assets/ico/apple-touch-icon-57-precomposed.png">
-    <link rel="shortcut icon" href="../assets/ico/favicon.png">
-
-  </head>
-
-  <body>
-
-    <div class="navbar navbar-default navbar-fixed-top">
-        <div class="brand">
-	        <div class="container">
-				<div class=".navbar-collapse.collapse">
-					<ul class="nav nav-pills">
-						<li role="presentation"><h4 class="brand">KMK Shirts</h4></li>
-						<li role="presentation"><a href="#">Orders</a></li>
-						<li role="presentation" class="active"><a href="#">Products</a></li>
-						<form class="navbar-form pull-right" action="" method="">
-							<input class="span2" type="hidden" name="logout">
-							<button type="submit" class="btn-danger">log off</button>
-						</form>
-					</ul>
-				</div><!--/.nav-collapse -->
-	        </div>
-      	</div>
-    </div>
-
     <div class="container">
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
 	        <div id="topofthehead">
 		        <!-- search bar -->
-				<form id="search" action=""  method="post"> 
-					<input type="text" name="order_id" placeholder='search'>
-				</form>
+				<form class="navbar-form navbar-left" role="search">
+	                <div class="form-group">
+	                   <input type="text" class="form-control" placeholder="Search">
+	                </div>
+	                <button type="submit" class="btn btn-default">&#128269;</button>
+                </form>
 
 				<!-- add new product button will be using MODAL.js from bootstrap-->
 				<form class="btn pull-right" action="" method="post">
@@ -152,49 +106,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  	</ul>
 			</nav>
 	    </div>
-
-	    <div>
-			<!-- <div class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				  <li><a href="#">Action</a></li>
-				  <li><a href="#">Another action</a></li>
-				  <li><a href="#">Something else here</a></li>
-				  <li class="divider"></li>
-				  <li class="nav-header">Nav header</li>
-				  <li><a href="#">Separated link</a></li>
-				  <li><a href="#">One more separated link</a></li>
-				</ul>
-			</div> -->
-	    </div>
-
-	      <!-- Example row of columns -->
-	    <hr>
-
-	    <footer>
-	        <p>&copy; KMK Shirts 2016</p>
-	    </footer>
-
-    </div> <!-- /container -->
-
-    <!-- Le javascript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/assets/js/jquery.js"></script>
-    <script src="/assets/js/bootstrap-transition.js"></script>
-    <script src="/assets/js/bootstrap-alert.js"></script>
-    <script src="/assets/js/bootstrap-modal.js"></script>
-    <script src="/assets/js/bootstrap-dropdown.js"></script>
-    <script src="/assets/js/bootstrap-scrollspy.js"></script>
-    <script src="/assets/js/bootstrap-tab.js"></script>
-    <script src="/assets/js/bootstrap-tooltip.js"></script>
-    <script src="/assets/js/bootstrap-popover.js"></script>
-    <script src="/assets/js/bootstrap-button.js"></script>
-    <script src="/assets/js/bootstrap-collapse.js"></script>
-    <script src="/assets/js/bootstrap-carousel.js"></script>
-    <script src="/assets/js/bootstrap-typeahead.js"></script>
-    <script src="/assets/js/bootstrap.js"></script>
-	<script src="/assets/js/bootstrap.min.js"></script>
-
-  </body>
-</html>
+	</div>
+<!-- End of Products Inventory Container -->

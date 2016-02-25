@@ -5,17 +5,14 @@ class Orders extends CI_Controller {
 
 	public function index()
 	{
-		$this->load->view('admin/orders');
+		$this->load->model('Order');
+		$orders = $this->Order->get_all_orders_admin_page();
+		$info['orders'] = $orders;
+		$headerinfo['title'] = "KMK Tees | Admin";
+		$headerinfo['description'] = "Get excellent tees from us!";
+		$this->load->view('/admin/header-admin', $headerinfo);
+		$this->load->view('/admin/orders', $info);
+		$this->load->view('/admin/footer-admin');
 	}
 
-	public function myorders()
-	{
-		$this->load->library('cart');
-		$headerinfo['carttotal'] = $this->cart->total();
-		$headerinfo['title'] = "KMK Tees";
-		$headerinfo['description'] = "Get excellent tees from us!";
-		$this->load->view('header-store', $headerinfo);
-		$this->load->view('user_orders');
-		$this->load->view('footer-store');
-	}
 }

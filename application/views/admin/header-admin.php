@@ -1,6 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+if ($_SESSION['user_session']['is_admin'] != 1) 
+{
+  $data['redirect_url'] = base_url('/');
+}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,35 +35,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><strong>KMK</strong> Tees</a>
+          <a class="navbar-brand" href="/"><strong>KMK</strong> Tees | <span style="color:blue;">admin</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
-            <li><form class="navbar-form navbar-left" role="search">
-                 <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Search">
-                 </div>
-                 <button type="submit" class="btn btn-default">&#128269;</button>
-               </form>
-            </li>
-            
-            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li> 
-            <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In</a></li>
+            <li role="presentation"><a href="/Orders/index">Orders</a></li>
+            <li role="presentation"><a href="/Products/index">Products</a></li>
+            <li><a href="/Users/logout" type="button" class="btn btn-default">Log out</a></li> 
 
-            <!-- get rid of this logout once checks are complete -->
-<!--             <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn">logout</a></li>  -->
-
-            <?php 
-            if ($this->cart->total() == 0){
-              $cartstatus = "btn-empty";
-            }else{
-              $cartstatus = "btn-success";
-            };
-            ?>
-
-            <li><a href="" type="button" class="btn btn-lg navbar-btn <?=$cartstatus?>"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</a></li>
           </ul>
                 <!-- </div> -->
         </div><!--/.navbar-collapse -->
