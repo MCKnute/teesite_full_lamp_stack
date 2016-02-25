@@ -8,7 +8,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <h5>debug sandbox:</h5>
     <p>session data:</p>
     	<? var_dump($_SESSION) ;?>
-
+    <p>cart data:</p>
+    <p>items in cart: <?=$this->cart->total()?></p>
   </footer>
 </body>
 </html>
