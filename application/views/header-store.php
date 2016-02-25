@@ -33,16 +33,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a class="navbar-brand" href="/"><strong>KMK</strong> Tees</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-          </ul>
-          <form class="navbar-form navbar-left" role="search">
+          <!-- <ul class="nav navbar-nav">
+          </ul> -->
+          <ul class="nav navbar-nav navbar-right">
+            <li><form class="navbar-form navbar-left" role="search">
                  <div class="form-group">
                    <input type="text" class="form-control" placeholder="Search">
                  </div>
                  <button type="submit" class="btn btn-default">&#128269;</button>
                </form>
-          <ul class="nav navbar-nav navbar-right">
-            <li>
             </li>
             <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li> 
             <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In</a></li> 
