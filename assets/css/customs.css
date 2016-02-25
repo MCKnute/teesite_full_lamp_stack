@@ -93,6 +93,28 @@ body {
   display: inline-block;
   margin-top: 5px;
 }
+.signin-panel, .signin-panel-grey {
+  padding: 1em 1em;
+  margin-bottom: 1em;
+}
+.signin-panel-grey {
+  background-color: #DDD;
+  border-radius: 10px;
+}
+.signin-panel-grey .category_header {
+  color: black;
+}
+/*.register-names:first-of-type {
+  padding-left: 0;
+  padding-right: 15px;
+}
+.register-names {
+  padding-right: 0;
+  padding-left: 15px;
+}*/
+.register-names input, .register-names label {
+  /*width: 50%;*/
+}
 .alert {
   margin: 20px auto;
 }

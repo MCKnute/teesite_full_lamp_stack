@@ -44,8 +44,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <ul class="nav navbar-nav navbar-right">
             <li>
             </li>
-            <li><button class="btn btn-default navbar-btn">About Us</button></li> 
-            <li><button class="btn btn-default navbar-btn">Log In</button></li> 
+            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li> 
+            <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In</a></li> 
 
             <?php 
             if ($this->cart->total() == 0){
@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             };
             ?>
 
-            <li><button class="btn btn-lg navbar-btn <?=$cartstatus?>"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</button></li>
+            <li><a href="" type="button" class="btn btn-lg navbar-btn <?=$cartstatus?>"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</a></li>
           </ul>
                 <!-- </div> -->
         </div><!--/.navbar-collapse -->
