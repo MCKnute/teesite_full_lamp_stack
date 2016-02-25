@@ -11,13 +11,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <title><?=$title?></title>
     <meta name="description" content="<?=$description?>">
     <meta name="author" content="Mollie Knute, David Macias, and Pete Kang">
-    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/customs.css" />
     
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="/assets/js/customs.js"></script>
 </head>
 <body>
