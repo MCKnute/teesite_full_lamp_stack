@@ -60,26 +60,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
           </div>
           <div class="row">
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
-          <div class="col-xs-6 col-md-3">
-              <a href="product/1" class="thumbnail">
-                <img src="assets/img/white.png" alt="...">
-              </a>
-            </div>
+            <? foreach($products as $product) { ?>
+              <div class="col-xs-6 col-md-3">
+                  <a href="product/<?=$product['id']?>" class="thumbnail">
+                    <img src="assets/img/products/<?=$product['id']?>-med.png" alt="<?=$product['name']?>">
+                  </a>
+                </div>
+            <? } ?>
           </div>
           <div class="row text-center">
             <nav>

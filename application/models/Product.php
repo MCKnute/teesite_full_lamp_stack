@@ -8,6 +8,16 @@ class Product extends CI_Model {
 		$query = "SELECT * FROM products";
 		return $this->db->query($query)->result_array();
 	}
+	public function get_one_product($id)
+	{
+		$query = "SELECT * FROM products WHERE id == $id";
+		return $this->db->query($query)->result_array();
+	}
+	public function get_some_products($num, $offset)
+	{
+		$query = "SELECT * FROM products LIMIT $num OFFSET $offset";
+		return $this->db->query($query)->result_array();
+	}
 
 	public function get_products_by_category()
 	{

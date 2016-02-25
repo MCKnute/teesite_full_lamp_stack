@@ -38,12 +38,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-9">
           <div class="row productdisplay">
             <div class="col-md-6">
-              <img src="" id="product-img" title="<?=$productname?>" />
-              <img src="" class="product-tmb" title="<?=$productname?> Main" /> 
+              <img src="/assets/img/products/<?=$productid?>-large.png" id="product-img" title="<?=$productname?>" />
+              <img src="/assets/img/products/<?=$productid?>-small.png" class="product-tmb" title="<?=$productname?> Main" /> 
               <img src="" class="product-tmb" title="<?=$productname?> View Front" /> 
               <img src="" class="product-tmb" title="<?=$productname?> View Back" /> 
-              <img src="" class="product-tmb" /> 
-              <img src="" class="product-tmb" /> 
             </div> 
             <div class="col-md-6">
             <h3><?=$productname?></h3>
@@ -163,7 +161,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </div>
           <h4>Other Tees You May Like</h4>
           <div class="row">
-          <div class="col-xs-6 col-md-3">
+
+            <? foreach($suggestprods as $suggestprod) { ?>
+              <div class="col-xs-6 col-md-3">
+                  <a href="<?=$suggestprod['id']?>" class="thumbnail">
+                    <img src="/assets/img/products/<?=$suggestprod['id']?>-med.png" alt="...">
+                  </a>
+                </div>
+            <? } ?>
+         <!--  <div class="col-xs-6 col-md-3">
               <a href="#" class="thumbnail">
                 <img src="/assets/img/white.png" alt="...">
               </a>
@@ -182,7 +188,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <a href="#" class="thumbnail">
                 <img src="/assets/img/white.png" alt="...">
               </a>
-            </div>
+            </div> -->
           </div>
 
           <div class="row text-center">
