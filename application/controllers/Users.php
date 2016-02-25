@@ -34,7 +34,7 @@ class Users extends CI_Controller {
 				if($_SERVER['HTTP_REFERER'] == base_url("/register"))
 					$data["success_message"] = "Registration successful! You can now <a href='signin'>login</a>!";
 				else
-					$data["success_message"] = "User is sucessfully added!";
+					$data["success_message"] = "User is successfully added!";
 			}
 			else
 			{
@@ -82,9 +82,9 @@ class Users extends CI_Controller {
 				//session is being set in here with index user session, remember session is in a form of array
 				$this->session->set_userdata('user_session', $user_data);
 						
-				// $data['status'] = TRUE;
-				// $data['redirect_url'] = base_url('/');
-				redirect('/');
+				$data['status'] = TRUE;
+				$data['redirect_url'] = base_url('/');
+				
 			}
 			else
 			{
@@ -93,7 +93,7 @@ class Users extends CI_Controller {
 			}
 		}
 		
-		// echo json_encode($data);
+		echo json_encode($data);
 	}
 
 }

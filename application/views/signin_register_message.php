@@ -1,11 +1,44 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-?><!DOCTYPE html>
+?>
+<script type="text/javascript">
+      $(document).ready(function(){
+        
+        $('#register_form').submit(function(){
+          var form = $(this);
+
+          $.post(form.attr('action'), form.serialize(), function(data){
+            if(data.status){
+              $('#regmsg_box').html('<p class="alert alert-success">'+ data.success_message +'</p>').removeClass('alert alert-error')
+            }
+            else{
+              $('#regmsg_box').addClass('alert alert-error').html(data.error_message)
+            }
+          }, 'json');
+          return false;
+        });
+        $('#signin_form').submit(function(){
+          var form = $(this);
+
+          $.post(form.attr('action'), form.serialize(), function(data){
+            if(data.status){
+              window.location = data.redirect_url
+            }
+            else{
+              $('#signinmsg_box').addClass('alert alert-error').html(data.error_message)
+            }
+          }, 'json');
+
+          return false;
+        });
+      });
+    </script>
 
 <div class="container container-main">
    <div class="row">
       <div class="col-md-7">
         <div class="signin-panel">
+          <div id="regmsg_box"></div>
           <h3 class="category_header">Create a KMK Tees Account!</h3>
            <form id="register_form" action="/users/user_registration" method="post" >
             <div class="form-group register-names col-md-6">
@@ -37,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <div class="col-md-5">
         <div class="signin-panel-grey">
         <h3 class="category_header">Sign In</h3>
-        <div id="message_box"></div>
+        
         <form id="signin_form" action="/users/user_login" method="post">
           <div class="form-group">
             <label for="signinEmail">Email address</label>
@@ -51,7 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <button type="submit" class="btn btn-default btn-lg pull-right">Log In >></button>
           </div>
         </form>
-
+        <div id="signinmsg_box"></div>
       </div>
       </div>
     </div>
