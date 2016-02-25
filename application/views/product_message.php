@@ -38,20 +38,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-9">
           <div class="row productdisplay">
             <div class="col-md-6">
-              <img src="/assets/img/products/<?=$productid?>-large.png" id="product-img" title="<?=$productname?>" />
-              <img src="/assets/img/products/<?=$productid?>-small.png" class="product-tmb" title="<?=$productname?> Main" /> 
-              <img src="" class="product-tmb" title="<?=$productname?> View Front" /> 
-              <img src="" class="product-tmb" title="<?=$productname?> View Back" /> 
+              <img src="/assets/img/products/<?=$thisid?>-large.png" id="product-img" title="<?=$thisproduct['name']?>" />
+              <img src="/assets/img/products/<?=$thisid?>-small.png" class="product-tmb" title="<?=$thisproduct['name']?> Main" /> 
+              <img src="" class="product-tmb" title="<?=$thisproduct['name']?> View Front" /> 
+              <img src="" class="product-tmb" title="<?=$thisproduct['name']?> View Back" /> 
             </div> 
             <div class="col-md-6">
-            <h3><?=$productname?></h3>
-            <p><?=$proddescrip?></p>
+            <h3><?=$thisproduct['name']?></h3>
+            <p><?=$thisproduct['description']?></p>
 
 
         <!-- Start Add To Cart -->
           <div class="panel panel-default add-to-cart">
             <div class="panel-body">
-              <h2>$19.98</h2>
+              <h2>$<?=$thisproduct['price']?></h2>
               <form class="form-horizontal">
                 <div class="form-group">
                     <label for="quantity" class="col-sm-4 control-label text-left">Women Small</label>
@@ -150,7 +150,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                   </div>
                   <h4>Subtotal:</h4>
-                  <h2>$19.98</h2>
+                  <h2>$###.##</h2>
                 <button class="btn btn-lg btn-success navbar-btn center-block"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Cart</button>
               </form>
             </div>
