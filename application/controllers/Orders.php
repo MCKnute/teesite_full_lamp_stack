@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Orders extends CI_Controller {
 
+	public function index()
+	{
+		$this->load->view('admin/orders');
+	}
+
 	public function myorders()
 	{
 		$this->load->library('cart');
@@ -13,6 +18,4 @@ class Orders extends CI_Controller {
 		$this->load->view('user_orders');
 		$this->load->view('footer-store');
 	}
-
-
 }
