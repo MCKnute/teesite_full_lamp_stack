@@ -1,0 +1,45 @@
+*{
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+#orders_id_table{
+	vertical-align: top;
+	width: 500px;
+	margin: 0 5px 5px 190px;
+	display: inline-block;
+
+}
+
+#order-description{
+	vertical-align: top;
+	border: 2px solid black;
+	background-color: white;
+	display: inline-block;
+	margin: 10px;
+	padding: 10px;
+	width: 300px;
+}
+
+#shipped_status #status, #totals{
+	display: inline-block;
+}
+
+#status{
+	vertical-align: top;
+	background-color: green;
+	margin: 10px 10px 10px 0px;
+	padding: 10px;
+}
+
+#totals{
+	vertical-align: top;
+	background-color: white;
+	margin: 10px 10px 10px 40px;
+	padding: 10px;
+}
+
+#search{
+	display: inline-block;
+}
+

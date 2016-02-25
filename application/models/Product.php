@@ -1,12 +1,14 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Users extends CI_Controller {
+class Product extends CI_Model {
 
 	public function index()
 	{
 		$this->load->view('admin/products');
 	}
+
+
 }
 
 
