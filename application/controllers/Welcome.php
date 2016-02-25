@@ -34,4 +34,15 @@ class Welcome extends CI_Controller {
 		$this->load->view('signin_register_message');
 		$this->load->view('footer-store');
 	}
+
+	public function about_us()
+	{
+		$this->load->library('cart');
+		$headerinfo['carttotal'] = $this->cart->total();
+		$headerinfo['title'] = "KMK Tees";
+		$headerinfo['description'] = "Get excellent tees from us!";
+		$this->load->view('header-store', $headerinfo);
+		$this->load->view('about_us');
+		$this->load->view('footer-store');
+	}
 }

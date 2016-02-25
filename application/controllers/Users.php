@@ -96,6 +96,22 @@ class Users extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function delete_user($user_id = NULL)
+	{
+		if(is_numeric($user_id) && $this->is_admin())
+		{
+			$this->load->model('User');
+			$delete = $this->User->delete_user($user_id);
+
+			if($delete)
+				redirect(base_url('/'));
+			else
+				show_404();
+		}
+		else
+			show_404();
+	}
+
 }
 
 

@@ -51,4 +51,14 @@ class User extends CI_Model {
 		
 		return $this->db->insert('users', $user);
 	}
+	public function make_user_admin($user_id)
+	{
+		$user_data = array(
+			'is_admin' => TRUE,
+			'updated_at' => date("Y-m-d H:i:s")
+		);
+
+		return $this->db->where('id', $user_id)
+				    ->update('users', $user_data); 
+	}
 }
