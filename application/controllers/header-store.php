@@ -18,7 +18,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/assets/js/customs.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-top">
@@ -33,32 +32,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <a class="navbar-brand" href="/"><strong>KMK</strong> Tees</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <!-- <ul class="nav navbar-nav">
-          </ul> -->
-          <ul class="nav navbar-nav navbar-right">
-            <li><form class="navbar-form navbar-left" role="search">
+          <ul class="nav navbar-nav">
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
                  <div class="form-group">
                    <input type="text" class="form-control" placeholder="Search">
                  </div>
                  <button type="submit" class="btn btn-default">&#128269;</button>
                </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
             </li>
             <li><button class="btn btn-default navbar-btn">About Us</button></li> 
             <li><button class="btn btn-default navbar-btn">Log In</button></li> 
-
-            <li><button class="btn btn-lg navbar-btn" id="btn-carttotal"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</button></li>
-            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li> 
-            <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In</a></li> 
-
-            <?php 
-            if ($this->cart->total() == 0){
-              $cartstatus = "btn-empty";
-            }else{
-              $cartstatus = "btn-success";
-            };
-            ?>
-
-            <li><a href="" type="button" class="btn btn-lg navbar-btn <?=$cartstatus?>"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</a></li>
+            <li><button class="btn btn-lg btn-empty navbar-btn"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (0)</button></li>
           </ul>
                 <!-- </div> -->
         </div><!--/.navbar-collapse -->

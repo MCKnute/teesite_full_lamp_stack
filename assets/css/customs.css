@@ -29,8 +29,10 @@ body {
   text-decoration: underline;
 }
 .navbar-right {
+  /*background-color: cyan;*/
   /*margin-top: 15px;*/
-  /*margin-right: 0;*/
+ /* padding-right: 0;
+  margin-right: 0;*/
   /*vertical-align: bottom;*/
   /*background-color: yellow;*/
   /*height: 95px;*/
@@ -44,51 +46,68 @@ body {
   border-radius: 10px;
   padding-top: 1em;
 }
+#hero-img {
+  width: 100%;
+  height: 350px;
+  background-color: #CCC;
+}
 .category_header {
   color: #cf2a27;
   font-family: 'Press Start 2P', cursive;
   font-weight: bold;
   margin-top: 0;
 }
-.productdisplay h3 {
-  background-color: black;
-  color: white;
-  border-top-right-radius: 10px;
-  font-family: 'Press Start 2P', cursive;
-  font-weight: bold;
-  margin: 0 0 .5em 0;
-  padding: .5em;
+.productdisplay {
+
 }
-.productdisplay p {
-  letter-spacing: 1px;
+  .productdisplay h3 {
+    background-color: black;
+    color: white;
+    border-top-right-radius: 10px;
+    font-family: 'Press Start 2P', cursive;
+    font-weight: bold;
+    margin: 0 0 .5em 0;
+    padding: .5em;
+  }
+  .productdisplay p {
+    letter-spacing: 1px;
+  }
+  .add-to-cart {
+    margin-top: 1em;
+  }
+  .add-to-cart h2 {
+    text-align: center;
+    margin-top: 5px;
+  }
+  .add-to-cart h4 {
+    text-align: center;
+  }
+  #product-img {
+    width: 400px;
+    height: 400px;
+    background-color: #CCC;
+  }
+  .product-tmb {
+    width: 75px;
+    height: 75px;
+    background-color: #CCC;
+    display: inline-block;
+    margin-top: 5px;
+  }
+.signin-panel, .signin-panel-grey {
+  padding: 1em 1em;
+  margin-bottom: 1em;
 }
-.add-to-cart {
-  margin-top: 1em;
-}
-.add-to-cart h2 {
-  text-align: center;
-  margin-top: 5px;
-}
-.add-to-cart h4 {
-  text-align: center;
-}
-#hero-img {
-  width: 100%;
-  height: 350px;
-  background-color: #CCC;
-}
-#product-img {
-  width: 400px;
-  height: 400px;
-  background-color: #CCC;
-}
-.product-tmb {
-  width: 75px;
-  height: 75px;
-  background-color: #CCC;
-  display: inline-block;
-  margin-top: 5px;
-}
+  .signin-panel form {
+    display: inline-block;
+  }
+  .signin-panel-grey {
+    background-color: #DDD;
+    border-radius: 10px;
+  }
+  .signin-panel-grey .category_header {
+    color: black;
+  }
 .alert {
   margin: 20px auto;
 }
@@ -96,7 +115,7 @@ footer {
   text-align: center;
   padding-top: 1em;
 }
-pre {
-  background-color: #6fa8dc;
-  border: 0px solid #6fa8dc;
-}
+  pre {
+    background-color: #6fa8dc;
+    border: 0px solid #6fa8dc;
+  }
