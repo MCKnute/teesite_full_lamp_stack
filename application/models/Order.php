@@ -1,13 +1,13 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Order extends Product {
+class Order extends CI_Model {
 
-	public function index()
+	public function get_products_from_order($id)
 	{
-		$this->load->view('admin/products');
+		$query = "SELECT * FROM products JOIN products_has_orders ON products.id = products_has_orders.product_id JOIN orders ON orders.id = products_has_orders.product_id WHERE orders.id = ?";
+		return $this->db->query($query, array($id))->result_array();
 	}
-
 
 }
 
