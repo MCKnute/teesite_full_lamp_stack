@@ -43,10 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                  <button type="submit" class="btn btn-default">&#128269;</button>
                </form>
             </li>
-            <li><button class="btn btn-default navbar-btn">About Us</button></li> 
-            <li><button class="btn btn-default navbar-btn">Log In</button></li> 
-
-            <li><button class="btn btn-lg navbar-btn" id="btn-carttotal"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</button></li>
+            
             <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li> 
             <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In</a></li> 
 
