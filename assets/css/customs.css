@@ -124,7 +124,8 @@ footer {
     border: 0px solid #6fa8dc;
   }
   #googlemap{
-    background-color:gray;
     height:300px;
+    width: 300px;
     margin-bottom:20px;
+    margin-right:20px;
   }
