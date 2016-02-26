@@ -25,12 +25,12 @@ class Users extends CI_Controller {
 		{
 			$this->load->model('User');
 			$register_user = $this->User->add_user($this->input->post());
-			
+			var_dump($register_user);
+			die();
 			if($register_user)
 			{
 				$data["status"] = TRUE; 
 
-				//since this function is use by add user and user login, http referer will let us know where post data came from
 				if($_SERVER['HTTP_REFERER'] == base_url("/register"))
 					$data["success_message"] = "Registration successful! You can now <a href='signin'>login</a>!";
 				else
@@ -120,13 +120,8 @@ class Users extends CI_Controller {
 
 	public function logout()
 	{
-<<<<<<< HEAD
-		$this->session->sess_destroy();
-		redirect(base_url('/'));
-=======
 	    $this->session->sess_destroy();
 	    redirect("/");
->>>>>>> aa07884cdac53461b0ffb7c87f10ad06fe7c54e7
 	}
 
 }

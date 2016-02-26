@@ -18,9 +18,8 @@ class Order extends CI_Model {
 
 	public function get_all_orders_admin_page()
 	{
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, addresses.street, addresses.city, addresses.state, addresses.zipcode, payments.transaction_id FROM orders
+		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, addresses.street, addresses.city, addresses.state, addresses.zipcode, orders.transaction_id FROM orders
 				INNER JOIN users ON orders.user_id = users.id
-				INNER JOIN payments ON orders.payment_id = payments.id
 				INNER JOIN addresses ON orders.address_id = addresses.id
 				ORDER BY orders.id
 				";
