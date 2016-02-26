@@ -10,12 +10,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="#" class="list-group-item active">
+                <a href="orderby" class="list-group-item active">
                   Most Popular
                 </a>
-                <a href="#" class="list-group-item">Newest</a>
-                <a href="#" class="list-group-item">Cheapest</a>
-                <a href="#" class="list-group-item">SALE!</a>
+                <a href="newest" class="list-group-item">Newest</a>
+                <a href="cheapest" class="list-group-item">Cheapest</a>
+                <a href="sale" class="list-group-item">SALE!</a>
               </div>
             </div>
 
@@ -35,7 +35,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
         </div>
         <div class="col-md-9">
-          <img src="" id="hero-img" />
+          <img src="assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
           <h4>Our Most Popular Tees!</h4>
           <div class="row">
             <?
