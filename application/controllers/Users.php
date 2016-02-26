@@ -120,11 +120,17 @@ class Users extends CI_Controller {
 
 	public function logout()
 	{
+<<<<<<< HEAD
 		$this->session->sess_destroy();
 		redirect(base_url('/'));
+=======
+	    $this->session->sess_destroy();
+	    redirect("/");
+>>>>>>> aa07884cdac53461b0ffb7c87f10ad06fe7c54e7
 	}
 
 }
+
 
 
 

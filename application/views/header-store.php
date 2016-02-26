@@ -58,7 +58,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             };
             ?>
 
-            <li><a href="" type="button" class="btn btn-lg navbar-btn <?=$cartstatus?>"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total();?>)</a></li>
+            <li><a href="" type="button" class="btn btn-lg navbar-btn <?=$cartstatus?>"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Cart (<?=$this->cart->total_items();?>)</a></li>
           </ul>
                 <!-- </div> -->
         </div><!--/.navbar-collapse -->

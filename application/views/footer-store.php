@@ -15,6 +15,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	<hr>
     <p>cart data:</p>
     <p>items in cart: <?=$this->cart->total()?></p>
+
+    <!-- <a href="/Users/logout">Log Out</a> -->
+    <a href="/Carts/remove_items/all">Empty Cart</a>
   </footer>
 </body>
 </html>
