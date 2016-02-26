@@ -40,7 +40,7 @@ class Welcome extends CI_Controller {
 		public function signin_register()
 	{
 		
-		$headerinfo['title'] = "Sign In| KMK Tees";
+		$headerinfo['title'] = "Sign In | KMK Tees";
 		$headerinfo['description'] = "Sign in or register or more excellent tees!";
 		$this->load->view('header-store', $headerinfo);
 		$this->load->view('signin_register_message');

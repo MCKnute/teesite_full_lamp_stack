@@ -132,3 +132,14 @@ footer {
     margin-bottom:20px;
     margin-right:20px;
   }
+  .thumbnail  h5 {
+    color: black;
+    margin: .1em .1em;
+    line-height: 1.2em;
+    padding: 4px;
+    text-align: left;
+    /*font-weight: bold;*/
+    font-size: 12px;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  ;

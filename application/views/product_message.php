@@ -10,18 +10,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="#" class="list-group-item active">
+                <a href="#" class="list-group-item">
                   Most Popular
                 </a>
                 <a href="#" class="list-group-item">Newest</a>
                 <a href="#" class="list-group-item">Cheapest</a>
-                <a href="#" class="list-group-item">SALE!</a>
               </div>
             </div>
 
-            <div class="panel panel-default">
+       <!--     <div class="panel panel-default">
               <div class="panel-heading">Sizes</div>
-              <!-- List group -->
               <div class="list-group">
                 <a href="#" class="list-group-item">Women Small</a>
                 <a href="#" class="list-group-item">Women Medium</a>
@@ -32,7 +30,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="#" class="list-group-item">Men Large</a>
                 <a href="#" class="list-group-item">Men X-Large</a>
               </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="col-md-9">

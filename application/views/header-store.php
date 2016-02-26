@@ -44,11 +44,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                </form>
             </li>
             
-            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li> 
-            <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In</a></li>
+            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li>
 
-            <!-- get rid of this logout once checks are complete -->
-<!--             <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn">logout</a></li>  -->
+
+            <? if ($this->session->userdata('user_session')) { ?>
+              <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn">Log Out</a></li>
+              
+            <? } else { ?>
+              <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In / Register</a></li>
+            <? }; ?>
+
 
             <?php 
             if ($this->cart->total() == 0){
