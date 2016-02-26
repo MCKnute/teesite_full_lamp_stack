@@ -22,7 +22,7 @@ class Carts extends CI_Controller {
 
 
 				$productid = $this->input->post('productid');
-				$productname = $this->input->post('productid');
+				$productname = $this->input->post('productname');
 				$productprice = $this->input->post('price');
 				$productquantity = $this->input->post($checksize);
 				$productsize = $checksize;
