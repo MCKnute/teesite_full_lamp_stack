@@ -25,8 +25,6 @@ class Users extends CI_Controller {
 		{
 			$this->load->model('User');
 			$register_user = $this->User->add_user($this->input->post());
-			var_dump($register_user);
-			die();
 			if($register_user)
 			{
 				$data["status"] = TRUE; 
