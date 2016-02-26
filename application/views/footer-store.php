@@ -14,7 +14,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     	<? var_dump($this->session->userdata()) ;?>
     	<hr>
     <p>cart data:</p>
-    <p>items in cart: <?=$this->cart->total()?></p>
+    <p>Number of items in cart: <?=$this->cart->total()?></p>
+    <p>Products in cart: <br><?php var_dump($this->cart->contents()); ?></p>
 
     <!-- <a href="/Users/logout">Log Out</a> -->
     <a href="/Carts/remove_items/all">Empty Cart</a>
