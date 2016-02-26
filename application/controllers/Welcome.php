@@ -12,6 +12,9 @@ class Welcome extends CI_Controller {
 
 	public function index()
 	{
+		// if (!$orderby){
+		// 	$orderby = 0;
+		// }
 		$products = $this->Product->get_some_products(8,0);
 		$info['products'] = $products;
 		$headerinfo['title'] = "KMK Tees";
@@ -28,8 +31,8 @@ class Welcome extends CI_Controller {
 		$productinfo['thisid'] = $id;
 		$productinfo['thisproduct'] = $thisproduct;
 		$productinfo['suggestprods'] = $suggestprods;
-		$headerinfo['title'] = " | KMK Tees";
-		$headerinfo['description'] = "Get excellent tees from us!";
+		$headerinfo['title'] = $thisproduct['name']." | KMK Tees";
+		$headerinfo['description'] = $thisproduct['name'].", only from KTK Tees!";
 		$this->load->view('header-store', $headerinfo);
 		$this->load->view('product_message', $productinfo);
 		$this->load->view('footer-store');
