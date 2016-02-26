@@ -52,11 +52,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <div class="panel panel-default add-to-cart">
             <div class="panel-body">
               <h2>$<?=$thisproduct['price']?></h2>
-              <form class="form-horizontal">
-                <div class="form-group">
-                    <label for="quantity" class="col-sm-4 control-label text-left">Women Small</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
+              <form class="form-horizontal" method="post" action="/Carts/add_items">
+  
+                  <div class="row control-label">
+                    <h4 class="col-sm-6">Women's</h4>
+                    <h4 class="col-sm-6">Men's</h4>
+                  </div>
+                  <div class="form-group">
+                    <input type="hidden" name="productid" value="<?=$thisid?>" />
+                    <input type="hidden" name="productname" value="<?=$thisproduct['name']?>" />
+                    <input type="hidden" name="price" value="<?=$thisproduct['price']?>" />
+                    <label for="small_w" class="col-sm-3 control-label text-left">Small</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="small_w">
                         <option selected="selected">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -64,10 +72,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option>4</option>
                         <option>5</option>
                       </select>
+                       <!-- <input type="number" name="small_w" min="0" max="5" class="form-control"> -->
                     </div>
-                    <label for="quantity" class="col-sm-4 control-label text-left">Men Small</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
+                    <label for="small_m" class="col-sm-3 control-label text-left">Small</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="small_m">
                         <option selected="selected">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -78,9 +87,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                   </div>
                 <div class="form-group">
-                    <label for="quantity" class="col-sm-4 control-label text-left">Women Med</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
+                    <label for="medium_w" class="col-sm-3 control-label text-left">Medium</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="medium_w">
                         <option selected="selected">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -89,33 +98,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option>5</option>
                       </select>
                     </div>
-                    <label for="quantity" class="col-sm-4 control-label text-left">Men Medium</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
-                        <option selected="selected">0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                  </div>
-                <div class="form-group">
-                    <label for="quantity" class="col-sm-4 control-label text-left">Women Large</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
-                        <option selected="selected">0</option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                      </select>
-                    </div>
-                    <label for="quantity" class="col-sm-4 control-label text-left">Men Large</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
+                    <label for="medium_m" class="col-sm-3 control-label text-left">Medium</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="medium_m">
                         <option selected="selected">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -126,9 +111,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                   </div>
                 <div class="form-group">
-                    <label for="quantity" class="col-sm-4 control-label text-left">Women X-Lar</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
+                    <label for="large_w" class="col-sm-3 control-label text-left">Large</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="large_w">
                         <option selected="selected">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -137,9 +122,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <option>5</option>
                       </select>
                     </div>
-                    <label for="quantity" class="col-sm-4 control-label text-left">Men X-Large</label>
-                    <div class="col-sm-2">
-                      <select class="form-control">
+                    <label for="large_m" class="col-sm-3 control-label text-left">Large</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="large_m">
                         <option selected="selected">0</option>
                         <option>1</option>
                         <option>2</option>
@@ -149,9 +134,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </select>
                     </div>
                   </div>
-                  <h4>Subtotal:</h4>
-                  <h2>$###.##</h2>
-                <button class="btn btn-lg btn-success navbar-btn center-block"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Cart</button>
+                <div class="form-group">
+                    <label for="xlarge_w" class="col-sm-3 control-label text-left">X-Large</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="xlarge_w">
+                        <option selected="selected">0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                    <label for="xlarge_m" class="col-sm-3 control-label text-left">X-Large</label>
+                    <div class="col-sm-3">
+                      <select class="form-control" name="xlarge_m">
+                        <option selected="selected">0</option>
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                      </select>
+                    </div>
+                  </div>
+                  <!-- <h4>Subtotal:</h4>
+                  <h2>$###.##</h2> -->
+                <button type="submit" class="btn btn-lg btn-success navbar-btn center-block"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Cart</button>
               </form>
             </div>
           </div>

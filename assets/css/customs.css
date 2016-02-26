@@ -44,6 +44,9 @@ body {
   color: white;
   background-color: black;
 }
+.btn-success {
+  /*border: 1px solid black;*/
+}
 .container-main {
   background-color: white;
   /*margin-top: 1em;*/
@@ -120,7 +123,7 @@ footer {
   padding-top: 1em;
 }
   pre {
-    background-color: #6fa8dc;
+    /*background-color: #6fa8dc;*/
     border: 0px solid #6fa8dc;
   }
   #googlemap{

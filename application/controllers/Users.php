@@ -112,7 +112,14 @@ class Users extends CI_Controller {
 			show_404();
 	}
 
+	public function logout()
+	{
+	    $this->session->sess_destroy();
+	    redirect("/");
+	}
+
 }
+
 
 
 
