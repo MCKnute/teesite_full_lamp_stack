@@ -47,8 +47,7 @@ class Carts extends CI_Controller {
 			}
 		}
 
-		var_dump($insert_data);
-		die();
+		
 		if($insert_data){
 			$this->cart->insert($insert_data);
 		}
