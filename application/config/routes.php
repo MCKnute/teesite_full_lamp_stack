@@ -53,6 +53,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // this is the default controller. You need to change it depending on your project
 $route['default_controller'] = 'welcome';
 $route['product/(:any)'] = 'welcome/product/$1';
+$route['category/(:any)'] = 'welcome/category/$1';
 $route['signin_register'] = 'welcome/signin_register';
 $route['about_us'] = 'welcome/about_us';
 $route['myorders'] = 'orders/myorders';

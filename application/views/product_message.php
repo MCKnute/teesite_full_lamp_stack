@@ -10,18 +10,29 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="#" class="list-group-item active">
+                <a href="/" id="featured" class="list-group-item">
+                  Featured
+                </a>
+                <a href="/category/popularshirts" id="mostpopular" class="list-group-item">
                   Most Popular
                 </a>
-                <a href="#" class="list-group-item">Newest</a>
-                <a href="#" class="list-group-item">Cheapest</a>
-                <a href="#" class="list-group-item">SALE!</a>
+                <a href="/category/newshirts" id="newest" class="list-group-item">
+                  Newest
+                </a>
+                <a href="/category/cheapshirts" id="cheapest" class="list-group-item">
+                  Price: Low to High
+                </a>
+                <a href="/category/fancyshirts" id="fanciest" class="list-group-item">
+                  Price: High to Low
+                </a>
+                <a href="/category/alphabetical" id="alphabetical" class="list-group-item">
+                  Product Name
+                </a>
               </div>
             </div>
 
-            <div class="panel panel-default">
+       <!--     <div class="panel panel-default">
               <div class="panel-heading">Sizes</div>
-              <!-- List group -->
               <div class="list-group">
                 <a href="#" class="list-group-item">Women Small</a>
                 <a href="#" class="list-group-item">Women Medium</a>
@@ -32,7 +43,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="#" class="list-group-item">Men Large</a>
                 <a href="#" class="list-group-item">Men X-Large</a>
               </div>
-            </div>
+            </div> -->
         </div>
 
         <div class="col-md-9">
@@ -200,27 +211,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div> -->
           </div>
 
-          <div class="row text-center">
-            <nav>
-              <ul class="pagination">
-                <li>
-                  <a href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                  <a href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
+
         </div>
       </div>
 

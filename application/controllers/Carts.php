@@ -21,7 +21,9 @@ class Carts extends CI_Controller {
 
 	public function add_items() {
 
-		$checksizes=["small_w","small_m","medium_w","medium_m","large_w","large_m","xlarge_m","xlarge_m"];
+
+		$checksizes=["small_w","small_m","medium_w","medium_m","large_w","large_m","xlarge_w","xlarge_m"];
+
 
 		foreach ($checksizes as $checksize) {
 			
@@ -36,7 +38,7 @@ class Carts extends CI_Controller {
 
 				
 
-				$insert_data = array(
+				$insert_data[] = array(
 					'id' => $productid."_".$productsize,
 					'name' => $productname,
 					'price' => $productprice,
@@ -47,6 +49,7 @@ class Carts extends CI_Controller {
 			}
 		}
 
+		
 		if($insert_data){
 			$this->cart->insert($insert_data);
 		}
@@ -69,7 +72,8 @@ class Carts extends CI_Controller {
 			'rowid' => $rowid,
 			'qty' => 0
 		);
-	$this->cart->update($data);
+	$status=$this->cart->update($data);
+	redirect("/Carts");
 	}
 
 	public function remove_items($rowid) {

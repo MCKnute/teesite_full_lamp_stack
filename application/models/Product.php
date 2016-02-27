@@ -26,10 +26,33 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-	public function get_products_by_category()
+	public function get_products_by_category($category)
 	{
-		$query = "SELECT * FROM products";
-		return $this->db->query($query)->result_array();
+
+		if ($category == 'featured') {
+			$query = "SELECT * FROM products";
+			return $this->db->query($query)->result_array();
+		}
+		if ($category == 'popularshirts') {
+			$query = "SELECT * FROM products";
+			return $this->db->query($query)->result_array();
+		}
+		if ($category == 'newshirts') {
+			$query = "SELECT * FROM products ORDER BY created_at";
+			return $this->db->query($query)->result_array();
+		}
+		if ($category == 'cheapshirts') {
+			$query = "SELECT * FROM products ORDER BY price";
+			return $this->db->query($query)->result_array();
+		}
+		if ($category == 'fancyshirts') {
+			$query = "SELECT * FROM products ORDER BY price DESC";
+			return $this->db->query($query)->result_array();
+		}
+		if ($category == 'alphabetical') {
+			$query = "SELECT * FROM products ORDER BY name";
+			return $this->db->query($query)->result_array();
+		}
 	}
 
 	public function get_product_inventory_total()
