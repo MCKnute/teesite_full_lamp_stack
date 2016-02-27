@@ -27,8 +27,15 @@ class Product extends CI_Model {
 			return $this->db->query($query)->result_array();
 		}
 		if ($category == 'popularshirts') {
+
+			// $query = "SELECT products.id AS productid, products.name AS productname, products.price AS price, products_has_orders.product_id, products_has_orders.quantity AS quantity FROM products JOIN products_has_orders ON products.id = products_has_orders.product_id";
+			// return $this->db->query($query)->result_array();
+
 			$query = "SELECT * FROM products";
 			return $this->db->query($query)->result_array();
+
+
+
 		}
 		if ($category == 'newshirts') {
 			$query = "SELECT * FROM products ORDER BY created_at";
@@ -46,29 +53,7 @@ class Product extends CI_Model {
 			$query = "SELECT * FROM products ORDER BY name";
 			return $this->db->query($query)->result_array();
 		}
+
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
