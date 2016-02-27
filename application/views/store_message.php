@@ -10,18 +10,30 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="#" class="list-group-item active">
+                <a href="/" id="featured" class="list-group-item">
+                  Featured
+                </a>
+                <a href="/category/popularshirts" id="mostpopular" class="list-group-item">
                   Most Popular
                 </a>
-                <a href="#" class="list-group-item">Newest</a>
-                <a href="#" class="list-group-item">Cheapest</a>
-                <a href="#" class="list-group-item">SALE!</a>
+                <a href="/category/newshirts" id="newest" class="list-group-item">
+                  Newest
+                </a>
+                <a href="/category/cheapshirts" id="cheapest" class="list-group-item">
+                  Price: Low to High
+                </a>
+                <a href="/category/fancyshirts" id="fanciest" class="list-group-item">
+                  Price: High to Low
+                </a>
+                <a href="/category/alphabetical" id="alphabetical" class="list-group-item">
+                  Product Name
+                </a>
               </div>
             </div>
 
-            <div class="panel panel-default">
+            <!-- <div class="panel panel-default">
               <div class="panel-heading">Sizes</div>
-              <!-- List group -->
+              
               <div class="list-group">
                 <a href="#" class="list-group-item">Women Small</a>
                 <a href="#" class="list-group-item">Women Medium</a>
@@ -32,18 +44,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="#" class="list-group-item">Men Large</a>
                 <a href="#" class="list-group-item">Men X-Large</a>
               </div>
-            </div>
+            </div> -->
         </div>
         <div class="col-md-9">
-          <img src="" id="hero-img" />
+          <img src="/assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
           <h4>Our Most Popular Tees!</h4>
           <div class="row">
             <?
               $count = 0; 
               foreach($products as $product) { ?>
                     <div class="col-xs-6 col-md-3">
-                        <a href="product/<?=$product['id']?>" class="thumbnail">
-                          <img src="assets/img/products/<?=$product['id']?>-med.png" alt="<?=$product['name']?>">
+                        <a href="/product/<?=$product['id']?>" class="thumbnail">
+                          <? $imgurl = base_url('/assets/img/products/'.$product['id'].'-med.png')?>
+                          <img src="<?=$imgurl;?>" alt="<?=$product['name']?>">
+                          <h5><?=$product['name']?><br /><strong>$<?=$product['price']?></strong></h5>
                         </a>
                       </div> <?
                 $count++;
@@ -55,7 +69,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   }
               } ?>
           </div>
-          <div class="row text-center">
+<!--           <div class="row text-center">
             <nav>
               <ul class="pagination">
                 <li>
@@ -75,7 +89,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </li>
               </ul>
             </nav>
-          </div>
+          </div> -->
         </div>
       </div>
 
