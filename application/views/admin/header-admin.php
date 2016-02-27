@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+
 if ($_SESSION['user_session']['is_admin'] != 1) 
 {
   $data['redirect_url'] = base_url('/');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +20,11 @@ if ($_SESSION['user_session']['is_admin'] != 1)
     <meta name="author" content="Mollie Knute, David Macias, and Pete Kang">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/customs.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/admin.css" />
     
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/assets/js/customs.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-top">

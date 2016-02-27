@@ -1,8 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-
 ?>
 <!DOCTYPE html>
     <div class="container">
@@ -49,7 +47,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tbody>
 			</table>
 
-			<nav>
+			<!-- special -->
+			<!-- <nav>
 			 	<ul class="pagination product_pagination">
 				    <li>
 				      	<a href="#" aria-label="Previous">
@@ -67,7 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				      	</a>
 				    </li>
 			  	</ul>
-			</nav>
+			</nav> -->
 	    </div>
     </div> 
 <!-- End of Orders Container -->

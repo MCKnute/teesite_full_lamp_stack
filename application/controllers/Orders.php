@@ -15,4 +15,9 @@ class Orders extends CI_Controller {
 		$this->load->view('/admin/footer-admin');
 	}
 
+	public function addOrder()
+	{
+		
+	}
+
 }
