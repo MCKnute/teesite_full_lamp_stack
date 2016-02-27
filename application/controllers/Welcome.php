@@ -15,7 +15,7 @@ class Welcome extends CI_Controller {
 		// if (!$orderby){
 		// 	$orderby = 0;
 		// }
-		$products = $this->Product->get_some_products(8,0);
+		$products = $this->Product->get_all_products();
 		$info['products'] = $products;
 		$headerinfo['title'] = "KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
@@ -23,6 +23,18 @@ class Welcome extends CI_Controller {
 		$this->load->view('store_message', $info);
 		$this->load->view('footer-store');
 	}
+
+	public function category($category)
+	{
+		$products = $this->Product->get_products_by_category($category);
+		$info['products'] = $products;
+		$headerinfo['title'] = "KMK Tees";
+		$headerinfo['description'] = "Get excellent tees from us!";
+		$this->load->view('header-store', $headerinfo);
+		$this->load->view('store_message', $info);
+		$this->load->view('footer-store');
+	}
+
 	public function product($id)
 	{
 
