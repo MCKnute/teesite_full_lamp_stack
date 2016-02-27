@@ -25,6 +25,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <a href="/category/fancyshirts" id="fanciest" class="list-group-item">
                   Price: High to Low
                 </a>
+                <a href="/category/alphabetical" id="alphabetical" class="list-group-item">
+                  Product Name
+                </a>
               </div>
             </div>
 
