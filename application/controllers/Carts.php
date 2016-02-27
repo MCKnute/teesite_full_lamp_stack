@@ -22,7 +22,8 @@ class Carts extends CI_Controller {
 	public function add_items() {
 
 		$checksizes=["small_w","small_m","medium_w","medium_m","large_w","large_m","xlarge_m","xlarge_m"];
-
+		var_dump($checksizes);
+		die();
 		foreach ($checksizes as $checksize) {
 			
 			if ($this->input->post($checksize) != "0") {
@@ -69,7 +70,8 @@ class Carts extends CI_Controller {
 			'rowid' => $rowid,
 			'qty' => 0
 		);
-	$this->cart->update($data);
+	$status=$this->cart->update($data);
+	redirect("/Carts");
 	}
 
 	public function remove_items($rowid) {
