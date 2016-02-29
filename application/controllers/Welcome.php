@@ -28,6 +28,7 @@ class Welcome extends CI_Controller {
 	{
 		$products = $this->Product->get_products_by_category($category);
 		$info['products'] = $products;
+		$info['category'] = $category;
 		$headerinfo['title'] = "KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);

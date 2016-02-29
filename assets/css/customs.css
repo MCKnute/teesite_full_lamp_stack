@@ -58,6 +58,11 @@ body {
   height: 350px;
   background-color: #CCC;
 }
+#small-hero-img {
+  width: 100%;
+  height: 200px;
+  background-color: #CCC;
+}
 .category_header {
   color: #cf2a27;
   font-family: 'Press Start 2P', cursive;

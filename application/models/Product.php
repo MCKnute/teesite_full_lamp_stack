@@ -22,7 +22,7 @@ class Product extends CI_Model {
 	public function get_products_by_category($category)
 	{
 
-		if ($category == 'featured') {
+		if ($category == 'featuredtees') {
 			$query = "SELECT * FROM products";
 			return $this->db->query($query)->result_array();
 		}
