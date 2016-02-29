@@ -54,12 +54,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In / Register</a></li>
             <? }; ?>
 
-<<<<<<< HEAD
             <!-- get rid of this logout once checks are complete -->
-            <li><a href="/Users/logout" type="button" class="btn btn-danger navbar-btn">logout</a></li> 
-=======
->>>>>>> 781bde774110696c21727d8dabb72a15f8317d47
-
+            <!-- <li><a href="/Users/logout" type="button" class="btn btn-danger navbar-btn">logout</a></li>  -->
             <?php 
             if ($this->cart->total() == 0){
               $cartstatus = "btn-empty";

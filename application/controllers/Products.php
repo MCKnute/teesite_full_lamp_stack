@@ -20,7 +20,7 @@ class Products extends CI_Controller {
 		$this->load->model('Product');
 		$post_data = $this->input->post();
 
-		$product = array(
+		$products = array(
 				'name' => $post_data["name"], 
 				'description' => $post_data["description"],
 				'categories' => $post_data['categories'],
@@ -39,12 +39,12 @@ class Products extends CI_Controller {
 
 			//session is being set in here with index user session, remember session is in a form of array
 			$this->$_SESSION('product_session', $product_data);
-			$data['post_created'] = TRUE;
+			$data['product_created'] = TRUE;
 			$data['success_message'] = "Product Added";
 		}
 		else
 		{
-			$data['post_created'] = FALSE;
+			$data['product_created'] = FALSE;
 			$data["error_message"] = "You didn't enter all the info. Try Again";
 		}
 		return $data;
