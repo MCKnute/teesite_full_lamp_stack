@@ -38,7 +38,7 @@ class Product extends CI_Model {
 
 		}
 		if ($category == 'newshirts') {
-			$query = "SELECT * FROM products ORDER BY created_at";
+			$query = "SELECT * FROM products ORDER BY created_at DESC";
 			return $this->db->query($query)->result_array();
 		}
 		if ($category == 'cheapshirts') {
