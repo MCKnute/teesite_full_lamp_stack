@@ -87,6 +87,65 @@ class Carts extends CI_Controller {
 			);
 			$this->cart->update($data);
 		}
-		redirect('/');
+		redirect('/Carts');
 	}
+
+	public function process(){
+		require_once 'vendor/stripe_key.php';
+		
+		if (isset($_SESSION['user_id']))
+		{
+			$this->load->model('User');
+			$customer = $this->User->get_user($_SESSION['user_id']);
+			if($customer->customer_id==0 && isset($_POST['stripeToken']))
+			{
+				$newcustomer = Stripe_Customer::create(array(
+					'card' => $_POST['stripeToken'],
+					'email' => $_SESSION['email']
+				));
+				$customer->customer_id = $newcustomer->id;
+				$this->User->update_user($_SESSION['user_id'],$customer);
+			}
+
+			try
+			{
+				$array=[
+					'customer' => $customer->customer_id,
+					'amount' => $_SESSION['amount'],
+					'currency' => 'usd',
+					'description' => $_SESSION['email'],
+					'receipt_email' => $_SESSION['email']
+					];
+				$charge=Stripe_Charge::create($array);
+				$this->load->model('Cart_model');
+				$_SESSION['insert_id']=$this->Cart_model->process_transaction($charge);
+				foreach($this->cart->contents() as $item){
+					$data = array(
+							'rowid' => $item['rowid'],
+							'qty' => 0
+						);
+					$status=$this->cart->update($data);
+				}
+				
+				redirect("/Orders/confirmation");
+			}
+			catch(Stripe_CardError $e)
+			{
+			  $body = $e->getJsonBody();
+			  $err  = $body['error'];
+
+			  print('Status is:' . $e->getHttpStatus() . "\n");
+			  print('Type is:' . $err['type'] . "\n");
+			  print('Code is:' . $err['code'] . "\n");
+			  print('Param is:' . $err['param'] . "\n");
+			  print('Message is:' . $err['message'] . "\n");
+			} 
+		}
+		else
+		{ //if $_SESSION['user_id'] not set, have them sign in.
+			redirect('/signin_register');
+		}	
+	}
+
 }
+

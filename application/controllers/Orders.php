@@ -15,4 +15,13 @@ class Orders extends CI_Controller {
 		$this->load->view('/admin/footer-admin');
 	}
 
+	public function confirmation()
+	{
+		$headerinfo['title'] = "KMK Tees";
+		$headerinfo['description'] = "Get excellent tees from us!";
+		$this->load->view('header-store', $headerinfo);
+		$this->load->view('store_message');
+		$this->load->view('footer-store');
+	}
+
 }

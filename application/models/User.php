@@ -9,8 +9,8 @@ class User extends CI_Model {
 
 	public function update_user($user_id, $user_data)
 	{
-		return $this->db->where('id', $user_id)
-				    ->update('users', $user_data); 
+		$this->db->where('id', $user_id);
+		return $this->db->update('users', $user_data); 
 	}
 
 	public function delete_user($user_id)
@@ -46,7 +46,8 @@ class User extends CI_Model {
 			'first_name' => $user_data["first_name"],
 			'last_name'	=> $user_data["last_name"],
 			'is_admin' => FALSE,
-			'created_at' => date("Y-m-d H:i:s")
+			'created_at' => date("Y-m-d H:i:s"),
+			'updated_at' => date("Y-m-d H:i:s")
 		);
 		
 		return $this->db->insert('users', $user);

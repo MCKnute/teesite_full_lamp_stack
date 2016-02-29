@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 $cart=$this->cart->contents();
-// var_dump($cart);
+require_once 'vendor/stripe_key.php';
 ?>
 
     <div class="container">
@@ -14,12 +14,13 @@ $cart=$this->cart->contents();
 					<th>Product</th>
 					<th>Quantity</th>
 					<th>Action</th>
+					<th>Price</th>
 				</thead>
 				<tbody>
 <?php 
 				foreach ($cart as $product) {
 ?>
-					<tr id="<?= $product['id']; ?>">
+					<tr>
 						<td><img href="<?= 'nothing.jpg' ?>"></td>
 						<td><?= $product['id']; ?></td>
 						<td><?= $product['name']; ?></td>
@@ -29,17 +30,56 @@ $cart=$this->cart->contents();
 							  	<li><a id="<?= $product['id']; ?>" class="remove" href="/Carts/remove_item/<?= $product['rowid']; ?>">Remove From Cart</a></li>
 							</ul>
 						</td>
+						<td><?= $product['price']; ?></td>
 					</tr>
 <?php 
 				} 
 ?>
+				<tr>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td></td>
+						<td>
+							<ul class="nav nav-pills">
+							  	<li><a href="/Carts/remove_items/all">Remove All From Cart</a></li>
+							</ul>
+						</td>
+						<td><?php 
+						$total = 0;
+						$itemcount=0;
+						foreach($cart as $product){
+								$itemcount+=$product['qty'];
+								$total+=$product['price'];
+							}
+							echo $total;
+							$_SESSION['amount'] = $total*100;
+							?></td>
+					</tr>
 				</tbody>
 			</table>
-			<div id="checkoutmodal">
+			<div id="checkoutmodal" style="display:<?php if($total==0){
+					echo 'none';
+				}
+				else
+					{
+						echo 'inline-block';
+					} ?>">
 				<!-- add new product button will be using MODAL.js from bootstrap-->
-				<form class="btn pull-right" action="" method="post">
-				  	<input type="hidden" name="checkout">
-				  	<button type="submit" class="btn-success">Checkout</button>
+				<form action="/Carts/process" method="POST">
+				  <script
+				    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+				    data-key="<?=$stripe['public_key']?>"
+				    data-amount="<?=$total*100?>"
+				    data-name="KMK Tees"
+				    data-billing-address="true"
+				    data-shipping-address="true"
+				    data-label="Buy Now"
+				    data-description="<?=$itemcount?> Shirts ($<?=$total?>)"
+				    data-email="<?=($_SESSION['email']); ?>"
+				    data-image="/assets/img/white.png"
+				    data-locale="auto">
+				  </script>
 				</form>
 			</div>
 			<nav class="center-block">
