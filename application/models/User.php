@@ -7,10 +7,12 @@ class User extends CI_Model {
 		parent::__construct();
 	}
 
-	public function update_user($user_id, $user_data)
+
+	public function update_user($user_id,$user_data)
 	{
-		$this->db->where('id', $user_id);
-		return $this->db->update('users', $user_data); 
+		$query = "UPDATE users SET updated_at=NOW(), customer_id=? WHERE id=?";
+        $values = [$user_data->customer_id, $user_id]; 
+        return $this->db->query($query, $values);
 	}
 
 	public function delete_user($user_id)

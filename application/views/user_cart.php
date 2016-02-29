@@ -74,6 +74,7 @@ require_once 'vendor/stripe_key.php';
 				    data-name="KMK Tees"
 				    data-billing-address="true"
 				    data-shipping-address="true"
+				    data-allow-remember-me="true"
 				    data-label="Buy Now"
 				    data-description="<?=$itemcount?> Shirts ($<?=$total?>)"
 				    data-email="<?=($_SESSION['email']); ?>"
