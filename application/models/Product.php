@@ -56,4 +56,13 @@ class Product extends CI_Model {
 
 	}
 
+	public function get_products_by_search($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT * FROM products 
+			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
+	}
+
 }

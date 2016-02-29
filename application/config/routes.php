@@ -55,6 +55,7 @@ $route['default_controller'] = 'welcome';
 $route['product/(:any)'] = 'welcome/product/$1';
 $route['category/(:any)'] = 'welcome/category/$1';
 $route['signin_register'] = 'welcome/signin_register';
+$route['search'] = 'welcome/search';
 $route['about_us'] = 'welcome/about_us';
 $route['myorders'] = 'orders/myorders';
 $route['404_override'] = '';
