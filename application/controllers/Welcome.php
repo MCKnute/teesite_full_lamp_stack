@@ -46,7 +46,7 @@ class Welcome extends CI_Controller {
 		$headerinfo['title'] = $searchterm." Search | KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);
-		$this->load->view('store_message', $info);
+		$this->load->view('store_json_message', $info);
 		$this->load->view('footer-store');
 	}
 
