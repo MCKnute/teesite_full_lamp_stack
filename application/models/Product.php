@@ -28,11 +28,11 @@ class Product extends CI_Model {
 		}
 		if ($category == 'popularshirts') {
 
-			// $query = "SELECT products.id AS productid, products.name AS productname, products.price AS price, products_has_orders.product_id, products_has_orders.quantity AS quantity FROM products JOIN products_has_orders ON products.id = products_has_orders.product_id";
-			// return $this->db->query($query)->result_array();
-
-			$query = "SELECT * FROM products";
+			$query = "SELECT products.id AS id, products.name AS name, products.price AS price, products_has_orders.product_id, SUM(products_has_orders.qty) AS quantity FROM products LEFT JOIN products_has_orders ON products.id = products_has_orders.product_id GROUP BY id ORDER BY quantity DESC, name";
 			return $this->db->query($query)->result_array();
+
+			// $query = "SELECT * FROM products";
+			// return $this->db->query($query)->result_array();
 
 
 
