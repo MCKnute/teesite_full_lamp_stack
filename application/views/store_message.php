@@ -48,7 +48,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="col-md-9">
           <img src="/assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
-          <h4>Our Most Popular Tees!</h4>
+          <h4>
+            <? if (isset($searchterm)) {
+              echo "Search results for: $searchterm";
+            } else {
+              echo "View our tees!";
+            }
+            ?>
+
+          </h4>
           <div class="row">
             <?
               $count = 0; 

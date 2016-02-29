@@ -3,6 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $cart=$this->cart->contents();
 // var_dump($cart);
 ?>
+
     <div class="container">
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
@@ -18,14 +19,14 @@ $cart=$this->cart->contents();
 <?php 
 				foreach ($cart as $product) {
 ?>
-					<tr id="<?php echo $product['id']; ?>">
-						<td><img href="<?php echo 'nothing.jpg' ?>"></td>
-						<td><?php echo $product['id']; ?></td>
-						<td><?php echo $product['name']; ?></td>
-						<td><?php echo $product['qty']; ?></td>
+					<tr id="<?= $product['id']; ?>">
+						<td><img href="<?= 'nothing.jpg' ?>"></td>
+						<td><?= $product['id']; ?></td>
+						<td><?= $product['name']; ?></td>
+						<td><?= $product['qty']; ?></td>
 						<td>
 							<ul class="nav nav-pills">
-							  	<li><a href="/Carts/remove_item/<?php echo $product['id']; ?>">Remove From Cart</a></li>
+							  	<li><a id="<?= $product['id']; ?>" class="remove" href="/Carts/remove_item/<?= $product['rowid']; ?>">Remove From Cart</a></li>
 							</ul>
 						</td>
 					</tr>

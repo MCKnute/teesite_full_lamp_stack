@@ -38,7 +38,7 @@ class Product extends CI_Model {
 
 		}
 		if ($category == 'newshirts') {
-			$query = "SELECT * FROM products ORDER BY created_at";
+			$query = "SELECT * FROM products ORDER BY created_at DESC";
 			return $this->db->query($query)->result_array();
 		}
 		if ($category == 'cheapshirts') {
@@ -54,6 +54,15 @@ class Product extends CI_Model {
 			return $this->db->query($query)->result_array();
 		}
 
+	}
+
+	public function get_products_by_search($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT * FROM products 
+			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
 	}
 
 }

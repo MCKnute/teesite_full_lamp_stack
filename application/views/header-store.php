@@ -36,9 +36,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
-            <li><form class="navbar-form navbar-left" role="search">
+            <li><form class="navbar-form navbar-left" id="searchbar" role="search" action="search" method="post">
                  <div class="form-group">
-                   <input type="text" class="form-control" placeholder="Search">
+                   <input type="text" class="form-control" name="keyword" placeholder="Search">
                  </div>
                  <button type="submit" class="btn btn-default">&#128269;</button>
                </form>
