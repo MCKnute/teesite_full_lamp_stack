@@ -19,6 +19,12 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
+	public function get_reccomend_products($currid)
+	{
+		$query = "SELECT * FROM products WHERE id != $currid ORDER BY RAND() LIMIT 4";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function get_products_by_category($category)
 	{
 
