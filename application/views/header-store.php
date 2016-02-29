@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'vendor/autoload.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li>
 
 
-            <? if ($this->session->userdata('user_session')) { ?>
+            <? if ($this->session->userdata('user_id')) { ?>
               <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn">Log Out</a></li>
               
             <? } else { ?>
@@ -55,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <? }; ?>
 
 
-            <?php 
+            <?php
             if ($this->cart->total() == 0){
               $cartstatus = "btn-empty";
             }else{
