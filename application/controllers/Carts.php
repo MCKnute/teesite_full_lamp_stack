@@ -117,21 +117,16 @@ class Carts extends CI_Controller {
 					'receipt_email' => $_SESSION['email']
 					];
 				$charge=Stripe_Charge::create($array);
-				$this->load->model('Cart_model');
-				$_SESSION['insert_id']=$this->Cart_model->process_transaction($charge);
-				$_SESSION['ordercontents']=$this->cart->contents();
-				foreach($_SESSION['ordercontents'] as $product){
-					var_dump($product);
-					echo '<br><br>';
+				$this->load->model('Order');
+				$_SESSION['insert_id']=$this->Order->process_transaction($charge);
+				$query='SET foreign_key_checks = 0';
+				$this->db->query($query);
+				foreach($this->cart->contents() as $product){
+					$this->Order->add_product_into_order($product);
 				}
-				die();
-				foreach($this->cart->contents() as $item){
-					$data = array(
-							'rowid' => $item['rowid'],
-							'qty' => 0
-						);
-					$status=$this->cart->update($data);
-				}
+				$query='SET foreign_key_checks = 0';
+				$this->db->query($query);
+				$this->cart->destroy();
 				
 				redirect("/Orders/confirmation");
 			}

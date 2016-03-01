@@ -28,6 +28,34 @@ class Order extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
+	public function process_transaction($charge){
+
+		$ordervals=[
+			'transaction_id' => $charge->balance_transaction,
+			'tracking_num' => 0,
+			'user_id' => $_SESSION['user_id'],
+			'address_id' => $_SESSION['user_id'],
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s'),
+			'paid' => $charge->paid
+					];
+		$this->db->insert('orders', $ordervals);
+		return $this->db->insert_id();
+	}
+
+	public function add_product_into_order($product){
+		// var_dump($product['size']['ShirtID']);
+		// die;
+		$productvals=[
+			'product_id' => (int)$product['size']['ShirtID'],
+			'order_id' => $_SESSION['insert_id'],
+			'qty' => $product['qty'],
+			'size' => $product['size']['Size']
+					];
+		$this->db->insert('products_has_orders', $productvals);
+		return $this->db->insert_id();
+	}
+
 }
 
 
