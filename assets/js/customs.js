@@ -1,13 +1,14 @@
 $(document).ready(function(){
-	// var carttotal = <?php echo $carttotal;?>
-
-	// if (carttotal != 4){
-	// $("#btn-carttotal").css({"background-color": "#5cb85c", "color": "white", "border": "2px solid white"});
-	// } 
-	// else {
-	$("#btn-carttotal").css({"background-color": "black", "color": "white"});
-	// }
-	// console.log($carttotal);
-
-	// $("#btn-carttotal").css({"background-color": "black", "color": "white", "border": "2px solid black"});
+	$('#prodthumb1').click(function(){
+		var thisid = $(this).attr('prodid');
+		var large = "/assets/img/products/" + thisid + "-large.png";
+		// alert('The product id of this is ' + thisid +'!');
+		$('#product-img-lrg').attr('src', large);
+	});
+	$('#prodthumb2').click(function(){
+		var thisid = $(this).attr('prodid');
+		var large2 = "/assets/img/products/" + thisid + "-large-2.png";
+		// alert('The product id of this is ' + thisid +'!');
+		$('#product-img-lrg').attr('src', large2);
+	});
 });

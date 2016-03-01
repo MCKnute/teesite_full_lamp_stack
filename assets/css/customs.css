@@ -58,6 +58,11 @@ body {
   height: 350px;
   background-color: #CCC;
 }
+#small-hero-img {
+  width: 100%;
+  height: 200px;
+  background-color: #CCC;
+}
 .category_header {
   color: #cf2a27;
   font-family: 'Press Start 2P', cursive;
@@ -132,6 +137,13 @@ footer {
     margin-bottom:20px;
     margin-right:20px;
   }
+  .thumbnail {
+    border: 2px solid transparent;
+    border-radius: 4px;
+    -webkit-transition: border .2s ease-in-out;
+    -o-transition: border .2s ease-in-out;
+    transition: border .2s ease-in-out;
+  }
   .thumbnail  h5 {
     color: black;
     margin: .1em .1em;
@@ -139,7 +151,11 @@ footer {
     padding: 4px;
     text-align: left;
     /*font-weight: bold;*/
-    font-size: 12px;
+    font-size: 14px;
     font-family: Helvetica, Arial, sans-serif;
   }
+
+#prodthumb1:hover, #prodthumb2:hover, #prodthumb3:hover, #prodthumb4:hover {
+  cursor: pointer;
+}
   ;

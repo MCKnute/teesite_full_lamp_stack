@@ -28,6 +28,8 @@ class Welcome extends CI_Controller {
 	{
 		$products = $this->Product->get_products_by_category($category);
 		$info['products'] = $products;
+
+		$info['category'] = $category;
 		$headerinfo['title'] = "KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);
@@ -52,7 +54,7 @@ class Welcome extends CI_Controller {
 	{
 
 		$thisproduct = $this->Product->get_one_product($id);
-		$suggestprods = $this->Product->get_some_products(4,0);
+		$suggestprods = $this->Product->get_reccomend_products($id);
 		$productinfo['thisid'] = $id;
 		$productinfo['thisproduct'] = $thisproduct;
 		$productinfo['suggestprods'] = $suggestprods;

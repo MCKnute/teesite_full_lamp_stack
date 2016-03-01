@@ -26,20 +26,26 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
+	public function get_reccomend_products($currid)
+	{
+		$query = "SELECT * FROM products WHERE id != $currid ORDER BY RAND() LIMIT 4";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function get_products_by_category($category)
 	{
 
-		if ($category == 'featured') {
+		if ($category == 'featuredtees') {
 			$query = "SELECT * FROM products";
 			return $this->db->query($query)->result_array();
 		}
 		if ($category == 'popularshirts') {
 
-			// $query = "SELECT products.id AS productid, products.name AS productname, products.price AS price, products_has_orders.product_id, products_has_orders.quantity AS quantity FROM products JOIN products_has_orders ON products.id = products_has_orders.product_id";
+			$query = "SELECT products.id AS id, products.name AS name, products.price AS price, products_has_orders.product_id, SUM(products_has_orders.qty) AS quantity FROM products LEFT JOIN products_has_orders ON products.id = products_has_orders.product_id GROUP BY id ORDER BY quantity DESC, name";
+			return $this->db->query($query)->result_array();
+			// $query = "SELECT * FROM products";
 			// return $this->db->query($query)->result_array();
 
-			$query = "SELECT * FROM products";
-			return $this->db->query($query)->result_array();
 		}
 		if ($category == 'newshirts') {
 			$query = "SELECT * FROM products ORDER BY created_at DESC";

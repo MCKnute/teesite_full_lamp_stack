@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="/" id="featured" class="list-group-item">
+                <a href="/category/featuredtees" id="featured" class="list-group-item">
                   Featured
                 </a>
                 <a href="/category/popularshirts" id="mostpopular" class="list-group-item">
@@ -47,12 +47,54 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div> -->
         </div>
         <div class="col-md-9">
-          <img src="/assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
-          <h4>
-            <? if (isset($searchterm)) {
-              echo "Search results for: $searchterm";
+
+          <? if (isset($category) || isset($searchterm)) { 
+            if (isset($category)) {
+              $banner = $category;
             } else {
-              echo "View our tees!";
+              $banner = "search";
+            }
+
+            ?>
+            <img src="/assets/img/heroes/<?=$banner?>.png" id="small-hero-img" />
+            <?
+          } else { 
+            ?>
+            <img src="/assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
+            <?
+          } ?>
+
+          
+            <? 
+
+            if (isset($category)) {
+              if ($category == 'featuredtees') {
+                $displaycat = "featured. You're going to get our best tees!";
+              }
+              if ($category == 'popularshirts') {
+                $displaycat = "popularity. You're gonna be popular!";
+              }
+              if ($category == 'newshirts') {
+                $displaycat = "newest to oldest. You're gonna be a trendsetter!";
+              }
+              if ($category == 'cheapshirts') {
+                $displaycat = "price (lowest to highest). You're gonna get a value!";
+              }
+              if ($category == 'fancyshirts') {
+                $displaycat = "price (highest to lowest). You're gonna be fancy!";
+              }
+              if ($category == 'alphabetical') {
+                $displaycat = "alphabetically (A-Z)!";
+              }
+            }
+
+
+            if (isset($searchterm)) {
+              echo "<h3>Search results for: $searchterm</h3>";
+            } elseif (isset($category)) {
+              echo "<h3>Sorting our tees by $displaycat</h3>";
+            } else {
+              echo "<h4>View our tees!</h4>";
             }
             ?>
 
