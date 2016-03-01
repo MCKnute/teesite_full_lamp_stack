@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ($this->session->userdata('is_admin') == 0) 
+// if ($_SESSION['is_admin'] != 1) 
 {
   redirect('/');
 }
