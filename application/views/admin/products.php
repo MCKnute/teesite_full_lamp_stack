@@ -21,21 +21,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						    </div>
 					    	<form class="form-horizontal" action="/Products/add_new_product" method="post">
 					    		<div class="form-group">
-					    			<label  class="col-sm-3 control-label">Name</label>
+					    			<label class="col-sm-3 control-label">Name</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" 
-				                        name="name" />
+				                        <input type="text" class="form-control" name="name" />
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
-					    			<label  class="col-sm-3 control-label">Price</label>
+					    			<label class="col-sm-3 control-label">Price</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" 
-				                        name="price" />
+				                        <input type="text" class="form-control" name="price" />
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
-					    			<label  class="col-sm-3 control-label">Description</label>
+					    			<label class="col-sm-3 control-label">Description</label>
 						    		<div class="col-sm-8">
 				                        <textarea type="text" class="form-control" name="description"></textarea>
 				                    </div>

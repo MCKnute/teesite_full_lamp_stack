@@ -8,13 +8,37 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <div class="jumbotron">
 	        
 	        <div id="order-description">
-	        	<h4>Customer</h4>
-	        	<p>Name: <?php echo $orders[0]['first_name'] . " " . $orders[0]['last_name'];?></p>
-	        	<p>Shipping Address: <?php echo $orders[0]['street'];?></p>
-	        	<p>City: <?php echo $orders[0]['city'];?></p>
-	        	<p>State: <?php echo $orders[0]['state'];?></p>
-	        	<p>Zipcode: <?php echo $orders[0]['zipcode'];?></p>
-	        	<br>
+	        	<h4 class="center">Customer</h4>
+	        	<div>
+	    			<label class="col-xs-3 control-label">Name: </label>
+		    		<div class="col-sm-8">
+                        <p><?php echo $orders[0]['first_name'] . " " . $orders[0]['last_name'];?></p>
+                    </div>
+	    		</div>
+	    		<div>
+	    			<label class="col-sm-3 control-label">Shipping Address: </label>
+		    		<div class="col-sm-8">
+                        <p><?php echo $orders[0]['street'];?></p>
+                    </div>
+	    		</div>
+	    		<div>
+	    			<label class="col-sm-3 control-label">City: </label>
+		    		<div class="col-sm-8">
+                        <p><?php echo $orders[0]['city'];?></p>
+                    </div>
+	    		</div>
+	    		<div>
+	    			<label class="col-sm-3 control-label">State: </label>
+		    		<div class="col-sm-8">
+                        <p><?php echo $orders[0]['state'];?></p>
+                    </div>
+	    		</div>
+	    		<div>
+	    			<label class="col-sm-3 control-label">Zipcode: </label>
+		    		<div class="col-sm-8">
+                        <p><?php echo $orders[0]['zipcode'];?></p>
+                    </div>
+	    		</div>
 	        </div>
 			
 			<div id="orders_id_table">
