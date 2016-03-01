@@ -40,9 +40,6 @@ class Product extends CI_Model {
 
 			$query = "SELECT * FROM products";
 			return $this->db->query($query)->result_array();
-
-
-
 		}
 		if ($category == 'newshirts') {
 			$query = "SELECT * FROM products ORDER BY created_at DESC";
@@ -73,16 +70,47 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-	public function add_new_product($product)
+	public function add_new_product($post_data)
 	{
-		$product = array(
-			'name' => $product_data["name"],
-			'description' => $product_data["description"],
-			'categories' => $product_data["categories"],
-			'created_at' => date("Y-m-d H:i:s")
+		$insert = "INSERT INTO products (name, price, description, created_at)
+				VALUES (?,?,?,NOW())";
+
+		$values = array(
+			$post_data["name"],
+			$post_data["price"], 
+			$post_data["description"],
+			// 'categories' => $post_data["categories"]
 		);
-		
-		return $this->db->insert('products', $product);
+
+		$insert_product = $this->db->query($insert, $values);
+
+		if($insert_product)
+		{
+			$data["product_created"] = TRUE;
+			$data["success_message"] = "New product created";
+			redirect("/Products");
+		}
+		else
+		{    
+			$data["product_created"] = FALSE;
+			$data["error_message"] = "Can't add new product. Try Again";
+			redirect("/Products");
+		}
+	}
+
+
+	public function get_products_by_search($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT * FROM products 
+			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function delete_product($product_id)
+	{
+		return $this->db->delete('products', array('id' => $product_id));
 	}
 
 }

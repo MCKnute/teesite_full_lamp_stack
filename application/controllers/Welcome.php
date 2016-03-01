@@ -35,6 +35,19 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer-store');
 	}
 
+	public function search()
+	{
+		$searchterm = $this->input->post('keyword');
+		$products = $this->Product->get_products_by_search($searchterm);
+		$info['products'] = $products;
+		$info['searchterm'] = $searchterm;
+		$headerinfo['title'] = $searchterm." Search | KMK Tees";
+		$headerinfo['description'] = "Get excellent tees from us!";
+		$this->load->view('header-store', $headerinfo);
+		$this->load->view('store_message', $info);
+		$this->load->view('footer-store');
+	}
+
 	public function product($id)
 	{
 

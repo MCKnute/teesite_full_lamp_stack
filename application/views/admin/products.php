@@ -7,11 +7,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
 	        <div id="topofthehead">
-		        <!-- search bar -->
-				<form id="search" action=""  method="post">
-					<input type="text" name="order_id" placeholder='search'>
-				</form>
-
 				<!-- add new product button via MODAL.js from bootstrap-->
 				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Add New Product
 				</button>
@@ -45,7 +40,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				                        <textarea type="text" class="form-control" name="description"></textarea>
 				                    </div>
 					    		</div>
-					    		<div class="form-group">
+					    		
+					    	<!-- STRECH GOALS -->
+					    		<!-- <div class="form-group">
 					    			<label  class="col-sm-3 control-label">Categories</label>
 						    		<div class="dropdown col-sm-3">
 										<select name="categories" class="form-control">
@@ -54,30 +51,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 											<option name="ndgt">Neil deGrasse Tyson</option>
 										</select>
 									</div>
-					    		</div>
-								<!-- Special -->
+					    		</div> -->
+
+					    	<!-- STRECH GOALS -->
 								<!-- <br>
 								<label>add new category </label><input type="text" name="category"/>
 								<br>
 								<label>images</label><button type="submit" class="btn btn-default">upload image</button>
-								<br> -->
-							</form>
-							<div class="modal-footer">
-						    	<button type="submit" class="btn btn-default" data-dismiss="modal">Add New Product</button>
-						    	<button type="button" class="btn btn-default" data-dismiss="modal">Don't Add</button>
-						    </div>
+								<br> -->				
+								<div class="modal-footer">
+							    	<button type="submit" class="btn btn-success center-block">Add New Product</button>
+							    	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Don't Add</button> -->
+							    </div>
+						    </form>
 						</div>
 				    </div>
 				</div>
-			</div> 
-				<!-- end of Modal -->
+			</div> <!-- end of Modal -->
+
+			<!-- search results -->
+			<h4>
+	            <? if (isset($searchterm)) {
+	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
+	            } else {
+	              echo "";
+	            }
+	            ?>
+          	</h4>
 
 			<table class="table table-striped">
 				<thead>
 					<th>Picture</th>
 					<th>ID</th>
 					<th>Name</th>
-					<!-- Special -->
+					<th>Price</th>
+					<th>Description</th>
+				<!-- Special -->
 					<!-- <th>Inventory Count</th> -->
 					<!-- <th>Quantity Sold</th> -->
 					<th>Action</th>
@@ -87,21 +96,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				foreach ($products as $product) {
 ?>
 					<tr>
-						<td><img href="<php ; ?>"></td>
+						<td><img src='/assets/img/products/<?php echo $product['id']; ?>-small.png' height=75 width=75></td>
 						<td><?php echo $product['id']; ?></td>
 						<td><?php echo $product['name']; ?></td>
-						<!-- Special -->
+						<td><?php echo $product['price']; ?></td>
+					<!-- Special -->
 						<!-- <td><?php echo $product['total_qty']; ?></td> -->
 						<!-- <td><?php echo "300"; ?></td> -->
+						<td><?php echo $product['description']; ?></td>
 						<td>
 							<ul class="nav nav-pills">
-								<!-- Special -->
+							<!-- Special -->
 							  	<!-- <li><a href="#">inventory</a></li> -->
-							  	<li>
-							  		<!-- <button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Edit Product</button> -->
-							  	</li>
+							  	<!-- <li>
+							  		<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Edit Product</button>
+							  	</li> -->
 							  		<!-- <a href="#">edit</a></li> -->
-							  	<li><a href="#">delete</a></li>
+							  	<li>
+							  		<!-- <form action='/Products/delete_product?id="<?php $product['id']; ?>"' method="post">
+							  			<button type="submit" class="btn btn-danger">delete</button>
+							  		</form> -->
+							  		<a href="/Products/delete_product/<?=$product['id']?>" class="btn btn-danger">Delete</a>
+							  	</li>
 							</ul>
 						</td>
 					</tr>
@@ -111,7 +127,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tbody>
 			</table>
 
-			<!-- Special -->
+		<!-- Special -->
 			<!-- <nav class="center-block">
 			 	<ul class="pagination">
 				    <li>
@@ -132,20 +148,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			  	</ul>
 			</nav> -->
 		</div>
-
-	    <div>
-			<!-- <div class="dropdown">
-				<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-				<ul class="dropdown-menu">
-				  <li><a href="#">Action</a></li>
-				  <li><a href="#">Another action</a></li>
-				  <li><a href="#">Something else here</a></li>
-				  <li class="divider"></li>
-				  <li class="nav-header">Nav header</li>
-				  <li><a href="#">Separated link</a></li>
-				  <li><a href="#">One more separated link</a></li>
-				</ul>
-			</div> -->
-	    </div>
     </div>
 <!-- End of Products Container -->

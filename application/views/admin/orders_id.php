@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+// var_dump($orders); die();
 ?>
 <!DOCTYPE html>
     <div class="container">
@@ -7,64 +8,39 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    <div class="jumbotron">
 	        
 	        <div id="order-description">
-	        	<h4>Order ID</h4>
-	        	<p><?php echo "1"; ?></p>
+	        	<h4>Customer</h4>
+	        	<p>Name: <?php echo $orders[0]['first_name'] . " " . $orders[0]['last_name'];?></p>
+	        	<p>Shipping Address: <?php echo $orders[0]['street'];?></p>
+	        	<p>City: <?php echo $orders[0]['city'];?></p>
+	        	<p>State: <?php echo $orders[0]['state'];?></p>
+	        	<p>Zipcode: <?php echo $orders[0]['zipcode'];?></p>
 	        	<br>
-	        	<h4>Customer Shipping Info:</h4>
-	        	<p>name: <?php echo"first_name";?></p>
-	        	<p>address: <?php echo"street_name";?></p>
-	        	<p>city: <?php echo"city";?></p>
-	        	<p>state: <?php echo"state";?></p>
-	        	<p>zipcode: <?php echo"zipcode";?></p>
-	        	<br>
-
-	        	<h4>Customer Billing Info:</h4>
-	        	<p>name: <?php echo"first_name";?></p>
-	        	<p>address: <?php echo"street_name";?></p>
-	        	<p>city: <?php echo"city";?></p>
-	        	<p>state: <?php echo"state";?></p>
-	        	<p>zipcode: <?php echo"zipcode";?></p>
 	        </div>
 			
 			<div id="orders_id_table">
 				<table class="table table-striped">
 					<thead>
-						<th>Order_ID</th>
-						<th>Product</th>
+						<th>Product ID</th>
+						<th>Product Name</th>
 						<th>Price</th>
 						<th>Quantity</th>
 						<th>Total</th>
 					</thead>
 					<tbody>
 <?php 
-					// foreach ($orders as $order) {
+					foreach ($orders as $order) {
 ?>
 						<tr>
-							<td><?php echo "10"; ?></td>
-							<td><?php echo "Cat Shirt"; ?></td>
-							<td><?php echo "$30.99"; ?></td>
-							<td><?php echo "10"; ?></td>
-							<td><?php echo "$300.99"; ?></td>
-						<tr>
-						<!-- get rid of this once you implement php -->
-						<tr>
-							<td><?php echo "12"; ?></td>
-							<td><?php echo "Dog Shirt"; ?></td>
-							<td><?php echo "$30.00"; ?></td>
-							<td><?php echo "5"; ?></td>
-							<td><?php echo "$150.00"; ?></td>
-						<tr>
-						<tr>
-							<td><?php echo "16"; ?></td>
-							<td><?php echo "NdGT Shirt"; ?></td>
-							<td><?php echo "$40.00"; ?></td>
-							<td><?php echo "20"; ?></td>
-							<td><?php echo "$800.00"; ?></td>
-						<tr>
-						<!-- get rid of this once you implement php -->
-						
+							<td><?php echo $order['product_id']; ?></td>
+							<td><?php echo $order['name']; ?></td>
+							<td>$<?php echo $order['price']; ?></td>
+							<td><?php echo $order['qty']; ?></td>
+							<td class="dollars">$
+								<?php echo (number_format( ($order['price'] * $order['qty']), 2, '.', " ")); ?>
+							</td>
+						<tr>					
 <?php 
-					// } 
+					 } 
 ?>
 					</tbody>
 				</table>
@@ -74,7 +50,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				<p id="status">Status: <?php echo "shipped"; ?></p>
 				<div id="totals">
 					<p>Sub total: <?php echo "$1250.99"; ?></p>
-					<p>Shipping/Handling: <?php echo "$50.00"; ?></p>
+					<p>Shipping/Handling: <?php echo "$0"; ?></p>
 					<p>Sub total: <?php echo "$1300.99"; ?></p>
 				</div>
 			</div>

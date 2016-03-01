@@ -3,7 +3,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ($_SESSION['user_session']['is_admin'] != 1) 
 {
-  $data['redirect_url'] = base_url('/');
+  redirect('/');
 }
 
 ?>
@@ -36,12 +36,20 @@ if ($_SESSION['user_session']['is_admin'] != 1)
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><strong>KMK</strong> Tees | <span style="color:blue;">admin</span></a>
+          <a class="navbar-brand" href="/"><strong>KMK</strong> <span style="color:blue;">admin</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
+            <li>
+              <form class="navbar-form navbar-left" id="searchbar" role="search" action="search" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="keyword" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">&#128269;</button>
+              </form>
+            </li>
             <li role="presentation"><a href="/Orders/index">Orders</a></li>
             <li role="presentation"><a href="/Products/index">Products</a></li>
             <li><a href="/Users/logout" type="button" class="btn btn-default">Log out</a></li> 
