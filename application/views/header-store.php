@@ -55,14 +55,8 @@ require_once 'vendor/autoload.php'
               <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In / Register</a></li>
             <? }; ?>
 
-<<<<<<< HEAD
-            <!-- get rid of this logout once checks are complete -->
-            <!-- <li><a href="/Users/logout" type="button" class="btn btn-danger navbar-btn">logout</a></li>  -->
             <?php 
-=======
 
-            <?php
->>>>>>> f53c3542d93554228484d36ced820ad1e87dfaa3
             if ($this->cart->total() == 0){
               $cartstatus = "btn-empty";
             }else{

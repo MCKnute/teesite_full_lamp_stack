@@ -46,11 +46,13 @@ class Users extends CI_Controller {
 
 	public function user_login()
 	{	
+		// var_dump($post_data);
+		
+
 		$post_data = $this->input->post();
 		$this->load->library('form_validation');
 		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 		$this->form_validation->set_rules('password', 'Password', 'trim|required');
-		
 		if($this->form_validation->run() === FALSE)
 		{
 			$data['status'] = FALSE;
@@ -58,6 +60,7 @@ class Users extends CI_Controller {
 		}
 		else
 		{	
+			
 			$user = array(
 				'email' => $post_data["email"], 
 				'password' => md5($post_data["password"])
@@ -68,6 +71,7 @@ class Users extends CI_Controller {
 
 			if(count($user) > 0)
 			{	
+
 				$user_data = array(
 					'user_id' => $user->id,
 					'email' => $user->email,
@@ -78,11 +82,13 @@ class Users extends CI_Controller {
 				);
 
 				//session is being set in here with index user session, remember session is in a form of array
+
 				$this->session->set_userdata($user_data);
+
 				$data['status'] = TRUE;
 
 
-				if ($_SESSION['user_session']['is_admin'] == 1) 
+				if ($this->session->userdata('is_admin') == 1) 
 				{
 					$data['redirect_url'] = base_url('/Orders/index');
 				}

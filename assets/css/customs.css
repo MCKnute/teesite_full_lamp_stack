@@ -154,8 +154,15 @@ footer {
     font-size: 14px;
     font-family: Helvetica, Arial, sans-serif;
   }
+<<<<<<< HEAD
 
 #prodthumb1:hover, #prodthumb2:hover, #prodthumb3:hover, #prodthumb4:hover {
   cursor: pointer;
 }
   ;
+=======
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+>>>>>>> stripe_integration
