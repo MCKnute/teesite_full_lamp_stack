@@ -104,9 +104,9 @@ class Order extends CI_Model {
 		$query='SET foreign_key_checks = 0';
 		$this->db->query($query);
 		$this->db->insert('products_has_orders', $productvals);
+		$_SESSION['insert_id']=$this->db->insert_id();
 		$query='SET foreign_key_checks = 1';
-		$this->db->query($query);
-		return $this->db->insert_id();
+		return $this->db->query($query);
 	}
 
 }

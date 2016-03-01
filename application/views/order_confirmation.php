@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   		</tr>
   		<tr>
   			<td><h3>Amount Paid:</h3></td>
-  			<td><h3><?=$_SESSION['amount']/100;?></h3></td>
+  			<td><h3>$<?=$_SESSION['amount']/100;?></h3></td>
   		</tr>
   	</table>
     <a class="btn btn-success" href="/">Continue Shopping!</a>

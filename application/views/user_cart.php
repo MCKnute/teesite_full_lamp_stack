@@ -30,7 +30,7 @@ require_once 'vendor/stripe_key.php';
 							  	<li><a id="<?= $product['id']; ?>" class="remove" href="/Carts/remove_item/<?= $product['rowid']; ?>">Remove From Cart</a></li>
 							</ul>
 						</td>
-						<td><?= $product['price']; ?></td>
+						<td>$<?= $product['price']; ?></td>
 					</tr>
 <?php 
 				} 
