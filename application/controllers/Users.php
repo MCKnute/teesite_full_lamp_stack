@@ -81,7 +81,7 @@ class Users extends CI_Controller {
 				$this->session->set_userdata($user_data);
 				$data['status'] = TRUE;
 
-				if ($_SESSION['user_session']['is_admin'] == 1) 
+				if ($this->session->userdata('is_admin') == 1) 
 				{
 					$data['redirect_url'] = base_url('/Orders/index');
 				}
