@@ -97,10 +97,8 @@ class Carts extends CI_Controller {
 		{
 			$this->load->model('User');
 			$customer = $this->User->get_user($_SESSION['user_id']);
-			if($customer->customer_id===0 && isset($_POST['stripeToken']))
+			if($customer->customer_id==="0" && isset($_POST['stripeToken']))
 			{
-				var_dump($customer->customer_id);
-				die("It thinks customer_id is 0");
 				$newcustomer = Stripe_Customer::create(array(
 					'card' => $_POST['stripeToken'],
 					'email' => $_SESSION['email']
@@ -121,6 +119,12 @@ class Carts extends CI_Controller {
 				$charge=Stripe_Charge::create($array);
 				$this->load->model('Cart_model');
 				$_SESSION['insert_id']=$this->Cart_model->process_transaction($charge);
+				$_SESSION['ordercontents']=$this->cart->contents();
+				foreach($_SESSION['ordercontents'] as $product){
+					var_dump($product);
+					echo '<br><br>';
+				}
+				die();
 				foreach($this->cart->contents() as $item){
 					$data = array(
 							'rowid' => $item['rowid'],
