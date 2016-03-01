@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="/" id="featured" class="list-group-item">
+                <a href="/category/featuredtees" id="featured" class="list-group-item">
                   Featured
                 </a>
                 <a href="/category/popularshirts" id="mostpopular" class="list-group-item">
@@ -49,10 +49,51 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-9">
           <div class="row productdisplay">
             <div class="col-md-6">
-              <img src="/assets/img/products/<?=$thisid?>-large.png" id="product-img" title="<?=$thisproduct['name']?>" />
-              <img src="/assets/img/products/<?=$thisid?>-small.png" class="product-tmb" title="<?=$thisproduct['name']?> Main" /> 
-              <img src="" class="product-tmb" title="<?=$thisproduct['name']?> View Front" /> 
-              <img src="" class="product-tmb" title="<?=$thisproduct['name']?> View Back" /> 
+
+              <?
+              $imagestart = "assets/img/products/";
+
+              if(file_exists($imagestart.$thisid."-large-2.png"))
+              { ?>
+                <img src="/assets/img/products/<?=$thisid?>-large-2.png" id="product-img-lrg" title="<?=$thisproduct['name']?>" />
+              <? } else { ?>
+
+              <img src="/assets/img/products/<?=$thisid?>-large.png" id="product-img-lrg" title="<?=$thisproduct['name']?>" />
+
+              <? }
+
+
+              $imagestart = "assets/img/products/";
+
+              if(file_exists($imagestart.$thisid."-small.png"))
+              { ?>
+                <img src="/<?=$imagestart.$thisid."-small.png"?>" class="product-tmb" id="prodthumb1" prodid="<?=$thisid?>" />
+              <? }
+              else
+              {} 
+
+              if(file_exists($imagestart.$thisid."-small-2.png"))
+              { ?>
+                <img src="/<?=$imagestart.$thisid."-small-2.png"?>" class="product-tmb" id="prodthumb2" prodid="<?=$thisid?>"/>
+              <? }
+              else
+              {} 
+
+              if(file_exists($imagestart.$thisid."-small-3.png"))
+              { ?>
+                <img src="/<?=$imagestart.$thisid."-small-3.png"?>" class="product-tmb" id="thumb3" prodid="<?=$thisid?>"/>
+              <? }
+              else
+              {} 
+
+              if(file_exists($imagestart.$thisid."-small-4.png"))
+              { ?>
+                <img src="/<?=$imagestart.$thisid."-small-4.png"?>" class="product-tmb" id="thumb4" prodid="<?=$thisid?>" />
+              <? }
+              else
+              {} 
+
+              ?>
             </div> 
             <div class="col-md-6">
             <h3><?=$thisproduct['name']?></h3>

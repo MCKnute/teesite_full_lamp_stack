@@ -21,6 +21,7 @@ class Orders extends CI_Controller {
 		$this->load->view('/admin/footer-admin');
 	}
 
+
 	public function get_products_from_order($id)
 	{
 		$orders = $this->Order->get_products_from_order($id);
@@ -52,6 +53,16 @@ class Orders extends CI_Controller {
 		$this->load->view('/admin/header-admin', $headerinfo);
 		$this->load->view('/admin/orders', $info);
 		$this->load->view('/admin/footer-admin');
+ 	}
+	public function confirmation()
+	{
+
+		$headerinfo['title'] = "KMK Tees";
+		$headerinfo['description'] = "Get excellent tees from us!";
+		$this->load->view('header-store', $headerinfo);
+		$this->load->view('order_confirmation');
+		$this->load->view('footer-store');
+
 	}
 
 }

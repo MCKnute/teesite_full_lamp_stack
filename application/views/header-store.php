@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once 'vendor/autoload.php'
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,7 +37,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
-            <li><form class="navbar-form navbar-left" id="searchbar" role="search" action="search" method="post">
+            <li><form class="navbar-form navbar-left" id="searchbar" role="search" action="/search" method="post">
                  <div class="form-group">
                    <input type="text" class="form-control" name="keyword" placeholder="Search">
                  </div>
@@ -47,16 +48,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li>
 
 
-            <? if ($this->session->userdata('user_session')) { ?>
+            <? if ($this->session->userdata('user_id')) { ?>
               <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn">Log Out</a></li>
               
             <? } else { ?>
               <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In / Register</a></li>
             <? }; ?>
 
+<<<<<<< HEAD
             <!-- get rid of this logout once checks are complete -->
             <!-- <li><a href="/Users/logout" type="button" class="btn btn-danger navbar-btn">logout</a></li>  -->
             <?php 
+=======
+
+            <?php
+>>>>>>> f53c3542d93554228484d36ced820ad1e87dfaa3
             if ($this->cart->total() == 0){
               $cartstatus = "btn-empty";
             }else{

@@ -2,6 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 if ($_SESSION['user_session']['is_admin'] != 1) 
+
 {
   redirect('/');
 }

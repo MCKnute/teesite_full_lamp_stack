@@ -7,10 +7,12 @@ class User extends CI_Model {
 		parent::__construct();
 	}
 
-	public function update_user($user_id, $user_data)
+
+	public function update_user($user_id,$user_data)
 	{
-		return $this->db->where('id', $user_id)
-				    ->update('users', $user_data); 
+		$query = "UPDATE users SET updated_at=NOW(), customer_id=? WHERE id=?";
+        $values = [$user_data->customer_id, $user_id]; 
+        return $this->db->query($query, $values);
 	}
 
 	public function delete_user($user_id)
@@ -46,7 +48,9 @@ class User extends CI_Model {
 			'first_name' => $user_data["first_name"],
 			'last_name'	=> $user_data["last_name"],
 			'is_admin' => FALSE,
-			'created_at' => date("Y-m-d H:i:s")
+			'created_at' => date("Y-m-d H:i:s"),
+			'updated_at' => date("Y-m-d H:i:s"),
+			'customer_id' => 0
 		);
 		
 		return $this->db->insert('users', $user);
