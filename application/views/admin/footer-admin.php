@@ -6,11 +6,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
     <footer>
         <p>© 2016 Mollie Knute, David Macias, and Pete Kang</p>
-        <hr>
+        <!-- <hr>
         <h5>debug sandbox:</h5>
         <p><b>$_SESSION</b> data:</p>
         	<? var_dump($_SESSION) ;?>
-        	<hr>
+        	<hr> -->
     </footer>
       <!-- Le javascript
     ================================================== -->

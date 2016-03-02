@@ -7,8 +7,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
 
-<!-- search results -->
-			<h4>
+			<h2 class="product-title">Orders</h2>
+
+			<!-- search results -->
+			<h4 class="search-center">
 	            <? if (isset($searchterm)) {
 	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
 	            } else {
@@ -42,16 +44,36 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</td>
 						<td><?php echo $order['first_name'] ." ". $order['last_name']; ?></td>
 						<td><?php echo $order['created_at']; ?></td>
-						<td><?php echo 'Address currently broken, commented out until we can import address info from stripe.'; ?></td>
+						<td><?php echo 'FROM STRIPE API'; ?></td>
 						<!-- <td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td> -->
 						<!-- Get payment info from STRIPE API -->
 						<td><?php echo "$200.99"; ?></td>
 						<td>
 							<div class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo "Paid"; ?><b class="caret"></b></a>
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+<?php 
+									if ($order['paid']==1) {
+										echo "Paid";
+									}
+									else
+									{
+										echo "Not Paid";
+									}
+?>
+									<b class="caret"></b>
+								</a>
 								<ul class="dropdown-menu">
-								  <li><?php echo "Paid"; ?></li>
-								  <li><?php echo "Not Paid"; ?></li>
+								  	<li>
+								  		<a href="#">
+										<?php $order['paid'] = 1; echo "Paid"; ?>
+										</a>
+								  	</li>
+								  	<li role="separator" class="divider"></li>
+								  	<li>
+										<a href="#">
+										<?php $order['paid'] = 0; echo "Not Paid"; ?>
+										</a>
+								  	</li>
 								</ul>
 							</div>
 						</td>

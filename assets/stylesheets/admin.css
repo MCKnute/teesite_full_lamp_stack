@@ -43,6 +43,28 @@
 	display: inline-block;
 }
 
-/*.petetable{
-	width: 400px;
-}*/
+.product-title .search-center #topofthehead.addNewproduct{
+	display: inline-block;
+	margin: 0px 10px;
+	padding: 5px;
+	width: 300px;
+}
+
+.product-title{
+	margin: 0 10px 10px 0;
+	padding: 0 10px 10px 0;
+	display: inline-block;
+	vertical-align: center;
+	color: #C14242;
+}
+
+.search-center{
+	display: inline-block;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+#topofthehead{
+	display: inline-block;
+	float: right !important;
+}

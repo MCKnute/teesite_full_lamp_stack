@@ -54,7 +54,7 @@ class Order extends CI_Model {
 		// 		";
 		// return $this->db->query($query)->result_array();
 
-		$query = "SELECT DISTINCT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
+		$query = "SELECT DISTINCT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id, orders.paid 
 				FROM orders
 				JOIN users ON orders.user_id = users.id
 				ORDER BY orders.id

@@ -6,11 +6,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container">
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
+	    	<h2 class="product-title">Products</h2>
+
+			<!-- search results -->
+			<h4 class="search-center">
+	            <? if (isset($searchterm)) {
+	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
+	            } else {
+	              echo "";
+	            }
+	            ?>
+          	</h4>
+
 	        <div id="topofthehead">
 				<!-- add new product button via MODAL.js from bootstrap-->
-				<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Add New Product
+				<button class="addNewproduct btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" type="button">Add New Product
 				</button>
-
 				<!-- Modal for "Add New Product" -->
 				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
@@ -73,15 +84,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div>
 			</div> <!-- end of Modal -->
 
-			<!-- search results -->
-			<h4>
-	            <? if (isset($searchterm)) {
-	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
-	            } else {
-	              echo "";
-	            }
-	            ?>
-          	</h4>
+
 
 			<table class="table table-striped">
 				<thead>
