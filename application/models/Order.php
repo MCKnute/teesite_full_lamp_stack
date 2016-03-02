@@ -21,7 +21,7 @@ class Order extends CI_Model {
 		// return $this->db->query($query, $values)->result_array();
 
 
-		$query = "SELECT orders.id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
+		$query = "SELECT DISTINCT orders.id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
 				FROM products_has_orders
 				INNER JOIN products ON products.id = products_has_orders.product_id 
 				INNER JOIN orders ON orders.id = products_has_orders.order_id 
@@ -54,7 +54,7 @@ class Order extends CI_Model {
 		// 		";
 		// return $this->db->query($query)->result_array();
 
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
+		$query = "SELECT DISTINCT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
 				FROM orders
 				JOIN users ON orders.user_id = users.id
 				ORDER BY orders.id
