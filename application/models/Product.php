@@ -125,7 +125,6 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-=
 	public function get_products_by_search_ajax($searchterm)
 	{
 		$keyword = strtolower($searchterm);
@@ -133,6 +132,7 @@ class Product extends CI_Model {
 		$query = "SELECT * FROM products 
 			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
 		return $this->db->query($query)->result_array();
+	}
 
 	public function delete_product($product_id)
 	{
