@@ -78,6 +78,16 @@ class Product extends CI_Model {
 
 	public function add_new_product($post_data)
 	{
+		// STRETCH GOAL
+		$config['upload_path'] = '/assets/img/products/';
+		$config['allowed_types'] = 'gif|jpg|png|jpeg';
+		$this->load->library('upload', $config);
+		$this->upload->do_upload('image');
+		$data_upload_files = $this->upload->data();
+
+		$image = $data_upload_files['full_path'];
+		// STRETCH GOAL ENDS
+
 		$insert = "INSERT INTO products (name, price, description, created_at)
 				VALUES (?,?,?,NOW())";
 
@@ -85,6 +95,7 @@ class Product extends CI_Model {
 			$post_data["name"],
 			$post_data["price"], 
 			$post_data["description"],
+			$post_data['image']
 			// 'categories' => $post_data["categories"]
 		);
 

@@ -38,6 +38,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				                        <textarea type="text" class="form-control" name="description"></textarea>
 				                    </div>
 					    		</div>
+
+					    		<div class="form-group">
+					    			<label class="col-sm-3 control-label">Upload Image</label>
+						    		<div class="col-sm-8">
+				                        <input type="file" class="form-control" name="image" />
+				                    </div>
+					    		</div>
 					    		
 					    	<!-- STRECH GOALS -->
 					    		<!-- <div class="form-group">
@@ -59,7 +66,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								<br> -->				
 								<div class="modal-footer">
 							    	<button type="submit" class="btn btn-success center-block">Add New Product</button>
-							    	<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Don't Add</button> -->
 							    </div>
 						    </form>
 						</div>

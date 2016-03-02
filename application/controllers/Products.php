@@ -33,6 +33,7 @@ class Products extends CI_Controller {
 				'product_name' => $product->name,
 				'product_price' => $product->price,
 				'product_description' => $product->description,
+				'product_image' => $product->image
 				// 'product_categories' => $product->categories
 			);
 
@@ -61,20 +62,6 @@ class Products extends CI_Controller {
 		$this->load->view('/admin/footer-admin');
 	}
 
-// STRETCH GOAL
-	function do_upload()
-	{
-		$this->load->library('upload');
-
-		$config['upload_path'] = '/assets/img/';
-		$config['allowed_types'] = 'gif|jpg|png';
-		$config['max_size']	= '100';
-		$config['max_width']  = '400';
-		$config['max_height']  = '400';
-
-		$this->load->library('upload', $config);
-	}
-
 	public function delete_product($product_id)
 	{
 		if(is_numeric($product_id))
@@ -94,26 +81,3 @@ class Products extends CI_Controller {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
