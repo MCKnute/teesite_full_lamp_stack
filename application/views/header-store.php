@@ -20,12 +20,48 @@ require_once 'vendor/autoload.php'
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
     <script type="text/javascript" src="/assets/js/customs.js"></script>
+    <? if($this->session->flashdata('category_flash')) {
+       ?>
+       <script type='text/javascript'>
+       $(document).ready(function(){
+        var categorysend = '<?=$this->session->flashdata('category_flash')?>';
+           // alert('My category is '+categorysend); 
+          $.get('/welcome/categories_html/'+categorysend, $(this).serialize(), function(res) {
+              $('#ajaxproducts').html(res);
+              });
+
+          $('#hero-img').attr('src','/assets/img/heroes/'+categorysend+'designs.png').attr('id','small-hero-img');
+          $('#small-hero-img').attr('src','/assets/img/heroes/'+categorysend+'designs.png');
+          var description = "";
+          if(categorysend == "cheapest") {
+            description = "value. You're gonna get a deal!";
+          }
+          if(categorysend == "featured") {
+            description = "featured. You're gonna get our best tees!";
+          }
+          if(categorysend == "mostpopular") {
+            description = "popularity. You're gonna be popular!";
+          }
+          if(categorysend == "newest") {
+            description = "newest. You're gonna be a trendsetter!";
+          }
+          if(categorysend == "fanciest") {
+            description = "fanciness. You're gonna get our pricey tees!";
+          }
+          if(categorysend == "alphabetical") {
+            description = "name, alphabetically from A to Z.";
+          }
+          $('#filterheadliner').html('Sorting by: '+description);
+            return false; 
+       });
+       </script>
+    <? } ?>
 </head>
 <body>
     <nav class="navbar navbar-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="mynavbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -33,13 +69,13 @@ require_once 'vendor/autoload.php'
           </button>
           <a class="navbar-brand" href="/"><strong>KMK</strong> Tees</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div id="mynavbar" class="navbar-collapse collapse">
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
             <li><form class="navbar-form navbar-left" id="searchbar" role="search" action="/search" method="post">
                  <div class="form-group">
-                   <input type="text" class="form-control" name="keyword" placeholder="Search">
+                   <input type="text" class="form-control" name="keyword" id="searchingfor" placeholder="Search">
                  </div>
                  <button type="submit" class="btn btn-default">&#128269;</button>
                </form>

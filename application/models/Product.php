@@ -35,35 +35,35 @@ class Product extends CI_Model {
 	public function get_products_by_category($category)
 	{
 
-		if ($category == 'featuredtees') {
+		if ($category == 'featured') {
 			$query = "SELECT * FROM products";
 			return $this->db->query($query)->result_array();
 		}
-		if ($category == 'popularshirts') {
+		if ($category == 'mostpopular') {
 
 			$query = "SELECT DISTINCT products.id AS id, products.name AS name, products.price AS price, products_has_orders.product_id, SUM(products_has_orders.qty) AS quantity FROM products LEFT JOIN products_has_orders ON products.id = products_has_orders.product_id GROUP BY id ORDER BY quantity DESC, name";
 			return $this->db->query($query)->result_array();
+
 			// $query = "SELECT * FROM products";
 			// return $this->db->query($query)->result_array();
 
 		}
-		if ($category == 'newshirts') {
+		if ($category == 'newest') {
 			$query = "SELECT * FROM products ORDER BY created_at DESC";
 			return $this->db->query($query)->result_array();
 		}
-		if ($category == 'cheapshirts') {
+		if ($category == 'cheapest') {
 			$query = "SELECT * FROM products ORDER BY price";
 			return $this->db->query($query)->result_array();
 		}
-		if ($category == 'fancyshirts') {
+		if ($category === 'fanciest') {
 			$query = "SELECT * FROM products ORDER BY price DESC";
 			return $this->db->query($query)->result_array();
 		}
-		if ($category == 'alphabetical') {
+		if ($category === 'alphabetical') {
 			$query = "SELECT * FROM products ORDER BY name";
 			return $this->db->query($query)->result_array();
 		}
-
 	}
 
 	public function get_product_inventory_total()
@@ -125,9 +125,19 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
+	public function get_products_by_search_ajax($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT * FROM products 
+			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function delete_product($product_id)
 	{
 		return $this->db->delete('products', array('id' => $product_id));
+
 	}
 
 }

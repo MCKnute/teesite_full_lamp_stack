@@ -10,22 +10,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <div class="panel-heading">Filter By</div>
               <!-- List group -->
               <div class="list-group">
-                <a href="/category/featuredtees" id="featured" class="list-group-item">
+                <a href="/products_to_category/featured" id="featured" class="list-group-item static-list">
                   Featured
                 </a>
-                <a href="/category/popularshirts" id="mostpopular" class="list-group-item">
+                <a href="/products_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
                   Most Popular
                 </a>
-                <a href="/category/newshirts" id="newest" class="list-group-item">
+                <a href="/products_to_category/newest" id="newest" class="list-group-item static-list">
                   Newest
                 </a>
-                <a href="/category/cheapshirts" id="cheapest" class="list-group-item">
+                <a href="/products_to_category/cheapest" id="cheapest" class="list-group-item static-list">
                   Price: Low to High
                 </a>
-                <a href="/category/fancyshirts" id="fanciest" class="list-group-item">
+                <a href="/products_to_category/fanciest" id="fanciest" class="list-group-item static-list">
                   Price: High to Low
                 </a>
-                <a href="/category/alphabetical" id="alphabetical" class="list-group-item">
+                <a href="/products_to_category/alphabetical" id="alphabetical" class="list-group-item static-list">
                   Product Name
                 </a>
               </div>
