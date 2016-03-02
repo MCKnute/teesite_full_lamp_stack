@@ -91,8 +91,7 @@ require_once 'vendor/autoload.php'
               <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In / Register</a></li>
             <? }; ?>
 
-
-            <?php
+            <?php 
             if ($this->cart->total() == 0){
               $cartstatus = "btn-empty";
             }else{

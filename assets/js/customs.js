@@ -21,7 +21,6 @@ $(document).ready(function(){
 		$('#product-img-lrg').attr('src', large4);
 	});
 
-
 	var getbasepartial = "/application/views/partials/";
 
 	// console.log(getbasepartial);
@@ -71,6 +70,7 @@ $(document).on('click', "a.ajax-list", function() {
 	}
 	$('#filterheadliner').html('Sorting by: '+description);
     return false;      
+
 });
 
 // $(document).on('click', "a.static-list", function() {

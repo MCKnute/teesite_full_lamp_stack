@@ -1,9 +1,12 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-if ($_SESSION['is_admin'] != 1) 
+
+if ($this->session->userdata('is_admin') == 0) 
+// if ($_SESSION['is_admin'] != 1) 
 {
-  $data['redirect_url'] = base_url('/');
+  redirect('/');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -18,12 +21,11 @@ if ($_SESSION['is_admin'] != 1)
     <meta name="author" content="Mollie Knute, David Macias, and Pete Kang">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/customs.css" />
+    <link rel="stylesheet" type="text/css" href="/assets/stylesheets/admin.css" />
     
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="/assets/js/customs.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-top">
@@ -35,12 +37,20 @@ if ($_SESSION['is_admin'] != 1)
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><strong>KMK</strong> Tees | <span style="color:blue;">admin</span></a>
+          <a class="navbar-brand" href="/"><strong>KMK</strong> <span style="color:blue;">admin</span></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
+            <li>
+              <form class="navbar-form navbar-left" id="searchbar" role="search" action="search" method="post">
+                <div class="form-group">
+                  <input type="text" class="form-control" name="keyword" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">&#128269;</button>
+              </form>
+            </li>
             <li role="presentation"><a href="/Orders/index">Orders</a></li>
             <li role="presentation"><a href="/Products/index">Products</a></li>
             <li><a href="/Users/logout" type="button" class="btn btn-default">Log out</a></li> 

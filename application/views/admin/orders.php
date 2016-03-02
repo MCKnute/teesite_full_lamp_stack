@@ -1,16 +1,22 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-
-
 ?>
 <!DOCTYPE html>
     <div class="container">
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
-			<form class="navbar-search" action=""  method="post"> 
-				<input  type="text" name="order_id" placeholder="search">
-			</form>
+
+<!-- search results -->
+			<h4>
+	            <? if (isset($searchterm)) {
+	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
+	            } else {
+	              echo "";
+	            }
+	            ?>
+          	</h4>
+
 			<table class="table table-striped">
 				<thead>
 					<th>Order_ID</th>
@@ -26,10 +32,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				{
 ?>
 					<tr>
-						<td><a href="#"><?php echo $order['id']; ?></a></td>
+						<td>
+
+							<form action="/Orders/get_products_from_order/<?php echo $order['id']; ?>" method="post">
+								<input type="hidden" name="<?php echo $order['id']; ?>">
+								<input type="submit" value="<?php echo $order['id']; ?>">
+							</form>
+						<!-- 	<a href="/Orders/get_products_from_order/<?=$order['id']?>"><?php echo $order['id']; ?></a> -->
+						</td>
 						<td><?php echo $order['first_name'] ." ". $order['last_name']; ?></td>
 						<td><?php echo $order['created_at']; ?></td>
-						<td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td>
+						<td><?php echo 'Address currently broken, commented out until we can import address info from stripe.'; ?></td>
+						<!-- <td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td> -->
 						<!-- Get payment info from STRIPE API -->
 						<td><?php echo "$200.99"; ?></td>
 						<td>
@@ -49,7 +63,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</tbody>
 			</table>
 
-			<nav>
+			<!-- special -->
+			<!-- <nav>
 			 	<ul class="pagination product_pagination">
 				    <li>
 				      	<a href="#" aria-label="Previous">
@@ -67,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				      	</a>
 				    </li>
 			  	</ul>
-			</nav>
+			</nav> -->
 	    </div>
     </div> 
 <!-- End of Orders Container -->

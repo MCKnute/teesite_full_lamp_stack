@@ -56,15 +56,6 @@ class Carts extends CI_Controller {
 		else{
 			die("Cart is empty, must add item... also.. get around to catching this and displaying a proper error notification to the user");
 		}
-		// die();
-		// 'id' => $this->input->post('id'),
-		// 'name' => $this->input->post('name'),
-		// 'price' => $this->input->post('price'),
-
-		// This function add items into cart.
-		
-
-		// This will show insert data in cart.
 		redirect('product/'.$this->input->post('productid'));
 	}
 	public function remove_item($rowid) {
@@ -97,10 +88,9 @@ class Carts extends CI_Controller {
 		{
 			$this->load->model('User');
 			$customer = $this->User->get_user($_SESSION['user_id']);
-			if($customer->customer_id===0 && isset($_POST['stripeToken']))
+
+			if($customer->customer_id==="0" && isset($_POST['stripeToken']))
 			{
-				var_dump($customer->customer_id);
-				die("It thinks customer_id is 0");
 				$newcustomer = Stripe_Customer::create(array(
 					'card' => $_POST['stripeToken'],
 					'email' => $_SESSION['email']
@@ -119,15 +109,16 @@ class Carts extends CI_Controller {
 					'receipt_email' => $_SESSION['email']
 					];
 				$charge=Stripe_Charge::create($array);
-				$this->load->model('Cart_model');
-				$_SESSION['insert_id']=$this->Cart_model->process_transaction($charge);
-				foreach($this->cart->contents() as $item){
-					$data = array(
-							'rowid' => $item['rowid'],
-							'qty' => 0
-						);
-					$status=$this->cart->update($data);
+				$this->load->model('Order');
+				$_SESSION['insert_id']=$this->Order->process_transaction($charge);
+				$query='SET foreign_key_checks = 0';
+				$this->db->query($query);
+				foreach($this->cart->contents() as $product){
+					$this->Order->add_product_into_order($product);
 				}
+				$query='SET foreign_key_checks = 1';
+				$this->db->query($query);
+				$this->cart->destroy();
 				
 				redirect("/Orders/confirmation");
 			}

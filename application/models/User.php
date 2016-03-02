@@ -49,7 +49,8 @@ class User extends CI_Model {
 			'last_name'	=> $user_data["last_name"],
 			'is_admin' => FALSE,
 			'created_at' => date("Y-m-d H:i:s"),
-			'updated_at' => date("Y-m-d H:i:s")
+			'updated_at' => date("Y-m-d H:i:s"),
+			'customer_id' => 0
 		);
 		
 		return $this->db->insert('users', $user);
