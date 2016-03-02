@@ -5,45 +5,73 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container container-main">
        <div class="row">
         <div class="col-md-3">
-            <h3 class="category_header">Products</h3>
-            <div class="panel panel-default">
-              <div class="panel-heading">Filter By</div>
-              <!-- List group -->
-              <div class="list-group">
-                <a href="/products_to_category/featured" id="featured" class="list-group-item static-list">
-                  Featured
-                </a>
-                <a href="/products_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
-                  Most Popular
-                </a>
-                <a href="/products_to_category/newest" id="newest" class="list-group-item static-list">
-                  Newest
-                </a>
-                <a href="/products_to_category/cheapest" id="cheapest" class="list-group-item static-list">
-                  Price: Low to High
-                </a>
-                <a href="/products_to_category/fanciest" id="fanciest" class="list-group-item static-list">
-                  Price: High to Low
-                </a>
-                <a href="/products_to_category/alphabetical" id="alphabetical" class="list-group-item static-list">
-                  Product Name
-                </a>
-              </div>
-            </div>
+            
+            <nav class="navbar navbar-default blend-with-bg" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#vert-navbar-collapse" aria-controls="vert-navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-       <!--     <div class="panel panel-default">
-              <div class="panel-heading">Sizes</div>
-              <div class="list-group">
-                <a href="#" class="list-group-item">Women Small</a>
-                <a href="#" class="list-group-item">Women Medium</a>
-                <a href="#" class="list-group-item">Women Large</a>
-                <a href="#" class="list-group-item">Women X-Large</a>
-                <a href="#" class="list-group-item">Men Small</a>
-                <a href="#" class="list-group-item">Men Medium</a>
-                <a href="#" class="list-group-item">Men Large</a>
-                <a href="#" class="list-group-item">Men X-Large</a>
+                <a class="category_header visible-xs " href="/">Find Tees</a>
               </div>
-            </div> -->
+
+              <div id="vert-navbar-collapse" class="navbar-collapse collapse"> 
+                <a class="category_header hidden-xs bottomizer" href="/">Find Tees</a>
+              <!-- List group -->
+                <ul class="nav nav-stacked">
+
+                  <li>
+                    <!-- <div class="row">
+                    <div class="col-lg-12"> -->
+                            <form class="list-group-item" id="searchbar" role="search" action="/search" method="post">
+                             <div class="input-group">
+                                 <input type="text" class="form-control" name="keyword" id="searchingfor" style="display: inline-block" placeholder="Search Now">
+                                 <span class="input-group-btn">
+                                   <button type="submit" class="btn btn-default">&#128269;</button>
+                                 </span>
+                             </div>
+                           </form>
+                    <!-- </div>
+                    </div> -->
+                  </li>
+
+                  <li>
+                    <a href="/products_to_category/featured" id="featured" class="list-group-item static-list">
+                    Featured
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/products_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
+                    Most Popular
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/products_to_category/newest" id="newest" class="list-group-item static-list">
+                    Newest
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/products_to_category/cheapest" id="cheapest" class="list-group-item static-list">
+                    Price: Low to High
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/products_to_category/fanciest" id="fanciest" class="list-group-item static-list">
+                    Price: High to Low
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/products_to_category/alphabetical" id="alphabetical" class="list-group-item static-list">
+                    Product Name
+                    </a>
+                  </li>
+                </ul>
+            <!-- </div> -->
+            </div>
+          </nav>
         </div>
 
         <div class="col-md-9">
