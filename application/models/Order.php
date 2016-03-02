@@ -5,7 +5,7 @@ class Order extends CI_Model {
 
 	public function get_products_from_order($id)
 	{
-		$query = "SELECT orders.id,orders.transaction_id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
+		$query = "SELECT orders.id,orders.paid,orders.transaction_id, products_has_orders.product_id, products_has_orders.size, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
 				FROM products_has_orders
 				INNER JOIN products ON products.id = products_has_orders.product_id 
 				INNER JOIN orders ON orders.id = products_has_orders.order_id 
@@ -50,10 +50,14 @@ class Order extends CI_Model {
 	{
 		
 
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
-				FROM orders
-				JOIN users ON orders.user_id = users.id
-				ORDER BY orders.id
+		$query = "SELECT orders.id,orders.paid, orders.created_at, users.first_name, users.last_name, orders.transaction_id, SUM(products.price), products_has_orders.qty
+				FROM products_has_orders
+				INNER JOIN products ON products.id = products_has_orders.product_id 
+				INNER JOIN orders ON orders.id = products_has_orders.order_id 
+                INNER JOIN users ON users.id = orders.user_id
+				GROUP BY orders.id
+				ORDER BY orders.id;
+
 				";
 		$allorders=$this->db->query($query)->result_array();
 
@@ -67,9 +71,11 @@ class Order extends CI_Model {
 		//retrieved. Once all are complete, the modified
 		//object is returned.
 		foreach ($allorders as &$order){
-			
+		
 			$address = Stripe_Charge::retrieve($order['transaction_id']);
-			// var_dump($address);
+
+			$order['price']=$address->amount/100;
+			
 			$order['street']=$address->source->address_line1;
 			$order['city']=$address->source->address_city;
 			$order['state']=$address->source->address_state;

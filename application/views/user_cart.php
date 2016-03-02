@@ -18,7 +18,9 @@ require_once 'vendor/stripe_key.php';
 				</thead>
 				<tbody>
 <?php 
+				$total=0;
 				foreach ($cart as $product) {
+					$total+=$product['price'] * $product['qty'];
 ?>
 					<tr>
 						<td><img href="<?= 'nothing.jpg' ?>"></td>
@@ -30,7 +32,7 @@ require_once 'vendor/stripe_key.php';
 							  	<li><a id="<?= $product['id']; ?>" class="remove" href="/Carts/remove_item/<?= $product['rowid']; ?>">Remove From Cart</a></li>
 							</ul>
 						</td>
-						<td>$<?= $product['price']; ?></td>
+						<td>$<?= $product['price']*$product['qty']; ?></td>
 					</tr>
 <?php 
 				} 
@@ -50,7 +52,7 @@ require_once 'vendor/stripe_key.php';
 						$itemcount=0;
 						foreach($cart as $product){
 								$itemcount+=$product['qty'];
-								$total+=$product['price'];
+								$total+=$product['price']*$product['qty'];
 							}
 							echo $total;
 							$_SESSION['amount'] = $total*100;
