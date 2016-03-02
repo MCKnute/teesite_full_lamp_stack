@@ -45,7 +45,7 @@ require_once 'vendor/stripe_key.php';
 							  	<li><a href="/Carts/remove_items/all">Remove All From Cart</a></li>
 							</ul>
 						</td>
-						<td><?php 
+						<td>$<?php 
 						$total = 0;
 						$itemcount=0;
 						foreach($cart as $product){

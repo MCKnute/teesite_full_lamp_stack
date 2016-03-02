@@ -5,30 +5,37 @@ class Order extends CI_Model {
 
 	public function get_products_from_order($id)
 	{
-		// We don't currently have addresses setup, I thought this was a stretch goal.
-		// I'll add it soon, taking it out for now to see if this works.
-		//
-		// -David
-		//
-		// $query = "SELECT orders.id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email, addresses.street, addresses.city, addresses.state, addresses.zipcode
-		// 		FROM products_has_orders
-		// 		INNER JOIN products ON products.id = products_has_orders.product_id 
-		// 		INNER JOIN orders ON orders.id = products_has_orders.order_id 
-  		//		INNER JOIN users ON users.id = orders.user_id
-  		//		INNER JOIN addresses ON addresses.id =  orders.address_id
-		// 		WHERE orders.id = ?";
-		// $values = $id;
-		// return $this->db->query($query, $values)->result_array();
-
-
-		$query = "SELECT orders.id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
+		$query = "SELECT orders.id,orders.transaction_id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
 				FROM products_has_orders
 				INNER JOIN products ON products.id = products_has_orders.product_id 
 				INNER JOIN orders ON orders.id = products_has_orders.order_id 
                 INNER JOIN users ON users.id = orders.user_id
 				WHERE orders.id = ?";
 		$values = $id;
-		return $this->db->query($query, $values)->result_array();
+		$prodsfromorder=$this->db->query($query, $values)->result_array();
+		
+		////////////////////////////////////////
+		//// STRIPE RETRIEVE ADDRESS ///////////
+		require_once 'vendor/stripe_key.php';
+
+		//This loop pulls the transaction id (or charge id)
+		//from the Stripe API, then modifies the array by
+		//reference (e.g.the '&' in &$prod) with the attr
+		//retrieved. Once all are complete, the modified
+		//object is returned.
+		foreach ($prodsfromorder as &$prod){
+			
+			$address = Stripe_Charge::retrieve($prod['transaction_id']);
+			$prod['street']=$address->source->address_line1;
+			$prod['city']=$address->source->address_city;
+			$prod['state']=$address->source->address_state;
+			$prod['zipcode']=$address->source->address_zip;
+		}
+
+		////////////////////////////////////////
+
+		return $prodsfromorder;
+
 	}
 
 	public function get_orders_from_user($id)
@@ -59,7 +66,29 @@ class Order extends CI_Model {
 				JOIN users ON orders.user_id = users.id
 				ORDER BY orders.id
 				";
-		return $this->db->query($query)->result_array();
+		$allorders=$this->db->query($query)->result_array();
+
+		////////////////////////////////////////
+		//// STRIPE RETRIEVE ADDRESS ///////////
+		require_once 'vendor/stripe_key.php';
+
+		//This loop pulls the transaction id (or charge id)
+		//from the Stripe API, then modifies the array by
+		//reference (e.g.the '&' in &$prod) with the attr
+		//retrieved. Once all are complete, the modified
+		//object is returned.
+		foreach ($allorders as &$order){
+			
+			$address = Stripe_Charge::retrieve($order['transaction_id']);
+			$order['street']=$address->source->address_line1;
+			$order['city']=$address->source->address_city;
+			$order['state']=$address->source->address_state;
+			$order['zipcode']=$address->source->address_zip;
+		}
+
+		////////////////////////////////////////
+		return $allorders;
+
 	}
 
 
@@ -76,9 +105,8 @@ class Order extends CI_Model {
 	}
 
 	public function process_transaction($charge){
-
 		$ordervals=[
-			'transaction_id' => $charge->balance_transaction,
+			'transaction_id' => $charge->id,
 			'tracking_num' => 0,
 			'user_id' => $_SESSION['user_id'],
 			// 'address_id' => $_SESSION['user_id'],
@@ -104,8 +132,9 @@ class Order extends CI_Model {
 		$query='SET foreign_key_checks = 0';
 		$this->db->query($query);
 		$this->db->insert('products_has_orders', $productvals);
-		$_SESSION['insert_id']=$this->db->insert_id();
+		if(!isset($_SESSION['insert_id'])){$_SESSION['insert_id']=$this->db->insert_id();}
 		$query='SET foreign_key_checks = 1';
+		
 		return $this->db->query($query);
 	}
 

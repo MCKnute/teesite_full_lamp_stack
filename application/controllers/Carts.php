@@ -111,13 +111,10 @@ class Carts extends CI_Controller {
 				$charge=Stripe_Charge::create($array);
 				$this->load->model('Order');
 				$_SESSION['insert_id']=$this->Order->process_transaction($charge);
-				$query='SET foreign_key_checks = 0';
-				$this->db->query($query);
 				foreach($this->cart->contents() as $product){
 					$this->Order->add_product_into_order($product);
 				}
-				$query='SET foreign_key_checks = 1';
-				$this->db->query($query);
+				$_SESSION['insert_id']=null;
 				$this->cart->destroy();
 				
 				redirect("/Orders/confirmation");

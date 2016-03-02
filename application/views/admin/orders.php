@@ -42,8 +42,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</td>
 						<td><?php echo $order['first_name'] ." ". $order['last_name']; ?></td>
 						<td><?php echo $order['created_at']; ?></td>
-						<td><?php echo 'Address currently broken, commented out until we can import address info from stripe.'; ?></td>
-						<!-- <td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td> -->
+						<!-- <td><?php echo 'Address currently broken, commented out until we can import address info from stripe.'; ?></td> -->
+						<td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td>
 						<!-- Get payment info from STRIPE API -->
 						<td><?php echo "$200.99"; ?></td>
 						<td>
