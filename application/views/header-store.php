@@ -59,9 +59,9 @@ require_once 'vendor/autoload.php'
 </head>
 <body>
     <nav class="navbar navbar-top">
-      <div class="container">
+      <div class="container container-top">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar" aria-expanded="false" aria-controls="mynavbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar"  aria-controls="mynavbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -73,13 +73,14 @@ require_once 'vendor/autoload.php'
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
-            <li><form class="navbar-form navbar-left" id="searchbar" role="search" action="/search" method="post">
+            <!-- <li> -->
+              <!-- <form class="navbar-form navbar-left" id="searchbar" role="search" action="/search" method="post">
                  <div class="form-group">
                    <input type="text" class="form-control" name="keyword" id="searchingfor" placeholder="Search">
                  </div>
                  <button type="submit" class="btn btn-default">&#128269;</button>
-               </form>
-            </li>
+               </form> -->
+            <!-- </li> -->
             
             <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li>
 
