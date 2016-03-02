@@ -47,6 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			
 
 			<div id="shipped_status">
+				<p>fake data below:</p>
 				<p id="status">Status: <?php echo "shipped"; ?></p>
 				<div id="totals">
 					<p>Sub total: <?php echo "$1250.99"; ?></p>

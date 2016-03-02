@@ -48,18 +48,7 @@ class Order extends CI_Model {
 
 	public function get_all_orders_admin_page()
 	{
-		// We don't currently have addresses setup, I thought this was a stretch goal.
-		// I'll add it soon, taking it out for now to see if this works.
-		//
-		// -David
-		//
-		// $query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, addresses.street, addresses.city, addresses.state, addresses.zipcode, orders.transaction_id 
-		// 		FROM orders
-		// 		JOIN users ON orders.user_id = users.id
-		// 		JOIN addresses ON orders.address_id = addresses.id
-		// 		ORDER BY orders.id
-		// 		";
-		// return $this->db->query($query)->result_array();
+		
 
 		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
 				FROM orders
@@ -74,18 +63,19 @@ class Order extends CI_Model {
 
 		//This loop pulls the transaction id (or charge id)
 		//from the Stripe API, then modifies the array by
-		//reference (e.g.the '&' in &$prod) with the attr
+		//reference (e.g.the '&' in &$order) with the attr
 		//retrieved. Once all are complete, the modified
 		//object is returned.
 		foreach ($allorders as &$order){
 			
 			$address = Stripe_Charge::retrieve($order['transaction_id']);
+			// var_dump($address);
 			$order['street']=$address->source->address_line1;
 			$order['city']=$address->source->address_city;
 			$order['state']=$address->source->address_state;
 			$order['zipcode']=$address->source->address_zip;
 		}
-
+		// die;
 		////////////////////////////////////////
 		return $allorders;
 
@@ -117,9 +107,10 @@ class Order extends CI_Model {
 		$query='SET foreign_key_checks = 0';
 		$this->db->query($query);
 		$this->db->insert('orders', $ordervals);
+		$id=$this->db->insert_id();
 		$query='SET foreign_key_checks = 1';
 		$this->db->query($query);
-		return $this->db->insert_id();
+		return $id;
 	}
 
 	public function add_product_into_order($product){

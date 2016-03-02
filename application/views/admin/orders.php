@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<!-- <td><?php echo 'Address currently broken, commented out until we can import address info from stripe.'; ?></td> -->
 						<td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td>
 						<!-- Get payment info from STRIPE API -->
-						<td><?php echo "$200.99"; ?></td>
+						<td><?php echo "(Fake price)$200.99"; ?></td>
 						<td>
 							<div class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo "Paid"; ?><b class="caret"></b></a>

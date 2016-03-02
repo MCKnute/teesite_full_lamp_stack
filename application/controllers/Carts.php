@@ -111,10 +111,11 @@ class Carts extends CI_Controller {
 				$charge=Stripe_Charge::create($array);
 				$this->load->model('Order');
 				$_SESSION['insert_id']=$this->Order->process_transaction($charge);
+				// var_dump($_SESSION['insert_id']);die;
 				foreach($this->cart->contents() as $product){
 					$this->Order->add_product_into_order($product);
 				}
-				$_SESSION['insert_id']=null;
+				// $_SESSION['insert_id']=null;
 				$this->cart->destroy();
 				
 				redirect("/Orders/confirmation");
