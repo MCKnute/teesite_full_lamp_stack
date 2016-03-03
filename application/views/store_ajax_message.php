@@ -5,47 +5,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     <div class="container container-main">
        <div class="row">
         <div class="col-md-3">
-            <h3 class="category_header">Products</h3>
-            <div class="panel panel-default">
-              <div class="panel-heading">Filter By</div>
-              <!-- List group -->
-              <div class="list-group">
-                <a href="/category/featuredtees" id="featured" class="list-group-item ajax-list">
-                  Featured
-                </a>
-                <a href="/category/popularshirts" id="mostpopular" class="list-group-item ajax-list">
-                  Most Popular
-                </a>
-                <a href="/category/newshirts" id="newest" class="list-group-item ajax-list">
-                  Newest
-                </a>
-                <a href="" id="cheapest" class="list-group-item  ajax-list">
-                  Price: Low to High
-                </a>
-                <a href="/category/fancyshirts" id="fanciest" class="list-group-item ajax-list">
-                  Price: High to Low
-                </a>
-                <a href="/category/alphabetical" id="alphabetical" class="list-group-item ajax-list">
-                  Product Name
-                </a>
-              </div>
-            </div>
+            
+            <nav class="navbar navbar-default blend-with-bg" role="navigation">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#vert-navbar-collapse" aria-controls="vert-navbar-collapse">
+                  <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
 
-            <!-- <div class="panel panel-default">
-              <div class="panel-heading">Sizes</div>
-              
-              <div class="list-group">
-                <a href="#" class="list-group-item">Women Small</a>
-                <a href="#" class="list-group-item">Women Medium</a>
-                <a href="#" class="list-group-item">Women Large</a>
-                <a href="#" class="list-group-item">Women X-Large</a>
-                <a href="#" class="list-group-item">Men Small</a>
-                <a href="#" class="list-group-item">Men Medium</a>
-                <a href="#" class="list-group-item">Men Large</a>
-                <a href="#" class="list-group-item">Men X-Large</a>
+                <a class="category_header visible-xs " href="/">Find Tees</a>
               </div>
-            </div> -->
+
+              <div id="vert-navbar-collapse" class="navbar-collapse collapse"> 
+                <a class="category_header hidden-xs bottomizer" href="/">Find Tees</a>
+              <!-- List group -->
+                <ul class="nav nav-stacked">
+
+                  <li>
+                    <!-- <div class="row">
+                    <div class="col-lg-12"> -->
+                      <form class="list-group-item" id="searchbar" role="search" action="/search/searchterm" method="post">
+                       <div class="input-group">
+                           
+                           <input type="text" class="form-control" name="keyword" id="searchingfor" style="display: inline-block" placeholder="Search Now">
+                           <span class="input-group-btn">
+                             <button type="submit" class="btn btn-default">&#128269;</button>
+                           </span>
+                       </div>
+                     </form>
+                    <!-- </div>
+                    </div> -->
+                  </li>
+
+                  <li>
+                    <a href="/category/featuredtees" id="featured" class="list-group-item ajax-list">
+                    Featured
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/category/popularshirts" id="mostpopular" class="list-group-item ajax-list">
+                    Most Popular
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/category/newshirts" id="newest" class="list-group-item ajax-list">
+                    Newest
+                    </a>
+                  </li>
+                  <li>
+                    <a href="" id="cheapest" class="list-group-item  ajax-list">
+                      Price: Low to High
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/category/fancyshirts" id="fanciest" class="list-group-item ajax-list">
+                      Price: High to Low
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/category/alphabetical" id="alphabetical" class="list-group-item ajax-list">
+                      Product Name
+                    </a>
+                  </li>
+                </ul>
+            <!-- </div> -->
+            </div>
+          </nav>
         </div>
+
+
         <div class="col-md-9">
 
           <? if (isset($category) || isset($searchterm)) { 
@@ -59,9 +89,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img src="/assets/img/heroes/<?=$banner?>.png" id="small-hero-img" />
             <?
           } else { 
-            ?>
-            <img src="/assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
-            <?
+
+              include 'partials/carousel.php';
+
           } ?>
 
           

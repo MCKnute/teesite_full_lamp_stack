@@ -132,11 +132,17 @@ class Product extends CI_Model {
 	public function get_products_by_search_ajax($searchterm)
 	{
 		$keyword = strtolower($searchterm);
-		$uppercase = ucfirst($keyword);
+		$uppercase = ucwords($keyword);
+		// echo $keyword;
+		// echo $uppercase;
+		// die();
 		$query = "SELECT * FROM products 
-			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
+			WHERE name OR description LIKE '%$keyword%'";
 		return $this->db->query($query)->result_array();
 	}
+
+
+
 
 	public function delete_product($product_id)
 	{
