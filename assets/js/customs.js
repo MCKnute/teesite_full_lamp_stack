@@ -35,10 +35,22 @@ $(document).ready(function(){
 	      });
 
 		$('#hero-img').attr('src','/assets/img/heroes/search.png').attr('id','small-hero-img');
+		$('#small-hero-img').attr('src','/assets/img/heroes/search.png');
 		var searchingfor = $('#searchingfor').val();
 		$('#filterheadliner').html('Searching for '+searchingfor);
 		return false;
 	});
+	// var searchterm ="";
+	// function postSearch(searchterm){
+	// 	$.post('/welcome/search_html', {keyword: searchterm}.serialize(), function(res) {
+	//         $('#ajaxproducts').html(res);
+	//       });
+
+	// 	$('#hero-img').attr('src','/assets/img/heroes/search.png').attr('id','small-hero-img');
+	// 	var searchingfor = $('#searchingfor').val();
+	// 	$('#filterheadliner').html('Searching for '+searchingfor);
+	// 	return false;
+	// }
 });
 
 $(document).on('click', "a.ajax-list", function() {

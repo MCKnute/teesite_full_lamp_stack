@@ -24,8 +24,10 @@ require_once 'vendor/autoload.php'
        ?>
        <script type='text/javascript'>
        $(document).ready(function(){
+
         var categorysend = '<?=$this->session->flashdata('category_flash')?>';
            // alert('My category is '+categorysend); 
+
           $.get('/welcome/categories_html/'+categorysend, $(this).serialize(), function(res) {
               $('#ajaxproducts').html(res);
               });
@@ -53,6 +55,38 @@ require_once 'vendor/autoload.php'
           }
           $('#filterheadliner').html('Sorting by: '+description);
             return false; 
+       });
+       </script>
+    <? } ?>
+   <? if($this->input->post('keyword')) { 
+       ?>
+       <script type='text/javascript'>
+       $(document).ready(function(){
+
+        // var searchterm = '<?=$this->session->flashdata('search_flash')?>';
+        var searchterm = '<?=$this->input->post('keyword')?>';
+
+           // alert('My searchterm from post is '+searchterm); 
+
+           // function postSearch(searchterm){
+           //  $.post('/welcome/search_html', function(res) {
+           //        $('#ajaxproducts').html(res);
+           //      }); 
+           //    }
+
+              $.ajax({
+                type: "POST",
+                url:"/welcome/search_html",
+                data: {keyword: searchterm},
+                success: function(res) {
+                  $('#ajaxproducts').html(res);
+                  }
+              });
+           
+
+          $('#hero-img').attr('src','/assets/img/heroes/search.png').attr('id','small-hero-img');
+          $('#small-hero-img').attr('src','/assets/img/heroes/search.png');
+          $('#filterheadliner').html('Searching by: '+searchterm);
        });
        </script>
     <? } ?>
