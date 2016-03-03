@@ -9,9 +9,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<h2 class="product-title">Orders</h2>
 
 			<!-- search results -->
-	        <form class="navbar-form" id="searchbar" role="search" action="/Orders/search" method="post">
+	        <form class="navbar-form" id="searchbar-orders" role="search" action="/Orders/search" method="post">
 	            <div class="form-group">
-	              	<input type="text" class="form-control" name="keyword" placeholder="Search for name">
+	              	<input type="text" class="form-control" name="keyword" placeholder="Search by customer name">
 	            </div>
 	            <button type="submit" class="btn btn-default">&#128269;</button>
 	        </form>
@@ -34,7 +34,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Total</th>
 					<th>Status</th>
 				</thead>
-				<tbody>
+				<tbody id="ajax-orders">
 <?php 
 				$total=0;
 				foreach ($orders as $order) 
@@ -60,7 +60,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 								if($order['paid'])
 								{
 									echo "<p style='color:darkgreen'>Paid/Shipped";
-									}
+								}
 								else
 								{
 									echo "<p style='color:darkred'>Not Paid";

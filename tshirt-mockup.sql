@@ -147,6 +147,7 @@ CREATE TABLE `orders` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `transaction_id` varchar(45) DEFAULT NULL,
+  `paid` tinyint(4) DEFAULT NULL,
   PRIMARY KEY (`id`,`user_id`,`payment_id`,`address_id`),
   KEY `fk_orders_users1_idx` (`user_id`),
   KEY `fk_orders_addresses1_idx` (`address_id`),
@@ -161,7 +162,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,NULL,1,1,1,'2016-02-26 16:52:10','2016-02-26 16:55:04','1'),(2,NULL,2,2,2,'2016-02-26 16:55:04','2016-02-26 16:55:04',NULL),(3,NULL,3,3,3,'2016-02-26 16:55:04','2016-02-26 16:55:04',NULL);
+INSERT INTO `orders` VALUES (1,NULL,1,1,1,'2016-02-26 16:52:10','2016-02-26 16:55:04','NULL',1),(2,NULL,2,2,2,'2016-02-26 16:55:04','2016-02-26 16:55:04',NULL,1),(3,NULL,3,3,3,'2016-02-26 16:55:04','2016-02-26 16:55:04',NULL,0);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -202,13 +203,10 @@ CREATE TABLE `products` (
   `price` decimal(5,2) DEFAULT NULL,
   `sale` tinyint(1) DEFAULT NULL,
   `size` varchar(45) DEFAULT NULL,
-  `inventory_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
-  PRIMARY KEY (`id`,`inventory_id`),
-  KEY `fk_products_inventories1_idx` (`inventory_id`),
-  CONSTRAINT `fk_products_inventories1` FOREIGN KEY (`inventory_id`) REFERENCES `inventories` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -217,7 +215,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Red Belt','A super lucky red shirt, for the lucky Red Belt graduates',19.98,NULL,NULL,1,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(2,'White Belt','A simple shirt, with a white-belt ninja.',9.99,NULL,NULL,2,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(3,'Mystery Shirt','What could this shirt be??',999.97,NULL,NULL,3,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(4,'Coding Dojo','An amazing black CodingDojo black shirt! Perfect for Coding Dojo alumni!',19.99,NULL,NULL,4,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(5,'Honey Badger Don\'t Care','What does a honey badger do? Well, they certainly don\'t care. Show off your honey badger attitude with this lovely black shirt.',19.99,NULL,NULL,5,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(6,'I\'m on the Ninja Diet','Ninja turtles are known for their stealth, humor, and love of pizza. Do you love pizza? Then you should  love this shirt.',24.99,NULL,NULL,6,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(7,'#TeamEduardo','Show the world who your favorite coding master is by wearing this trendy green shirt!',29.99,NULL,NULL,7,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(8,'#TeamLance','Show the world who your favorite coding master is by wearing this trendy blue shirt!',29.99,NULL,NULL,8,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(9,'#TeamChris','Show the world who your favorite coding master is by wearing this trendy red shirt!',29.99,NULL,NULL,9,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(10,'#TeamKelvin','Show the world who your favorite coding master is by wearing this trendy black shirt!',29.99,NULL,NULL,10,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(11,'Yellow Belt','The Yellow belt is earned for the first exam taken at the Dojo. Why not put the Yellow Belt ninja on a bright blue shirt?',12.99,NULL,NULL,11,'2016-02-28 22:15:48','2016-02-28 22:15:48');
+INSERT INTO `products` VALUES (1,'Red Belt','A super lucky red shirt, for the lucky Red Belt graduates',19.98,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(2,'White Belt','A simple shirt, with a white-belt ninja.',9.99,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(3,'Mystery Shirt','What could this shirt be??',999.97,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(4,'Coding Dojo','An amazing black CodingDojo black shirt! Perfect for Coding Dojo alumni!',19.99,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(5,'Honey Badger Don\'t Care','What does a honey badger do? Well, they certainly don\'t care. Show off your honey badger attitude with this lovely black shirt.',19.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(6,'I\'m on the Ninja Diet','Ninja turtles are known for their stealth, humor, and love of pizza. Do you love pizza? Then you should  love this shirt.',24.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(7,'#TeamEduardo','Show the world who your favorite coding master is by wearing this trendy green shirt!',29.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(8,'#TeamLance','Show the world who your favorite coding master is by wearing this trendy blue shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(9,'#TeamChris','Show the world who your favorite coding master is by wearing this trendy red shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(10,'#TeamKelvin','Show the world who your favorite coding master is by wearing this trendy black shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(11,'Yellow Belt','The Yellow belt is earned for the first exam taken at the Dojo. Why not put the Yellow Belt ninja on a bright blue shirt?',12.99,NULL,NULL,'2016-02-28 22:15:48','2016-02-28 22:15:48');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -248,7 +246,7 @@ CREATE TABLE `products_has_orders` (
 
 LOCK TABLES `products_has_orders` WRITE;
 /*!40000 ALTER TABLE `products_has_orders` DISABLE KEYS */;
-INSERT INTO `products_has_orders` VALUES (1,1,1,5,'small_w'),(15,2,1,5,'small_w'),(16,1,2,5,'small_w'),(17,2,2,5,'small_w'),(18,1,3,5,'small_w'),(19,3,3,5,'small_w');
+INSERT INTO `products_has_orders` VALUES (1,1,1,5,'small_w'),(15,2,1,10,'small_w'),(16,1,2,5,'small_w'),(17,2,2,5,'small_w'),(18,1,3,5,'small_w'),(19,3,3,5,'small_w');
 /*!40000 ALTER TABLE `products_has_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,8 +266,9 @@ CREATE TABLE `users` (
   `is_admin` tinyint(1) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
+  `customer_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -278,7 +277,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Mollie','Knute','mollie@knute.com','5f4dcc3b5aa765d61d8327deb882cf99',1,NULL,NULL),(2,'Malibu','Cat','malibu@cat.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL),(3,'Charlie','Tango','charlie@tango.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL),(4,'Mary','Mary','mary@mary.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL),(5,'Suzy','Sheep','suzy@sheep.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL),(6,'pete','kang','pete@kang.com','5f4dcc3b5aa765d61d8327deb882cf99',1,'2016-02-29 19:05:57',NULL);
+INSERT INTO `users` VALUES (1,'Mollie','Knute','mollie@knute.com','5f4dcc3b5aa765d61d8327deb882cf99',1,NULL,NULL,'0'),(2,'Malibu','Cat','malibu@cat.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(3,'Charlie','Tango','charlie@tango.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(4,'Mary','Mary','mary@mary.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(5,'Suzy','Sheep','suzy@sheep.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(6,'pete','kang','pete@kang.com','5f4dcc3b5aa765d61d8327deb882cf99',1,'2016-02-29 19:05:57',NULL,'0'),(7,'ken','fury','ken@fury.com','5f4dcc3b5aa765d61d8327deb882cf99',0,'2016-02-29 19:47:30',NULL,'0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -291,4 +290,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-02-29 11:28:47
+-- Dump completed on 2016-03-02 19:05:34

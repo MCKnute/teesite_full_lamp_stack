@@ -90,12 +90,27 @@ class Order extends CI_Model {
 	{
 		$keyword = strtolower($searchterm);
 		$uppercase = ucfirst($keyword);
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, addresses.street, addresses.city, addresses.state, addresses.zipcode, orders.transaction_id 
+		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
 				FROM orders
-				JOIN users ON orders.user_id = users.id
-				JOIN addresses ON orders.address_id = addresses.id 
-			WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
+				LEFT JOIN users ON orders.user_id = users.id 
+				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
 		return $this->db->query($query)->result_array();
+	}
+
+	public function get_orders_by_search_ajax($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
+				FROM orders
+				LEFT JOIN users ON orders.user_id = users.id 
+				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function delete_product($product_id)
+	{
+		return $this->db->delete('products', array('id' => $product_id));
 	}
 
 	public function process_transaction($charge){

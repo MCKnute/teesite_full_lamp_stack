@@ -138,7 +138,6 @@ class Product extends CI_Model {
 	public function delete_product($product_id)
 	{
 		return $this->db->delete('products', array('id' => $product_id));
-
 	}
 
 }

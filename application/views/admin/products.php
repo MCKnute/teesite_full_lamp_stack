@@ -9,7 +9,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    	<h2 class="product-title">Products</h2>
 
 			<!-- search results -->
-			<form class="navbar-form" id="searchbar" role="search" action="/Products/search" method="post">
+			<form class="navbar-form" id="searchbar-products" role="search" action="/Products/search" method="post">
 	            <div class="form-group">
 	              	<input type="text" class="form-control" name="keyword" placeholder="Search for name">
 	            </div>
@@ -94,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<th>Description</th>
 					<th>Action</th>
 				</thead>
-				<tbody id="ajaxproducts">
+				<tbody id="ajax-products">
 <?php 
 				foreach ($products as $product) {
 ?>
@@ -106,8 +106,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<td><?php echo $product['description']; ?></td>
 						<td>
 							<ul class="nav-action nav nav-pills">
-							<!-- Special -->
-							  	<!-- <li><a href="#">inventory</a></li> -->
 							  	<li>
 							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">Edit
 				</button>
@@ -164,8 +162,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 										</select>
 									</div>
 					    		</div> -->
-
-					    	<!-- STRECH GOALS -->				
+			
 								<div class="modal-footer">
 							    	<button type="submit" class="btn btn-success center-block">Submit</button>
 							    </div>
@@ -175,7 +172,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div><!-- end of Edit Modal -->
 								</li>
 							  	<li>
-							  		<button href="/Products/delete_product/<?=$product['id']?>" class="btn-delete btn-xs btn-danger">Delete</button>
+							  		<form action="/Products/delete_product/<?=$product['id']?>" method="post">
+							  			<button class="btn-delete btn-xs btn-danger" type="submit">delete</button>
+							  		</form>
 							  	</li>
 							</ul>
 						</td>

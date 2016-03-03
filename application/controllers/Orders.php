@@ -44,6 +44,13 @@ class Orders extends CI_Controller {
 	}
 
 // STRETCH GOAL
+	public function search_admin_html() 
+	{
+		$searchterm = $this->input->post('keyword');
+		$data["orders"] = $this->Order->get_orders_by_search_ajax($searchterm);
+		$this->load->view("/partials/admin_orders_partials", $data);
+	}
+
 	public function search()
 	{
 		$searchterm = $this->input->post('keyword');

@@ -118,7 +118,7 @@ class Products extends CI_Controller {
 	{
 		$searchterm = $this->input->post('keyword');
 		$data["products"] = $this->Product->get_products_by_search_ajax($searchterm);
-		$this->load->view("/partials/admin_products_partials", $data);
+		$this->load->view("partials/admin_products_partials", $data);
 	}
 
 	public function search()

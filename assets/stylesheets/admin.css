@@ -47,7 +47,7 @@
 	display: inline-block;
 }
 
-.product-title #searchbar .search-center #topofthehead.addNewproduct{
+.product-title #searchbar #searchbar-orders #searchbar-products .search-center #topofthehead.addNewproduct{
 	display: inline-block;
 }
 
@@ -65,6 +65,19 @@
 		vertical-align: top;
 	}
 
+	#searchbar-orders{
+		display: inline-block;
+		margin: 0 10px 10px 50px;
+		padding: 0 10px 10px 0;
+		vertical-align: top;
+	}
+	#searchbar-products{
+		display: inline-block;
+		margin: 0 10px 10px 50px;
+		padding: 0 10px 10px 0;
+		vertical-align: top;
+	}
+
 	.search-center{
 		display: inline-block;
 		margin: 0 auto;
@@ -76,7 +89,7 @@
 		float: right !important;
 	}
 
-.product-title, #searchbar, .search-center{
+.product-title, #searchbar, #searchbar-products, #searchbar-orders, .search-center{
 	display: inline-block;
 }
 
