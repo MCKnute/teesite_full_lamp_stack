@@ -27,17 +27,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 	        <div id="topofthehead">
 				<!-- add new product button via MODAL.js from bootstrap-->
-				<button class="addNewproduct btn btn-primary pull-right" data-toggle="modal" data-target="#myModal" type="button">Add New Product
+				<button class="addNewproduct btn btn-primary pull-right" data-toggle="modal" data-target="#addModal" type="button">Add New Product
 				</button>
 				<!-- Modal for "Add New Product" -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
 					    <div class="modal-content">
 						    <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title" id="myModalLabel">Add New Product</h4>
 						    </div>
-						    <!-- <?php// echo form_open_multipart('/Products/add_new_product');?> -->
 					    	<form action="/Products/add_new_product" method="post" enctype="multipart/form-data">	
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
@@ -110,15 +109,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 							<!-- Special -->
 							  	<!-- <li><a href="#">inventory</a></li> -->
 							  	<li>
-							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#myModal" type="button">Edit
+							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">Edit
 				</button>
 				<!-- Modal for "EDITING Product" -->
-				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
 					    <div class="modal-content">
 						    <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
+						        <h4 class="modal-title" id="myModalLabel">Edit <?php echo $product['name']; ?></h4>
 						    </div>
 <?php
 					        if ($this->session->flashdata("edit_error")) 
@@ -126,7 +125,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					          echo "<p> " . $this->session->flashdata("edit_error") . "</p>";
 					        }
 ?>
-					    	<form class="form-horizontal" action="/Products/edit_product" method="post">
+					    	<form action="/Products/edit_product" method="post" enctype="multipart/form-data">
 					    		
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
