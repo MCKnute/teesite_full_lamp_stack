@@ -78,24 +78,13 @@ class Product extends CI_Model {
 
 	public function add_new_product($post_data)
 	{
-		// STRETCH GOAL
-		$config['upload_path'] = '/assets/img/products/';
-		$config['allowed_types'] = 'gif|jpg|png|jpeg';
-		$this->load->library('upload', $config);
-		$this->upload->do_upload('image');
-		$data_upload_files = $this->upload->data();
-
-		$image = $data_upload_files['full_path'];
-		// STRETCH GOAL ENDS
-
 		$insert = "INSERT INTO products (name, price, description, created_at)
 				VALUES (?,?,?,NOW())";
 
 		$values = array(
 			$post_data["name"],
 			$post_data["price"], 
-			$post_data["description"],
-			$post_data['image']
+			$post_data["description"]
 			// 'categories' => $post_data["categories"]
 		);
 
@@ -115,6 +104,18 @@ class Product extends CI_Model {
 		}
 	}
 
+	function edit_product($post_data)
+	{
+		$id = $this->session->userdata->products('id');
+		// var_dump(expression); die();
+
+		$product_query = $get_one_product($id);
+
+		$update_query = "UPDATE products SET name = ?, price = ?, description = ?, updated_at = ? WHERE id = ?";
+		$value = array($post['name'], $post['price'], $post['description'], date("Y-m-d, H:i:s"), $id);
+
+		$this->db->query($update_query, $value);
+	}
 
 	public function get_products_by_search($searchterm)
 	{

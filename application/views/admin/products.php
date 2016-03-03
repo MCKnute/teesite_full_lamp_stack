@@ -9,11 +9,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    	<h2 class="product-title">Products</h2>
 
 			<!-- search results -->
-			<h4 class="search-center">
+			<form class="navbar-form" id="searchbar" role="search" action="/Products/search" method="post">
+	            <div class="form-group">
+	              	<input type="text" class="form-control" name="keyword" placeholder="Search for name">
+	            </div>
+	            <button type="submit" class="btn btn-default">&#128269;</button>
+	        </form>
+
+			<h4 class="search-center" id="searchingfor">
 	            <? if (isset($searchterm)) {
-	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
+	              	echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
 	            } else {
-	              echo "";
+	              	echo "";
 	            }
 	            ?>
           	</h4>
@@ -28,19 +35,109 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					    <div class="modal-content">
 						    <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Product</h4>
+						        <h4 class="modal-title" id="myModalLabel">Add New Product</h4>
 						    </div>
-					    	<form class="form-horizontal" action="/Products/add_new_product" method="post">
+						    <!-- <?php// echo form_open_multipart('/Products/add_new_product');?> -->
+					    	<form action="/Products/add_new_product" method="post" enctype="multipart/form-data">	
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="name" />
+				                        <input type="text" class="form-control" name="name"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Price</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="price" />
+				                        <input type="text" class="form-control" name="price"/>
+				                    </div>
+					    		</div>
+					    		<div class="form-group">
+					    			<label class="col-sm-3 control-label">Description</label>
+						    		<div class="col-sm-8">
+				                        <textarea type="text" class="form-control" name="description"></textarea>
+				                    </div>
+					    		</div>
+
+					    		<div class="form-group">
+					    			<label class="col-sm-3 control-label">Upload Image</label>
+						    		<div class="col-sm-8">
+				                        <input type="file" class="form-control" name="image"/>
+				                    </div>
+					    		</div>
+					    		
+					    	<!-- STRECH GOALS -->
+					    		<!-- <div class="form-group">
+					    			<label  class="col-sm-3 control-label">Categories</label>
+						    		<div class="dropdown col-sm-3">
+										<select name="categories" class="form-control">
+											<option name="cat">Cat</option>
+											<option name="dog">Dog</option>
+											<option name="ndgt">Neil deGrasse Tyson</option>
+										</select>
+									</div>
+					    		</div> -->				
+								<div class="modal-footer">
+							    	<button type="submit" class="btn btn-success center-block">Add New Product</button>
+							    </div>
+						    </form>
+						</div>
+				    </div>
+				</div>
+			</div> <!-- end of Modal -->
+
+			<!-- Product results -->
+			<table class="table table-striped">
+				<thead>
+					<th>Picture</th>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Description</th>
+					<th>Action</th>
+				</thead>
+				<tbody id="ajaxproducts">
+<?php 
+				foreach ($products as $product) {
+?>
+					<tr>
+						<td><img src='/assets/img/products/<?php echo $product['id']; ?>-small.png' height=75 width=75></td>
+						<td><?php echo $product['id']; ?></td>
+						<td><?php echo $product['name']; ?></td>
+						<td><?php echo $product['price']; ?></td>
+						<td><?php echo $product['description']; ?></td>
+						<td>
+							<ul class="nav-action nav nav-pills">
+							<!-- Special -->
+							  	<!-- <li><a href="#">inventory</a></li> -->
+							  	<li>
+							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#myModal" type="button">Edit
+				</button>
+				<!-- Modal for "EDITING Product" -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					<div class="modal-dialog" role="document">
+					    <div class="modal-content">
+						    <div class="modal-header">
+						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+						        <h4 class="modal-title" id="myModalLabel">Edit Product</h4>
+						    </div>
+<?php
+					        if ($this->session->flashdata("edit_error")) 
+					        {
+					          echo "<p> " . $this->session->flashdata("edit_error") . "</p>";
+					        }
+?>
+					    	<form class="form-horizontal" action="/Products/edit_product" method="post">
+					    		
+					    		<div class="form-group">
+					    			<label class="col-sm-3 control-label">Name</label>
+						    		<div class="col-sm-8">
+				                        <input type="text" class="form-control" name="name"/>
+				                    </div>
+					    		</div>
+					    		<div class="form-group">
+					    			<label class="col-sm-3 control-label">Price</label>
+						    		<div class="col-sm-8">
+				                        <input type="text" class="form-control" name="price"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
@@ -69,61 +166,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 									</div>
 					    		</div> -->
 
-					    	<!-- STRECH GOALS -->
-								<!-- <br>
-								<label>add new category </label><input type="text" name="category"/>
-								<br>
-								<label>images</label><button type="submit" class="btn btn-default">upload image</button>
-								<br> -->				
+					    	<!-- STRECH GOALS -->				
 								<div class="modal-footer">
-							    	<button type="submit" class="btn btn-success center-block">Add New Product</button>
+							    	<button type="submit" class="btn btn-success center-block">Submit</button>
 							    </div>
 						    </form>
 						</div>
 				    </div>
-				</div>
-			</div> <!-- end of Modal -->
-
-
-
-			<table class="table table-striped">
-				<thead>
-					<th>Picture</th>
-					<th>ID</th>
-					<th>Name</th>
-					<th>Price</th>
-					<th>Description</th>
-				<!-- Special -->
-					<!-- <th>Inventory Count</th> -->
-					<!-- <th>Quantity Sold</th> -->
-					<th>Action</th>
-				</thead>
-				<tbody>
-<?php 
-				foreach ($products as $product) {
-?>
-					<tr>
-						<td><img src='/assets/img/products/<?php echo $product['id']; ?>-small.png' height=75 width=75></td>
-						<td><?php echo $product['id']; ?></td>
-						<td><?php echo $product['name']; ?></td>
-						<td><?php echo $product['price']; ?></td>
-					<!-- Special -->
-						<!-- <td><?php echo $product['total_qty']; ?></td> -->
-						<!-- <td><?php echo "300"; ?></td> -->
-						<td><?php echo $product['description']; ?></td>
-						<td>
-							<ul class="nav nav-pills">
-							<!-- Special -->
-							  	<!-- <li><a href="#">inventory</a></li> -->
-							  	<!-- <li>
-							  		<button type="button" class="btn btn-primary pull-right" data-toggle="modal" data-target="#myModal">Edit Product</button>
-							  	</li> -->
-							  		<!-- <a href="#">edit</a></li> -->
+				</div><!-- end of Edit Modal -->
+								</li>
 							  	<li>
-							  		<!-- <form action='/Products/delete_product?id="<?php $product['id']; ?>"' method="post">
-							  			<button type="submit" class="btn btn-danger">delete</button>
-							  		</form> -->
-							  		<a href="/Products/delete_product/<?=$product['id']?>" class="btn btn-danger">Delete</a>
+							  		<button href="/Products/delete_product/<?=$product['id']?>" class="btn-delete btn-xs btn-danger">Delete</button>
 							  	</li>
 							</ul>
 						</td>
@@ -133,27 +186,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
 				</tbody>
 			</table>
-
-		<!-- Special -->
-			<!-- <nav class="center-block">
-			 	<ul class="pagination">
-				    <li>
-				      	<a href="#" aria-label="Previous">
-				        	<span aria-hidden="true">&laquo;</span>
-				      	</a>
-				    </li>
-				    <li><a href="#">1</a></li>
-				    <li><a href="#">2</a></li>
-				    <li><a href="#">3</a></li>
-				    <li><a href="#">4</a></li>
-				    <li><a href="#">5</a></li>
-				    <li>
-				      	<a href="#" aria-label="Next">
-				        	<span aria-hidden="true">&raquo;</span>
-				      	</a>
-				    </li>
-			  	</ul>
-			</nav> -->
 		</div>
     </div>
 <!-- End of Products Container -->

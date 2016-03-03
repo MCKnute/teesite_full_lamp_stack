@@ -3,12 +3,16 @@
 	padding: 0 auto;
 }
 
+#admin-navbar{
+	color: #d9534f;
+	font-weight: bold;
+}
+
 #orders_id_table{
 	vertical-align: top;
 	width: 500px;
 	margin: 0 5px 5px 190px;
 	display: inline-block;
-
 }
 
 #order-description{
@@ -43,28 +47,41 @@
 	display: inline-block;
 }
 
-.product-title .search-center #topofthehead.addNewproduct{
+.product-title #searchbar .search-center #topofthehead.addNewproduct{
 	display: inline-block;
-	margin: 0px 10px;
-	padding: 5px;
-	width: 300px;
 }
 
-.product-title{
-	margin: 0 10px 10px 0;
-	padding: 0 10px 10px 0;
+	.product-title{
+		margin: 0 10px 10px 0;
+		padding: 0 10px 10px 0;
+		display: inline-block;
+		color: #C14242;
+	}
+
+	#searchbar{
+		display: inline-block;
+		margin: 0 10px 10px 50px;
+		padding: 0 10px 10px 0;
+		vertical-align: top;
+	}
+
+	.search-center{
+		display: inline-block;
+		margin: 0 auto;
+		padding: 5px;
+	}
+
+	#topofthehead{
+		display: inline-block;
+		float: right !important;
+	}
+
+.product-title, #searchbar, .search-center{
 	display: inline-block;
-	vertical-align: center;
-	color: #C14242;
 }
 
-.search-center{
-	display: inline-block;
-	margin: 0 auto;
-	padding: 5px;
-}
 
-#topofthehead{
+.nav-action li{
 	display: inline-block;
-	float: right !important;
+	margin: 3px;
 }

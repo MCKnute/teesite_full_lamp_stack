@@ -10,6 +10,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<h2 class="product-title">Orders</h2>
 
 			<!-- search results -->
+	        <form class="navbar-form" id="searchbar" role="search" action="/Orders/search" method="post">
+	            <div class="form-group">
+	              	<input type="text" class="form-control" name="keyword" placeholder="Search for name">
+	            </div>
+	            <button type="submit" class="btn btn-default">&#128269;</button>
+	        </form>
+	        
 			<h4 class="search-center">
 	            <? if (isset($searchterm)) {
 	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
@@ -21,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<table class="table table-striped">
 				<thead>
-					<th>Order_ID</th>
+					<th>ID</th>
 					<th>Name</th>
 					<th>Date</th>
 					<th>Address</th>
