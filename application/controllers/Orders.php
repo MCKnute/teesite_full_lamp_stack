@@ -13,6 +13,7 @@ class Orders extends CI_Controller {
 	public function index()
 	{
 		$orders = $this->Order->get_all_orders_admin_page();
+
 		$info['orders'] = $orders;
 		$headerinfo['title'] = "KMK Tees | Admin";
 		$headerinfo['description'] = "Get excellent tees from us!";
@@ -25,7 +26,8 @@ class Orders extends CI_Controller {
 	public function get_products_from_order($id)
 	{
 		$orders = $this->Order->get_products_from_order($id);
-
+		// var_dump($orders);
+		// die;
 		if ($orders > 0) 
 		{
 			$info['orders'] = $orders;

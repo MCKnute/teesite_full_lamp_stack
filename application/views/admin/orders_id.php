@@ -46,17 +46,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 					<thead>
 						<th>Product ID</th>
 						<th>Product Name</th>
+						<th>Product Size</th>
 						<th>Price</th>
 						<th>Quantity</th>
 						<th>Total</th>
 					</thead>
 					<tbody>
 <?php 
+					$total=0;
 					foreach ($orders as $order) {
+						$total+=$order['price'] * $order['qty'];
 ?>
 						<tr>
 							<td><?php echo $order['product_id']; ?></td>
 							<td><?php echo $order['name']; ?></td>
+							<td><?php echo $order['size']; ?></td>
 							<td>$<?php echo $order['price']; ?></td>
 							<td><?php echo $order['qty']; ?></td>
 							<td class="dollars">$
@@ -65,18 +69,31 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						<tr>					
 <?php 
 					 } 
-?>
+?>						<tr>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td></td>
+							<td>Total:</td>
+							<td class="dollars">$
+								<?php echo (number_format( ($total), 2, '.', " ")); ?>
+							</td>
+						<tr>	
 					</tbody>
 				</table>
 			
 
 			<div id="shipped_status">
-				<p id="status">Status: <?php echo "shipped"; ?></p>
-				<div id="totals">
-					<p>Sub total: <?php echo "$1250.99"; ?></p>
-					<p>Shipping/Handling: <?php echo "$0"; ?></p>
-					<p>Sub total: <?php echo "$1300.99"; ?></p>
-				</div>
+				<p id="status">Status: <?php 
+								if($order['paid'])
+									{
+										echo "<i style='color:white'>Shipped";
+										}
+									else
+									{
+										echo "<i style='color:darkred'>Not Shipped";
+									} ?></i>
+				
 			</div>
 
 			</div>

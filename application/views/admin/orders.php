@@ -2,7 +2,6 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 ?>
-<!DOCTYPE html>
     <div class="container">
       <!-- Main hero unit for a primary marketing message or call to action -->
 	    <div class="jumbotron">
@@ -37,8 +36,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</thead>
 				<tbody>
 <?php 
+				$total=0;
 				foreach ($orders as $order) 
 				{
+					$total+=$order['price'] * $order['qty'];
 ?>
 					<tr>
 						<td>
@@ -51,40 +52,24 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 						</td>
 						<td><?php echo $order['first_name'] ." ". $order['last_name']; ?></td>
 						<td><?php echo $order['created_at']; ?></td>
-						<td><?php echo 'FROM STRIPE API'; ?></td>
-						<!-- <td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td> -->
-						<!-- Get payment info from STRIPE API -->
-						<td><?php echo "$200.99"; ?></td>
+						<td><?php echo $order['street'] ." ". $order['city'] ." ". $order['state'] ." ". $order['zipcode']; ?></td>
+						<td>$<?php echo $order['price']; ?></td>
 						<td>
 							<div class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
 <?php 
-									if ($order['paid']==1) {
-										echo "Paid";
+								if($order['paid'])
+								{
+									echo "<p style='color:darkgreen'>Paid/Shipped";
 									}
-									else
-									{
-										echo "Not Paid";
-									}
+								else
+								{
+									echo "<p style='color:darkred'>Not Paid";
+								} 
 ?>
-									<b class="caret"></b>
-								</a>
-								<ul class="dropdown-menu">
-								  	<li>
-								  		<a href="#">
-										<?php $order['paid'] = 1; echo "Paid"; ?>
-										</a>
-								  	</li>
-								  	<li role="separator" class="divider"></li>
-								  	<li>
-										<a href="#">
-										<?php $order['paid'] = 0; echo "Not Paid"; ?>
-										</a>
-								  	</li>
-								</ul>
+								</p>
+
 							</div>
 						</td>
-						<!-- STRIPE API -->
 					</tr>
 <?php 
 				} 
