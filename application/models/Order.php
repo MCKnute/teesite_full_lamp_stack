@@ -68,6 +68,7 @@ class Order extends CI_Model {
 		//reference (e.g.the '&' in &$order) with the attr
 		//retrieved. Once all are complete, the modified
 		//object is returned.
+
 		foreach ($allorders as &$order){
 		
 			$address = Stripe_Charge::retrieve($order['transaction_id']);
@@ -79,6 +80,7 @@ class Order extends CI_Model {
 			$order['state']=$address->source->address_state;
 			$order['zipcode']=$address->source->address_zip;
 		}
+
 		// die;
 		////////////////////////////////////////
 		return $allorders;
@@ -101,11 +103,40 @@ class Order extends CI_Model {
 	{
 		$keyword = strtolower($searchterm);
 		$uppercase = ucfirst($keyword);
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
-				FROM orders
-				LEFT JOIN users ON orders.user_id = users.id 
-				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
-		return $this->db->query($query)->result_array();
+		$query = "SELECT DISTINCT orders.id, orders.paid, orders.created_at, users.first_name, users.last_name, orders.transaction_id, SUM(products.price), products_has_orders.qty
+				FROM products_has_orders
+				INNER JOIN products ON products.id = products_has_orders.product_id 
+				INNER JOIN orders ON orders.id = products_has_orders.order_id 
+                INNER JOIN users ON users.id = orders.user_id
+				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'
+				GROUP BY orders.id
+				ORDER BY orders.id";
+
+		$allorders=$this->db->query($query)->result_array();
+
+		////////////////////////////////////////
+		//// STRIPE RETRIEVE ADDRESS ///////////
+		require_once 'vendor/stripe_key.php';
+
+		//This loop pulls the transaction id (or charge id)
+		//from the Stripe API, then modifies the array by
+		//reference (e.g.the '&' in &$order) with the attr
+		//retrieved. Once all are complete, the modified
+		//object is returned.
+		foreach ($allorders as &$order){
+		
+			$address = Stripe_Charge::retrieve($order['transaction_id']);
+
+			$order['price']=$address->amount/100;
+			
+			$order['street']=$address->source->address_line1;
+			$order['city']=$address->source->address_city;
+			$order['state']=$address->source->address_state;
+			$order['zipcode']=$address->source->address_zip;
+		}
+		// die;
+		////////////////////////////////////////
+		return $allorders;
 	}
 
 	public function delete_product($product_id)

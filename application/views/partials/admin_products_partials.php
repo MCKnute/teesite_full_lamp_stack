@@ -14,7 +14,7 @@
 							<!-- Special -->
 							  	<!-- <li><a href="#">inventory</a></li> -->
 							  	<li>
-							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">Edit
+							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">edit
 				</button>
 				<!-- Modal for "EDITING Product" -->
 				<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -43,23 +43,24 @@
 						    </div>
 						    <!-- Edit Product Form -->
 					    	<form action="/Products/edit_product" method="post" enctype="multipart/form-data">
-					    		<input type="hidden" name="id" value="<?=$product['id'];?>">
+					    		
+					    		<input type="hidden" class="form-control" name="name" value="<?=$product['id'];?>"/>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="name"/>
+				                        <input type="text" class="form-control" name="name" value="<?=$product['name'];?>"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Price</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="price"/>
+				                        <input type="text" class="form-control" name="price" value="<?=$product['price'];?>"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Description</label>
 						    		<div class="col-sm-8">
-				                        <textarea type="text" class="form-control" name="description"></textarea>
+				                        <textarea type="text" class="form-control" name="description"><?=$product['description'];?></textarea>
 				                    </div>
 					    		</div>
 
@@ -98,5 +99,5 @@
 						</td>
 					</tr>
 <?php 
-				} 
+	}
 ?>

@@ -1,4 +1,5 @@
 $(document).ready(function(){
+// products search bar
 	$.get('/products/get_all_products_admin_html', function(res) {
 	    $('#ajax-products').html(res);
 	});
@@ -9,18 +10,7 @@ $(document).ready(function(){
 	      });
 
 		var searchingfor = $('#searchingfor').val();
-		$('#filterheadliner').html('Searching for '+searchingfor);
-		return false;
-	});
-
-	// orders search bar
-	$('#searchbar-orders').submit(function(){
-		$.post('/Orders/search_admin_html', $(this).serialize(), function(res) {
-	        $('#ajax-orders').html(res);
-	      });
-
-		var searchingfor = $('#searchingfor').val();
-		$('#filterheadliner').html('Searching for '+searchingfor);
+		// $('#filterheadliner').html('Searching for '+searchingfor);
 		return false;
 	});
 });

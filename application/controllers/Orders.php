@@ -11,12 +11,12 @@ class Orders extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{		
 		$orders = $this->Order->get_all_orders_admin_page();
 
 		$info['orders'] = $orders;
 		$headerinfo['title'] = "KMK Tees | Admin";
-		$headerinfo['description'] = "Get excellent tees from us!";
+		$headerinfo['description'] = "Orders";
 		$this->load->view('/admin/header-admin', $headerinfo);
 		$this->load->view('/admin/orders', $info);
 		$this->load->view('/admin/footer-admin');
@@ -41,6 +41,11 @@ class Orders extends CI_Controller {
 		{
 			$data['redirect_url'] = base_url('/');
 		}
+	}
+
+	public function get_all_orders_admin_html() {
+		$data["orders"] = $this->Order->get_all_orders_admin_page();
+		$this->load->view("/partials/admin_orders_partials", $data);		
 	}
 
 // STRETCH GOAL

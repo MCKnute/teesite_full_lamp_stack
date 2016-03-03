@@ -14,7 +14,7 @@ class Products extends CI_Controller {
 		$products = $this->Product->get_all_products();
 		$info['products'] = $products;
 		$headerinfo['title'] = "KMK Tees | Admin";
-		$headerinfo['description'] = "Get excellent tees from us!";
+		$headerinfo['description'] = "Products";
 		$this->load->view('/admin/header-admin', $headerinfo);
 		$this->load->view('/admin/products', $info);
 		$this->load->view('/admin/footer-admin');
@@ -99,27 +99,23 @@ class Products extends CI_Controller {
 		if($this->form_validation->run() === FALSE)
 		{
 		    $this->session->set_flashdata("error_message", validation_errors());
-		    redirect('Products');
+		    redirect('/Products/index');
 		}
 		else
 		{
 			$post_data = $this->input->post();
-
-			$product_id = $this->Product->get_one_product($post_data);
 			
 			$product_data = array(
-				'product_id' => $product->id,
-				'product_name' => $product->name,
-				'product_price' => $product->price,
-				'product_description' => $product->description,
+				'product_id' => $post_data->id,
+				'product_name' => $post_data->name,
+				'product_price' => $post_data->price,
+				'product_description' => $post_data->description,
 				// 'product_image' => $product->image
 				// 'product_categories' => $product->categories
 			);
 
 			$edited_product = $this->Product->edit_product($product_data);
-
-			$this->session->set_flashdata("success_message","Product Added");
-			$this->session->set_flashdata("edited_product", $product_data);
+			$this->session->set_flashdata("success_message", "Product info updated!");
 			redirect('/Products');
 		}
 	}

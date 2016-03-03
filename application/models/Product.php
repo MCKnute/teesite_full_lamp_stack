@@ -10,9 +10,17 @@ class Product extends CI_Model {
 	}
 	public function get_one_product($id)
 	{
-		$query = "SELECT * FROM products WHERE id = $id";
-		return $this->db->query($query)->row_array();
+		$query = "SELECT * FROM products WHERE id = ?";
+		return $this->db->query($query, $values)->row_array();
 	}
+
+	public function get_product_by_id($post_data)
+	{
+		$query = "SELECT * FROM products WHERE id = ?";
+		$values = $product['id'];
+		return $this->db->query($query, $values)->row_array();
+	}
+
 	public function get_product_by_name($product)
 	{
 		$query = "SELECT * FROM products WHERE name = ?";
@@ -109,14 +117,9 @@ class Product extends CI_Model {
 
 	function edit_product($product_data)
 	{
-		$id = $this->session->userdata->products('id');
-
-		$product_query = $get_one_product($id);
-
 		$update_query = "UPDATE products SET name = ?, price = ?, description = ?, updated_at = ? WHERE id = ?";
-		$value = array($post['name'], $post['price'], $post['description'], date("Y-m-d, H:i:s"), $id);
-
-		$this->db->query($update_query, $value);
+		$values = array($product_data['name'], $product_data['price'], $product_data['description'], date("Y-m-d, H:i:s"), $product_data['id']);
+		return $this->db->query($update_query, $values);
 	}
 
 	// public function get_products_by_search($searchterm)
