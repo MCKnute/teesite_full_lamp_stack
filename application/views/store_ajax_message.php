@@ -89,9 +89,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <img src="/assets/img/heroes/<?=$banner?>.png" id="small-hero-img" />
             <?
           } else { 
-            ?>
-            <img src="/assets/img/heroes/red-belt-mojo.jpg" id="hero-img" />
-            <?
+
+              include 'partials/carousel.php';
+
           } ?>
 
           
