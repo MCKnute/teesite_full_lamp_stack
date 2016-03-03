@@ -14,7 +14,6 @@ class Order extends CI_Model {
                 INNER JOIN users ON users.id = orders.user_id
 				WHERE orders.id = ?";
 		$values = $id;
-
 		return $this->db->query($query, $values)->result_array();
 
 	}
