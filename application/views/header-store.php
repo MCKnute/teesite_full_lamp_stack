@@ -63,25 +63,18 @@ require_once 'vendor/autoload.php'
        <script type='text/javascript'>
        $(document).ready(function(){
 
-        // var searchterm = '<?=$this->session->flashdata('search_flash')?>';
         var searchterm = '<?=$this->input->post('keyword')?>';
 
            // alert('My searchterm from post is '+searchterm); 
 
-           // function postSearch(searchterm){
-           //  $.post('/welcome/search_html', function(res) {
-           //        $('#ajaxproducts').html(res);
-           //      }); 
-           //    }
-
-              $.ajax({
-                type: "POST",
-                url:"/welcome/search_html",
-                data: {keyword: searchterm},
-                success: function(res) {
-                  $('#ajaxproducts').html(res);
-                  }
-              });
+          $.ajax({
+            type: "POST",
+            url:"/welcome/search_html",
+            data: {keyword: searchterm},
+            success: function(res) {
+              $('#ajaxproducts').html(res);
+              }
+          });
            
 
           $('#hero-img').attr('src','/assets/img/heroes/search.png').attr('id','small-hero-img');

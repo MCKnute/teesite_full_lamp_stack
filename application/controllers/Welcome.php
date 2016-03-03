@@ -67,15 +67,26 @@ class Welcome extends CI_Controller {
 		$this->load->view("partials/store_items", $data);
 	}
 
+
+
+
+
+
 	public function search_html() 
 	{
 		$searchterm = $this->input->post('keyword');
+		// echo $searchterm;
+		// die();
 		$data["products"] = $this->Product->get_products_by_search_ajax($searchterm);
 		// $data["searchingfor"] = $searchterm;
 		$this->load->view("partials/store_items", $data);
 	}
 
-    // SEARCH FUNCTION
+
+
+
+
+    // OLD SEARCH FUNCTION
   	public function search()
   	{
   		$searchterm = $this->input->post('keyword');
