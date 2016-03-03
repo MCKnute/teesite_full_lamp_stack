@@ -26,8 +26,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li>
                     <!-- <div class="row">
                     <div class="col-lg-12"> -->
-                            <form class="list-group-item" id="searchbar" role="search" action="/search" method="post">
+                            <form class="list-group-item" id="searchbar2" role="search" action="/" method="post">
                              <div class="input-group">
+                                <input type="hidden" name="productspage" value="TRUE" />
                                  <input type="text" class="form-control" name="keyword" id="searchingfor" style="display: inline-block" placeholder="Search Now">
                                  <span class="input-group-btn">
                                    <button type="submit" class="btn btn-default">&#128269;</button>
@@ -44,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </a>
                   </li>
                   <li>
-                    <a href="/products_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
+                    <a href="/prggoducts_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
                     Most Popular
                     </a>
                   </li>

@@ -11,22 +11,30 @@ class Welcome extends CI_Controller {
 		$this->load->model('Product');
 	}
 
+
+
 	public function index()
 	{
-		// if (!$orderby){
-		// 	$orderby = 0;
+		// if ($this->input->post('keyword') != null){
+		// 	search();
 		// }
 		// $products = $this->Product->get_all_products();
 		// $info['products'] = $products;
 		$headerinfo['title'] = "KMK Tees";
 		$headerinfo['description'] = "Get excellent tees from us!";
 		$this->load->view('header-store', $headerinfo);
+
 		$this->load->view('store_ajax_message');
 		$this->load->view('footer-store');
 	}
 	public function products_to_category($category)
 	{
 		$this->session->set_flashdata('category_flash',$category);  
+		redirect("/");
+	}
+	public function products_to_search($searchterm)
+	{
+		$this->session->set_flashdata('search_flash',$searchterm);  
 		redirect("/");
 	}
 
@@ -67,21 +75,24 @@ class Welcome extends CI_Controller {
 		$this->load->view("partials/store_items", $data);
 	}
 
-  // SEARCH FUNCTION
-	public function search()
-	{
-		$searchterm = $this->input->post('keyword');
-		$products = $this->Product->get_products_by_search_ajax($searchterm);
-		$info['products'] = $products;
-		$info['searchterm'] = $searchterm;
-		$headerinfo['title'] = $searchterm." Search | KMK Tees";
-		$headerinfo['description'] = "Get excellent tees from us!";
-		$this->load->view('header-store', $headerinfo);
-		$this->load->view('store_ajax_message', $info);
-		$this->load->view('footer-store');
-	}
+    // SEARCH FUNCTION
+  	public function search()
+  	{
+  		$searchterm = $this->input->post('keyword');
+  		// echo $searchterm;
+  		// die();
+  		$products = $this->Product->get_products_by_search_ajax($searchterm);
+  		$this->session->set_flashdata('search_flash', $searchterm);
+  		$info['products'] = $products;
+  		$info['searchterm'] = $searchterm;
+  		$headerinfo['title'] = $searchterm." Search | KMK Tees";
+  		$headerinfo['description'] = "Get excellent tees from us!";
+  		$this->load->view('header-store', $headerinfo);
+  		$this->load->view('store_ajax_message', $info);
+  		$this->load->view('footer-store');
+  	}
 
-	// END SEARCH FUNCTION
+  	// END SEARCH FUNCTION
 
 	public function product($id)
 	{

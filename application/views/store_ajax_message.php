@@ -26,14 +26,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                   <li>
                     <!-- <div class="row">
                     <div class="col-lg-12"> -->
-                            <form class="list-group-item" id="searchbar" role="search" action="/search" method="post">
-                             <div class="input-group">
-                                 <input type="text" class="form-control" name="keyword" id="searchingfor" style="display: inline-block" placeholder="Search Now">
-                                 <span class="input-group-btn">
-                                   <button type="submit" class="btn btn-default">&#128269;</button>
-                                 </span>
-                             </div>
-                           </form>
+                      <form class="list-group-item" id="searchbar" role="search" action="/search/searchterm" method="post">
+                       <div class="input-group">
+                           
+                           <input type="text" class="form-control" name="keyword" id="searchingfor" style="display: inline-block" placeholder="Search Now">
+                           <span class="input-group-btn">
+                             <button type="submit" class="btn btn-default">&#128269;</button>
+                           </span>
+                       </div>
+                     </form>
                     <!-- </div>
                     </div> -->
                   </li>
@@ -74,7 +75,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           </nav>
         </div>
 
-        
+
         <div class="col-md-9">
 
           <? if (isset($category) || isset($searchterm)) { 
