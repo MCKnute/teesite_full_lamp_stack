@@ -3,7 +3,7 @@
 <h1 class="logo-brand">About KMK Tees</h1>
 
 <div class="row">
-	<div class="col-md-4">
+	<div class="col-md-4 text-center">
 		<img src="/assets/img/white.png" style="width: 300px; object-fit: scale-down;"  />
 	</div>
 
@@ -37,7 +37,7 @@
 		</address>
 
 	</div>
-	<div id="googlemap" class="col-md-4">
+	<div id="googlemap" class="col-md-4 text-center">
 		<script src='https://maps.googleapis.com/maps/api/js?v=3.exp'></script><div style='overflow:hidden;height:300px;width:300px;'><div id='gmap_canvas' style='height:300px;width:300px;'></div><div><small><a href="http://embedgooglemaps.com">									embed google map							</a></small></div>
 
 

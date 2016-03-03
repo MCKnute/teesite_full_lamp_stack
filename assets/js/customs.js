@@ -29,6 +29,7 @@ $(document).ready(function(){
 	    $('#ajaxproducts').html(res);
 	});
 
+
 	$('#searchbar').submit(function(){
 		$.post('/welcome/search_html', $(this).serialize(), function(res) {
 	        $('#ajaxproducts').html(res);
@@ -37,6 +38,25 @@ $(document).ready(function(){
 		$('#hero-img').attr('src','/assets/img/heroes/search.png').attr('id','small-hero-img');
 		$('#small-hero-img').attr('src','/assets/img/heroes/search.png');
 		var searchingfor = $('#searchingfor').val();
+		$('#filterheadliner').html('Searching for '+searchingfor);
+		return false;
+	});
+
+	$('#teamshirts').click(function(){
+
+		var searchingfor = 'team';
+
+		$.ajax({
+		  type: "POST",
+		  url:"/welcome/search_html",
+		  data: {keyword: searchingfor},
+		  success: function(res) {
+		    $('#ajaxproducts').html(res);
+		    }
+		});
+
+		$('#hero-img').attr('src','/assets/img/heroes/search.png').attr('id','small-hero-img');
+		$('#small-hero-img').attr('src','/assets/img/heroes/search.png');
 		$('#filterheadliner').html('Searching for '+searchingfor);
 		return false;
 	});
