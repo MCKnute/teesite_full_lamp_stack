@@ -5,37 +5,17 @@ class Order extends CI_Model {
 
 	public function get_products_from_order($id)
 	{
-		// $query = "SELECT DISTINCT orders.id, products_has_orders.product_id, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
-		$query = "SELECT DISTINCT orders.id,orders.paid,orders.transaction_id, products_has_orders.product_id, products_has_orders.size, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email
+		
+		$query = "SELECT DISTINCT orders.id,orders.paid,orders.transaction_id, products_has_orders.product_id, products_has_orders.size, products.name, products.price, products_has_orders.qty, users.first_name, users.last_name, users.email,addresses.street, addresses.city, addresses.state, addresses.zipcode
 				FROM products_has_orders
 				INNER JOIN products ON products.id = products_has_orders.product_id 
-				INNER JOIN orders ON orders.id = products_has_orders.order_id 
+				INNER JOIN orders ON orders.id = products_has_orders.order_id
+				INNER JOIN addresses ON orders.addresses_id = addresses.id 
                 INNER JOIN users ON users.id = orders.user_id
 				WHERE orders.id = ?";
 		$values = $id;
-		$prodsfromorder=$this->db->query($query, $values)->result_array();
-		
-		////////////////////////////////////////
-		//// STRIPE RETRIEVE ADDRESS ///////////
-		require_once 'vendor/stripe_key.php';
 
-		//This loop pulls the transaction id (or charge id)
-		//from the Stripe API, then modifies the array by
-		//reference (e.g.the '&' in &$prod) with the attr
-		//retrieved. Once all are complete, the modified
-		//object is returned.
-		foreach ($prodsfromorder as &$prod){
-			
-			$address = Stripe_Charge::retrieve($prod['transaction_id']);
-			$prod['street']=$address->source->address_line1;
-			$prod['city']=$address->source->address_city;
-			$prod['state']=$address->source->address_state;
-			$prod['zipcode']=$address->source->address_zip;
-		}
-
-		////////////////////////////////////////
-
-		return $prodsfromorder;
+		return $this->db->query($query, $values)->result_array();
 
 	}
 
@@ -49,39 +29,17 @@ class Order extends CI_Model {
 
 	public function get_all_orders_admin_page()
 	{
-		$query = "SELECT DISTINCT orders.id,orders.paid, orders.created_at, users.first_name, users.last_name, orders.transaction_id, SUM(products.price), products_has_orders.qty
+		$query = "SELECT DISTINCT orders.id,orders.paid, orders.created_at, users.first_name, users.last_name, orders.transaction_id, orders.price, products_has_orders.qty,addresses.street, addresses.city, addresses.state, addresses.zipcode
 				FROM products_has_orders
 				INNER JOIN products ON products.id = products_has_orders.product_id 
-				INNER JOIN orders ON orders.id = products_has_orders.order_id 
+				INNER JOIN orders ON orders.id = products_has_orders.order_id
+				INNER JOIN addresses ON orders.addresses_id = addresses.id
                 INNER JOIN users ON users.id = orders.user_id
 				GROUP BY orders.id
 				ORDER BY orders.id;	
 				";
-		$allorders=$this->db->query($query)->result_array();
-
-		////////////////////////////////////////
-		//// STRIPE RETRIEVE ADDRESS ///////////
-		require_once 'vendor/stripe_key.php';
-
-		//This loop pulls the transaction id (or charge id)
-		//from the Stripe API, then modifies the array by
-		//reference (e.g.the '&' in &$order) with the attr
-		//retrieved. Once all are complete, the modified
-		//object is returned.
-		foreach ($allorders as &$order){
 		
-			$address = Stripe_Charge::retrieve($order['transaction_id']);
-
-			$order['price']=$address->amount/100;
-			
-			$order['street']=$address->source->address_line1;
-			$order['city']=$address->source->address_city;
-			$order['state']=$address->source->address_state;
-			$order['zipcode']=$address->source->address_zip;
-		}
-		// die;
-		////////////////////////////////////////
-		return $allorders;
+		return $this->db->query($query)->result_array();;
 
 	}
 
@@ -99,19 +57,44 @@ class Order extends CI_Model {
 	}
 
 	public function process_transaction($charge){
-		$ordervals=[
-			'transaction_id' => $charge->id,
-			'tracking_num' => 0,
-			'user_id' => $_SESSION['user_id'],
-			// 'address_id' => $_SESSION['user_id'],
-			'created_at' => date('Y-m-d H:i:s'),
-			'updated_at' => date('Y-m-d H:i:s'),
-			'paid' => $charge->paid
-					];
+		
+		
+
+		
+		// Insert address data	
 		$query='SET foreign_key_checks = 0';
 		$this->db->query($query);
+		////////////////////////////
+
+		$addressvals=[
+			'street' => $charge->source->address_line1,
+			'city' => $charge->source->address_city,
+			'state' => $charge->source->address_state,
+			'zipcode' => $charge->source->address_zip,
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s')
+			];
+		$this->db->insert('addresses', $addressvals);
+		$addresses_id=$this->db->insert_id();
+
+		// var_dump($charge);
+		// die;
+
+		$ordervals=[
+			'transaction_id' => $charge->id,
+			'addresses_id' => $addresses_id,
+			'tracking_num' => 0,
+			'user_id' => $_SESSION['user_id'],
+			'created_at' => date('Y-m-d H:i:s'),
+			'updated_at' => date('Y-m-d H:i:s'),
+			'paid' => $charge->paid,
+			'price' => $_SESSION['amount']/100
+			];
+
 		$this->db->insert('orders', $ordervals);
 		$id=$this->db->insert_id();
+
+
 		$query='SET foreign_key_checks = 1';
 		$this->db->query($query);
 		return $id;
