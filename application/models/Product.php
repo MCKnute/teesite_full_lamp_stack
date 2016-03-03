@@ -107,10 +107,9 @@ class Product extends CI_Model {
 		}
 	}
 
-	function edit_product($post_data)
+	function edit_product($product_data)
 	{
 		$id = $this->session->userdata->products('id');
-		// var_dump(expression); die();
 
 		$product_query = $get_one_product($id);
 
@@ -120,14 +119,14 @@ class Product extends CI_Model {
 		$this->db->query($update_query, $value);
 	}
 
-	public function get_products_by_search($searchterm)
-	{
-		$keyword = strtolower($searchterm);
-		$uppercase = ucfirst($keyword);
-		$query = "SELECT * FROM products 
-			WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
-		return $this->db->query($query)->result_array();
-	}
+	// public function get_products_by_search($searchterm)
+	// {
+	// 	$keyword = strtolower($searchterm);
+	// 	$uppercase = ucfirst($keyword);
+	// 	$query = "SELECT * FROM products 
+	// 		WHERE name OR description LIKE '%$keyword%' OR '%$uppercase%'";
+	// 	return $this->db->query($query)->result_array();
+	// }
 
 	public function get_products_by_search_ajax($searchterm)
 	{

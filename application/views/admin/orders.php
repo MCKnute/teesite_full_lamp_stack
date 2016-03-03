@@ -9,14 +9,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<h2 class="product-title">Orders</h2>
 
 			<!-- search results -->
-	        <form class="navbar-form" id="searchbar-orders" role="search" action="/Orders/search" method="post">
+	        <form class="navbar-form" id="searchbar-orders" role="search" action="/Orders/search_admin_html" method="post">
 	            <div class="form-group">
 	              	<input type="text" class="form-control" name="keyword" placeholder="Search by customer name">
 	            </div>
 	            <button type="submit" class="btn btn-default">&#128269;</button>
 	        </form>
 	        
-			<h4 class="search-center">
+			<h4 class="search-center" id="searchingOrders">
 	            <? if (isset($searchterm)) {
 	              echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
 	            } else {

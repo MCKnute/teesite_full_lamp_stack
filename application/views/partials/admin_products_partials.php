@@ -24,14 +24,26 @@
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title" id="myModalLabel">Edit <?php echo $product['name']; ?></h4>
 						    </div>
-<?php
-					        if ($this->session->flashdata("edit_error")) 
-					        {
-					          echo "<p> " . $this->session->flashdata("edit_error") . "</p>";
-					        }
-?>
+							<!-- Error check -->
+							<div>
+<?php 						if($this->session->flashdata('success_message'))
+							{	?>
+								<div class="alert alert-success">
+									<?php echo $this->session->flashdata('success_message');?>
+								</div>	
+<?php 						}  ?>
+						    </div>
+						    <div>
+<?php 						if($this->session->flashdata('error_message'))
+							{	?>
+								<div class="alert alert-danger">
+									<?php echo $this->session->flashdata('error_message');?>
+								</div>	
+<?php 						}  ?>
+						    </div>
+						    <!-- Edit Product Form -->
 					    	<form action="/Products/edit_product" method="post" enctype="multipart/form-data">
-					    		
+					    		<input type="hidden" name="id" value="<?=$product['id'];?>">
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
 						    		<div class="col-sm-8">
@@ -68,9 +80,7 @@
 											<option name="ndgt">Neil deGrasse Tyson</option>
 										</select>
 									</div>
-					    		</div> -->
-
-					    	<!-- STRECH GOALS -->				
+					    		</div> -->			
 								<div class="modal-footer">
 							    	<button type="submit" class="btn btn-success center-block">Submit</button>
 							    </div>

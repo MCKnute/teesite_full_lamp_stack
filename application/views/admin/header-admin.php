@@ -24,7 +24,7 @@ if ($this->session->userdata('is_admin') == 0)
     <link rel="stylesheet" type="text/css" href="/assets/stylesheets/admin.css" />
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-    <script type="text/javascript" src="/assets/js/admin.js"></script>
+
 </head>
 <body>
     <nav class="navbar navbar-top">

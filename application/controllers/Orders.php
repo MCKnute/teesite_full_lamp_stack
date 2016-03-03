@@ -51,18 +51,16 @@ class Orders extends CI_Controller {
 		$this->load->view("/partials/admin_orders_partials", $data);
 	}
 
-	public function search()
-	{
-		$searchterm = $this->input->post('keyword');
-		$orders = $this->Order->get_orders_by_search($searchterm);
-		$info['orders'] = $orders;
-		$info['searchterm'] = $searchterm;
-		$headerinfo['title'] = $searchterm . " Search | KMK Tees";
-		$headerinfo['description'] = "Get excellent tees from us!";
-		$this->load->view('/admin/header-admin', $headerinfo);
-		$this->load->view('/admin/orders', $info);
-		$this->load->view('/admin/footer-admin');
-	}
+	// public function search()
+	// {
+	// 	$searchterm = $this->input->post('keyword');
+	// 	$orders = $this->Order->get_orders_by_search($searchterm);
+	// 	$info['orders'] = $orders;
+	// 	$info['searchterm'] = $searchterm;
+	// 	$this->load->view('/admin/header-admin');
+	// 	$this->load->view('/admin/orders', $info);
+	// 	$this->load->view('/admin/footer-admin');
+	// }
 
 	public function confirmation()
 	{

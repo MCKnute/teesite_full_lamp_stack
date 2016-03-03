@@ -86,16 +86,16 @@ class Order extends CI_Model {
 	}
 
 
-	public function get_orders_by_search($searchterm)
-	{
-		$keyword = strtolower($searchterm);
-		$uppercase = ucfirst($keyword);
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
-				FROM orders
-				LEFT JOIN users ON orders.user_id = users.id 
-				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
-		return $this->db->query($query)->result_array();
-	}
+	// public function get_orders_by_search($searchterm)
+	// {
+	// 	$keyword = strtolower($searchterm);
+	// 	$uppercase = ucfirst($keyword);
+	// 	$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
+	// 			FROM orders
+	// 			LEFT JOIN users ON orders.user_id = users.id 
+	// 			WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
+	// 	return $this->db->query($query)->result_array();
+	// }
 
 	public function get_orders_by_search_ajax($searchterm)
 	{

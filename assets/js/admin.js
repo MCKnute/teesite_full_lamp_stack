@@ -8,7 +8,7 @@ $(document).ready(function(){
 	        $('#ajax-products').html(res);
 	      });
 
-		var searchingfor = $('#searchbar-products').val();
+		var searchingfor = $('#searchingfor').val();
 		$('#filterheadliner').html('Searching for '+searchingfor);
 		return false;
 	});
@@ -19,7 +19,7 @@ $(document).ready(function(){
 	        $('#ajax-orders').html(res);
 	      });
 
-		var searchingfor = $('#searchbar-orders').val();
+		var searchingfor = $('#searchingfor').val();
 		$('#filterheadliner').html('Searching for '+searchingfor);
 		return false;
 	});

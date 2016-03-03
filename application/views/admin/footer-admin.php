@@ -15,6 +15,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       <!-- Le javascript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
+    <script type="text/javascript" src="/assets/js/admin.js"></script>
     <script type="text/javascript" src="/assets/js/customs.js"></script>
     <script src="/assets/js/jquery.js"></script>
     <script src="/assets/js/bootstrap.js"></script>
