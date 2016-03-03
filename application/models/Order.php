@@ -37,31 +37,35 @@ class Order extends CI_Model {
 				GROUP BY orders.id
 				ORDER BY orders.id;	
 				";
-		
-		return $this->db->query($query)->result_array();;
-
-	}
-
-
-	public function get_orders_by_search($searchterm)
-	{
-		$keyword = strtolower($searchterm);
-		$uppercase = ucfirst($keyword);
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
-				FROM orders
-				LEFT JOIN users ON orders.user_id = users.id 
-				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
 		return $this->db->query($query)->result_array();
 	}
+
+
+	// public function get_orders_by_search($searchterm)
+	// {
+	// 	$keyword = strtolower($searchterm);
+	// 	$uppercase = ucfirst($keyword);
+	// 	$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
+	// 			FROM orders
+	// 			LEFT JOIN users ON orders.user_id = users.id 
+	// 			WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
+	// 	return $this->db->query($query)->result_array();
+	// }
 
 	public function get_orders_by_search_ajax($searchterm)
 	{
 		$keyword = strtolower($searchterm);
 		$uppercase = ucfirst($keyword);
-		$query = "SELECT orders.id, orders.created_at, users.first_name, users.last_name, orders.transaction_id 
-				FROM orders
-				LEFT JOIN users ON orders.user_id = users.id 
-				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'";
+		$query = "SELECT DISTINCT orders.id,orders.paid, orders.created_at, users.first_name, users.last_name, orders.transaction_id, orders.price, products_has_orders.qty,addresses.street, addresses.city, addresses.state, addresses.zipcode
+				FROM products_has_orders
+				INNER JOIN products ON products.id = products_has_orders.product_id 
+				INNER JOIN orders ON orders.id = products_has_orders.order_id
+				INNER JOIN addresses ON orders.addresses_id = addresses.id
+                INNER JOIN users ON users.id = orders.user_id
+				WHERE users.first_name OR users.last_name LIKE '%$keyword%' OR '%$uppercase%'
+				GROUP BY orders.id
+				ORDER BY orders.id";
+
 		return $this->db->query($query)->result_array();
 	}
 
@@ -70,11 +74,8 @@ class Order extends CI_Model {
 		return $this->db->delete('products', array('id' => $product_id));
 	}
 
-	public function process_transaction($charge){
-		
-		
-
-		
+	public function process_transaction($charge)
+	{
 		// Insert address data	
 		$query='SET foreign_key_checks = 0';
 		$this->db->query($query);

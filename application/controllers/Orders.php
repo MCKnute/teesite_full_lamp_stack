@@ -11,12 +11,12 @@ class Orders extends CI_Controller {
 	}
 
 	public function index()
-	{
+	{		
 		$orders = $this->Order->get_all_orders_admin_page();
 
 		$info['orders'] = $orders;
 		$headerinfo['title'] = "KMK Tees | Admin";
-		$headerinfo['description'] = "Get excellent tees from us!";
+		$headerinfo['description'] = "Orders";
 		$this->load->view('/admin/header-admin', $headerinfo);
 		$this->load->view('/admin/orders', $info);
 		$this->load->view('/admin/footer-admin');
@@ -43,6 +43,11 @@ class Orders extends CI_Controller {
 		}
 	}
 
+	public function get_all_orders_admin_html() {
+		$data["orders"] = $this->Order->get_all_orders_admin_page();
+		$this->load->view("/partials/admin_orders_partials", $data);		
+	}
+
 // STRETCH GOAL
 	public function search_admin_html() 
 	{
@@ -51,18 +56,16 @@ class Orders extends CI_Controller {
 		$this->load->view("/partials/admin_orders_partials", $data);
 	}
 
-	public function search()
-	{
-		$searchterm = $this->input->post('keyword');
-		$orders = $this->Order->get_orders_by_search($searchterm);
-		$info['orders'] = $orders;
-		$info['searchterm'] = $searchterm;
-		$headerinfo['title'] = $searchterm . " Search | KMK Tees";
-		$headerinfo['description'] = "Get excellent tees from us!";
-		$this->load->view('/admin/header-admin', $headerinfo);
-		$this->load->view('/admin/orders', $info);
-		$this->load->view('/admin/footer-admin');
-	}
+	// public function search()
+	// {
+	// 	$searchterm = $this->input->post('keyword');
+	// 	$orders = $this->Order->get_orders_by_search($searchterm);
+	// 	$info['orders'] = $orders;
+	// 	$info['searchterm'] = $searchterm;
+	// 	$this->load->view('/admin/header-admin');
+	// 	$this->load->view('/admin/orders', $info);
+	// 	$this->load->view('/admin/footer-admin');
+	// }
 
 	public function confirmation()
 	{

@@ -14,7 +14,7 @@
 							<!-- Special -->
 							  	<!-- <li><a href="#">inventory</a></li> -->
 							  	<li>
-							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">Edit
+							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">edit
 				</button>
 				<!-- Modal for "EDITING Product" -->
 				<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -24,30 +24,43 @@
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
 						        <h4 class="modal-title" id="myModalLabel">Edit <?php echo $product['name']; ?></h4>
 						    </div>
-<?php
-					        if ($this->session->flashdata("edit_error")) 
-					        {
-					          echo "<p> " . $this->session->flashdata("edit_error") . "</p>";
-					        }
-?>
+							<!-- Error check -->
+							<div>
+<?php 						if($this->session->flashdata('success_message'))
+							{	?>
+								<div class="alert alert-success">
+									<?php echo $this->session->flashdata('success_message');?>
+								</div>	
+<?php 						}  ?>
+						    </div>
+						    <div>
+<?php 						if($this->session->flashdata('error_message'))
+							{	?>
+								<div class="alert alert-danger">
+									<?php echo $this->session->flashdata('error_message');?>
+								</div>	
+<?php 						}  ?>
+						    </div>
+						    <!-- Edit Product Form -->
 					    	<form action="/Products/edit_product" method="post" enctype="multipart/form-data">
 					    		
+					    		<input type="hidden" class="form-control" name="name" value="<?=$product['id'];?>"/>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="name"/>
+				                        <input type="text" class="form-control" name="name" value="<?=$product['name'];?>"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Price</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="price"/>
+				                        <input type="text" class="form-control" name="price" value="<?=$product['price'];?>"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Description</label>
 						    		<div class="col-sm-8">
-				                        <textarea type="text" class="form-control" name="description"></textarea>
+				                        <textarea type="text" class="form-control" name="description"><?=$product['description'];?></textarea>
 				                    </div>
 					    		</div>
 
@@ -68,9 +81,7 @@
 											<option name="ndgt">Neil deGrasse Tyson</option>
 										</select>
 									</div>
-					    		</div> -->
-
-					    	<!-- STRECH GOALS -->				
+					    		</div> -->			
 								<div class="modal-footer">
 							    	<button type="submit" class="btn btn-success center-block">Submit</button>
 							    </div>
@@ -88,5 +99,5 @@
 						</td>
 					</tr>
 <?php 
-				} 
+	}
 ?>
