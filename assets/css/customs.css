@@ -15,7 +15,7 @@ body {
   font-size: xx-large;
   vertical-align: bottom;
 }
-.navbar-brand {
+.navbar-brand, .logo-brand {
   /*font-family: "Arial Black", Gadget, sans-serif;*/
   background-color: #cf2a27;
   color: white;
@@ -24,10 +24,31 @@ body {
   font-family: 'Press Start 2P', cursive;
   font-size: larger;
 }
-.navbar-brand:hover {
+.navbar-brand:hover, .logo-brand:hover {
   color: white;
   text-decoration: underline;
 }
+.logo-brand {
+  width: 50%;
+  font-size: xx-large;
+  margin: .5em auto 1em;
+  text-align: center;
+}
+address {
+  text-align: center;
+  font-size: large;
+}
+address strong {
+  font-size: x-large;
+  margin-top: .75em;
+}
+address em {
+  font-size: large;
+}
+address strong, address em {
+  display: block;
+}
+
 .navbar-toggle {
   background-color: #CF2A27;
 }
