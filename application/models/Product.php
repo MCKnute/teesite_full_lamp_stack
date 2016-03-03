@@ -87,8 +87,11 @@ class Product extends CI_Model {
 			$post_data["description"]
 			// 'categories' => $post_data["categories"]
 		);
-
+		$query='SET foreign_key_checks = 0';
+		$this->db->query($query);
 		$insert_product = $this->db->query($insert, $values);
+		$query='SET foreign_key_checks = 1';
+		$this->db->query($query);
 
 		if($insert_product)
 		{
