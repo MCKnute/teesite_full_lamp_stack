@@ -61,6 +61,7 @@ $route['signin_register'] = 'welcome/signin_register';
 $route['search'] = 'welcome/search';
 $route['about_us'] = 'welcome/about_us';
 $route['admin'] = 'Products';
+$route['user_orders'] = 'welcome/user_orders';
 $route['myorders'] = 'orders/myorders';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;

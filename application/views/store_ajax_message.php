@@ -6,7 +6,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
        <div class="row">
         <div class="col-md-3">
             
-            <nav class="navbar navbar-default blend-with-bg" role="navigation">
+            <nav class="navbar navbar-default blend-with-bg" role="navigation" style="">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#vert-navbar-collapse" aria-controls="vert-navbar-collapse">
                   <span class="sr-only">Toggle navigation</span>
@@ -95,16 +95,33 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           } ?>
 
           
-        
-          <h3 id="filterheadliner">View our amazing selection of tees!</h3>
+        <div class="row">
+          <!-- <div class="col-md-9"> -->
+            <h3 id="filterheadliner">View our amazing selection of tees!</h3>
+          <!-- </div> -->
+          <!-- <div class="col-md-3 text-right">
+            <form class="form-inline">
+                <h3>Show: 
+                  <div class="form-group">
+                <select class="form-control" name="limit-numbers">
+                  <option selected="selected">All</option>
+                </select>
+              </div>
+              </h3>
+            </form>
+          </div> -->
+
+        </div>
           
           <div id="ajaxproducts">
 
           <h4>Loading...</h4>
             
-          
-
           </div>
+
+          <!-- <div id="show-pagination">
+
+          </div> -->  
         </div>
       </div>
 

@@ -1,0 +1,59 @@
+/* GAME BOY */
+body {
+  background-color: #306230;
+  color: #306230 ;
+  font-family: "Lucida Console", Monaco, monospace;
+}
+/*.navbar-header {
+	background-color: #8CAD0F;
+}*/
+.navbar-brand, .logo-brand, .productdisplay h3, .btn-empty, .label, .btn-danger {
+	background-color: #0F380F;
+	color: #9CBD0F;
+	border: 0 transparent none;
+}
+.container-main, .jumbotron {
+	background-color: #9CBD0F;
+}
+.navbar-header, .blend-with-bg {
+	background-color: transparent;
+}
+.thumbnail, .thumbnail h5 {
+	background-color: transparent;
+	color:#0F380F;
+	font-family: "Lucida Console", Monaco, monospace;
+}
+.category_header, .text-danger {
+	color:#0F380F;
+}
+footer {
+	color: #8CAD0F;
+}
+.btn-default {
+	background-color: #9CBD0F;
+	border: 0 none transparent;
+}
+.add-to-cart {
+	background-color: #8CAD0F;
+	border: 0 none transparent;
+}
+.btn-success {
+	background-color: #0F380F;
+	color: #9CBD0F;
+}
+#searchbar, #searchbar2 {
+	background-color: #9CBD0F;
+}
+select, option{
+	background-color: #9CBD0F;
+}
+.list-group-item {
+	background-color: #8CAD0F;
+	border: 0 none transparent;
+}
+.list-group-item:hover {
+	background-color: #9CBD0F;
+}
+hr {
+	background-color: #8CAD0F;
+}

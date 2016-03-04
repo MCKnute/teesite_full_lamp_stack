@@ -14,6 +14,11 @@ require_once 'vendor/autoload.php'
     <meta name="author" content="Mollie Knute, David Macias, and Pete Kang">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/customs.css" />
+    <? 
+      $gameboy = false;
+      if ($gameboy) { ?>
+      <link rel="stylesheet" type="text/css" href="/assets/css/gameboy.css" />
+    <? } ?>
     
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
@@ -91,7 +96,7 @@ require_once 'vendor/autoload.php'
     <nav class="navbar navbar-top">
       <div class="container container-top">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar"  aria-controls="mynavbar">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mynavbar"  aria-controls="mynavbar" style="right: 30px">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -99,7 +104,7 @@ require_once 'vendor/autoload.php'
           </button>
           <a class="navbar-brand" href="/"><strong>KMK</strong> Tees</a>
         </div>
-        <div id="mynavbar" class="navbar-collapse collapse">
+        <div id="mynavbar" style="padding-left: 15px; width: 100%" class="navbar-collapse collapse">
           <!-- <ul class="nav navbar-nav">
           </ul> -->
           <ul class="nav navbar-nav navbar-right">
@@ -116,6 +121,8 @@ require_once 'vendor/autoload.php'
 
 
             <? if ($this->session->userdata('user_id')) { ?>
+              <li><a href="/user_orders" type="button" class="btn btn-default navbar-btn btn-lg">Orders</a></li>
+
               <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn btn-lg">Log Out</a></li>
               
             <? } else { ?>

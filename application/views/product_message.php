@@ -45,7 +45,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </a>
                   </li>
                   <li>
-                    <a href="/prggoducts_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
+                    <a href="/products_to_category/mostpopular" id="mostpopular" class="list-group-item static-list">
                     Most Popular
                     </a>
                   </li>

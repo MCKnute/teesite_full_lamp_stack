@@ -25,6 +25,13 @@ class Order extends CI_Model {
 				  WHERE users.id = ?";
 		return $this->db->query($query, array($id))->result_array();
 	}
+	public function get_orders_from_user2($id)
+	{
+		$query = "SELECT * FROM orders
+				  JOIN addresses ON orders.addresses_id = addresses.id 
+				  WHERE orders.user_id = $id";
+		return $this->db->query($query)->result_array();
+	}
 
 	public function get_all_orders_admin_page()
 	{
