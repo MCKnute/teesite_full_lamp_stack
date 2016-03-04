@@ -9,21 +9,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	    	<h2 class="product-title">Users</h2>
 
 			<!-- search results -->
-			<form class="navbar-form" id="searchbar-users" role="search" action="/Users/search_admin" method="post">
+			<!-- <form class="navbar-form" id="searchbar-users" role="search" action="/Users/search_admin" method="post">
 	            <div class="form-group">
 	              	<input type="text" class="form-control" name="keyword" placeholder="Search for name">
 	            </div>
 	            <button type="submit" class="btn btn-default">&#128269;</button>
-	        </form>
-
-			<h4 class="search-center" id="searchingfor">
-	            <? if (isset($searchterm)) {
-	              	echo "Search results for: <span style='font-weight: bold;'>$searchterm</span>";
-	            } else {
-	              	echo "";
-	            }
-	            ?>
-          	</h4>
+	        </form>-->
 
 	        <div id="topofthehead">
 				<!-- add new product button via MODAL.js from bootstrap-->
