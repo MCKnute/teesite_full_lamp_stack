@@ -51,11 +51,12 @@ class Carts extends CI_Controller {
 
 		
 		if(isset($insert_data)){
-			$this->cart->product_name_rules = '[:print:]';
+
+			$this->cart->product_name_rules='[:print:]';
 			$this->cart->insert($insert_data);
 		}
 		else{
-			die('Insert some flashdata error stuff about clicking add without adding a qty of products');
+			$this->session->set_flashdata('alert', 'You need to add an item to your cart!');
 		}
 		redirect('product/'.$this->input->post('productid'));
 	}

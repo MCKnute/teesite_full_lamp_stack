@@ -239,6 +239,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                       </select>
                     </div>
                   </div>
+                  <? 
+                    if ($this->session->flashdata('alert')) {
+                      ?>
+                        <h4 class="text-danger">Please select an item quantity</h4>
+                    <? } ?>
                   <!-- <h4>Subtotal:</h4>
                   <h2>$###.##</h2> -->
                 <button type="submit" class="btn btn-lg btn-success navbar-btn center-block"><span class="glyphicon glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> Add To Cart</button>
