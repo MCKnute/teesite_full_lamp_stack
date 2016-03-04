@@ -9,6 +9,7 @@ class Welcome extends CI_Controller {
 		$this->load->library('session');
 		$this->load->library('cart');
 		$this->load->model('Product');
+		
 	}
 
 
@@ -64,7 +65,19 @@ class Welcome extends CI_Controller {
 
 	public function get_all_products_html() {
 		$data["products"] = $this->Product->get_all_products();
+		// $rowcount = count($data["products"]);
+		// $this->load->library('pagination');
+		// $config = array();
+		// $config['base_url'] = base_url("Product/get_all_products");
+		// $config['total_rows'] = $rowcount;
+		// $config['per_page'] = 8; 
+		// $this->pagination->initialize($config); 
+
 		$this->load->view("partials/store_items", $data);
+		// echo $config['base_url'];
+		// die();
+		// echo $this->pagination->create_links();
+
 	}
 
 
@@ -138,5 +151,21 @@ class Welcome extends CI_Controller {
 		$this->load->view('header-store', $headerinfo);
 		$this->load->view('about_us');
 		$this->load->view('footer-store');
+	}
+
+	public function user_orders()
+	{	
+		$this->load->model('Order');
+		$userid = $this->session->userdata('user_id');
+		$orders = $this->Order->get_orders_from_user2($userid);
+		// var_dump($orders);
+		// die();
+		$info['orders'] = $orders;
+		$headerinfo['title'] = "Order History | KMK Tees";
+		$headerinfo['description'] = "Order History from KMK Tees";
+		$this->load->view('header-store', $headerinfo);
+		$this->load->view('user_orders_message', $info);
+		$this->load->view('footer-store');
+
 	}
 }
