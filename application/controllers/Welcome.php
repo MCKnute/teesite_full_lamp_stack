@@ -109,7 +109,7 @@ class Welcome extends CI_Controller {
 	{
 
 		$thisproduct = $this->Product->get_one_product($id);
-		$suggestprods = $this->Product->get_reccomend_products($id);
+		$suggestprods = $this->Product->get_recommended_products($id);
 		$productinfo['thisid'] = $id;
 		$productinfo['thisproduct'] = $thisproduct;
 		$productinfo['suggestprods'] = $suggestprods;

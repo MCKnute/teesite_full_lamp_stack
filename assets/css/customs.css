@@ -142,6 +142,9 @@ address strong, address em {
     height: 400px;
     background-color: #CCC;
   }
+  #product-img-lrg {
+    display: inline-block;
+  }
   .product-tmb {
     width: 75px;
     height: 75px;
@@ -205,4 +208,29 @@ footer {
 .col-centered{
     float: none;
     margin: 0 auto;
+}
+.cart-table {
+  margin-top: 1em;
+  margin-bottom: 3em;
+}
+.cart-table tbody>tr>td {
+  vertical-align: middle;
+}
+/*.end-cart-row {
+  background-color: transparent;
+  border-bottom: 0;
+  color: green;
+}*/
+button.stripe-button-el {
+}
+button.stripe-button-el span {
+  font-size: 24px;
+  padding: .5em;
+  height: 2.25em;
+  background-color: #5cb85c;
+  font-size: x-large;
+  background-image: none;
+  background-color: transparent;
+  box-shadow: 0 transparent;
+  border: none 0 transparent;
 }
