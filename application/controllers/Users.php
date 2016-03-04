@@ -42,6 +42,101 @@ class Users extends CI_Controller {
 		echo json_encode($data);
 	}
 
+	public function admin_index()
+	{
+		$this->load->model('User');
+		$users = $this->User->get_all_users();
+		$info['users'] = $users;
+		$headerinfo['title'] = "KMK Tees | Admin";
+		$headerinfo['description'] = "Users";
+		$this->load->view('/admin/header-admin', $headerinfo);
+		$this->load->view('/admin/users', $info);
+		$this->load->view('/admin/footer-admin');
+	}
+
+	public function add_new()
+	{	
+		$this->load->library('form_validation');
+
+		$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|is_unique[users.email]');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required');
+		$this->form_validation->set_rules('confirmpw', 'Confirm Password', 'trim|required|matches[password]');
+		
+		if($this->form_validation->run() === FALSE)
+		{
+			$data['status'] = FALSE;
+			$data['error_message'] = validation_errors();
+		}
+		else
+		{
+			$this->load->model('User');
+			$register_user = $this->User->add_user($this->input->post());
+			if($register_user)
+			{
+				$data["status"] = TRUE;
+				$data["success_message"] = "User is successfully added!";
+			}
+			else
+			{
+				$data["status"] = FALSE;
+				$data["error_message"] = "Registration failed! Please Try Again!";
+			}	
+		}
+		echo json_encode($data);
+	}
+
+	public function update_user()
+	{
+		$user_data = $this->input->post();
+		$this->load->library('form_validation');
+
+		//array key exist allows you to check if certain index exist on an array
+		if(array_key_exists("email", $user_data))
+		{
+			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+			$this->form_validation->set_rules('first_name', 'First name', 'trim|required');
+			$this->form_validation->set_rules('last_name', 'Last name', 'trim|required');
+			$this->form_validation->set_rules('user_level', 'User Level', 'trim|required');
+		}
+		elseif(array_key_exists("password", $user_data))
+		{
+			$this->form_validation->set_rules('password', 'Password', 'trim|required|matches[re_password]');
+			unset($user_data['re_password']);
+			$user_data['password'] = md5(HASH_START . $user_data["password"] . HASH_END);
+		}
+		elseif(array_key_exists("description", $user_data))
+			$this->form_validation->set_rules('description', 'Description', 'trim|required');
+
+		if($this->form_validation->run() === FALSE)
+		{
+			$data['status'] = FALSE;
+			$data['error_message'] = validation_errors();
+		}
+		else
+		{	
+			$this->load->model('User');
+			$update_user = $this->User->update_user($user_data);
+
+			if($update_user)
+			{
+				$data["status"] = TRUE;
+				$data["success_message"] = "User information was updated successfully!";
+			}
+			else
+			{
+				$data["status"] = FALSE;
+				$data["error_message"] = "Update failed! Please Try Again!";
+			}	
+		}
+
+		echo json_encode($data);
+	}
+
+	public function get_all_users_admin_html() {
+		$data["users"] = $this->User->get_all_users();
+		$this->load->view("partials/admin_users_partials", $data);
+	}
+
 	public function user_login()
 	{	
 		// var_dump($post_data);

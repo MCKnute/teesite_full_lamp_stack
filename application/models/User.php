@@ -7,11 +7,16 @@ class User extends CI_Model {
 		parent::__construct();
 	}
 
-
-	public function update_user($user_id,$user_data)
+	public function get_all_users()
 	{
-		$query = "UPDATE users SET updated_at=NOW(), customer_id=? WHERE id=?";
-        $values = [$user_data->customer_id, $user_id]; 
+		$query = "SELECT * FROM users";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function update_user($user_data)
+	{
+		$query = "UPDATE users SET updated_at=NOW(), WHERE id=?";
+        $values = $user_data['id'];
         return $this->db->query($query, $values);
 	}
 

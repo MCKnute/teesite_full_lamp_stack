@@ -33,6 +33,7 @@ if ($this->session->userdata('is_admin') == 0)
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
+            <li role="presentation"><a href="/Users/admin_index" id="admin-navbar">Users</a></li>
             <li role="presentation"><a href="/Orders/index" id="admin-navbar">Orders</a></li>
             <li role="presentation"><a href="/Products/index" id="admin-navbar">Products</a></li>
             <li><a href="/Users/logout" type="button" class="btn btn-default">Log out</a></li>
