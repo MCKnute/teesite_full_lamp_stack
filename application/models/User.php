@@ -7,12 +7,20 @@ class User extends CI_Model {
 		parent::__construct();
 	}
 
-
-	public function update_user($user_id,$user_data)
+	public function get_all_users()
 	{
-		$query = "UPDATE users SET updated_at=NOW(), customer_id=? WHERE id=?";
-        $values = [$user_data->customer_id, $user_id]; 
-        return $this->db->query($query, $values);
+		$query = "SELECT * FROM users";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function update_user($user_data)
+	{
+		$update_data =  array('first_name' => $user_data['first_name'], 
+                          'last_name'  => $user_data['last_name'] ,
+                          'email'      => $user_data['email']           
+                    );
+	    $this->db->where('id', $user_data['id']);
+	    return $this->db->update('users', $update_data);
 	}
 
 	public function delete_user($user_id)
@@ -55,6 +63,27 @@ class User extends CI_Model {
 		
 		return $this->db->insert('users', $user);
 	}
+
+	public function get_products_by_search_ajax($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucwords($keyword);
+		$query = "SELECT * FROM users 
+			WHERE first_name OR last_name LIKE '%$keyword%'";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function get_users_by_search($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT * FROM users 
+			WHERE first_name LIKE '%$keyword%' OR '%$uppercase%'";
+		// $query = "SELECT * FROM users 
+		// 	WHERE first_name OR last_name LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function make_user_admin($user_id)
 	{
 		$user_data = array(
