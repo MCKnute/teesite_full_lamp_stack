@@ -33,7 +33,7 @@ CREATE TABLE `addresses` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -42,7 +42,7 @@ CREATE TABLE `addresses` (
 
 LOCK TABLES `addresses` WRITE;
 /*!40000 ALTER TABLE `addresses` DISABLE KEYS */;
-INSERT INTO `addresses` VALUES (1,'1234 Main Street','Los Angeles','CA',91607,NULL,NULL),(2,'4567 Oak Street','Newtown','FL',90001,NULL,NULL),(3,'3456 1st Street','Austin','TX',90001,NULL,NULL),(4,'817 N. Vine Street','Hollywood','CA',90000,NULL,NULL),(5,'633 Canoga Ave','Woodland Hills','CA',91111,NULL,NULL);
+INSERT INTO `addresses` VALUES (1,'1234 Main Street','Los Angeles','CA',91607,NULL,NULL),(24,'4567 Oak Street','Newtown','FL',90001,NULL,NULL),(25,'3456 1st Street','Austin','TX',90001,NULL,NULL),(26,'817 N. Vine Street','Hollywood','CA',90000,NULL,NULL),(27,'633 Canoga Ave','Woodland Hills','CA',91111,NULL,NULL);
 /*!40000 ALTER TABLE `addresses` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,18 +142,17 @@ CREATE TABLE `orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `tracking_num` varchar(45) DEFAULT NULL,
   `user_id` int(11) NOT NULL,
-  `payment_id` int(11) NOT NULL,
-  `address_id` int(11) NOT NULL,
+  `addresses_id` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   `transaction_id` varchar(45) DEFAULT NULL,
   `paid` tinyint(4) DEFAULT NULL,
-  PRIMARY KEY (`id`,`user_id`,`payment_id`,`address_id`),
+  `price` decimal(5,2) DEFAULT NULL,
+  PRIMARY KEY (`id`,`user_id`,`addresses_id`),
   KEY `fk_orders_users1_idx` (`user_id`),
-  KEY `fk_orders_addresses1_idx` (`address_id`),
-  CONSTRAINT `fk_orders_addresses1` FOREIGN KEY (`address_id`) REFERENCES `addresses` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `fk_orders_addresses1_idx` (`addresses_id`),
   CONSTRAINT `fk_orders_users1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -162,7 +161,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,NULL,1,1,1,'2016-02-26 16:52:10','2016-02-26 16:55:04','NULL',1),(2,NULL,2,2,2,'2016-02-26 16:55:04','2016-02-26 16:55:04',NULL,1),(3,NULL,3,3,3,'2016-02-26 16:55:04','2016-02-26 16:55:04',NULL,0);
+INSERT INTO `orders` VALUES (24,'0',6,24,'2016-03-02 22:53:09','2016-03-02 22:53:09','ch_17khu5E9uRZbbBoewo19PZgH',1,32.00),(25,'0',6,25,'2016-03-02 22:53:42','2016-03-02 22:53:42','ch_17khucE9uRZbbBoe9rBL591e',1,52.00),(26,'0',7,26,'2016-03-02 23:03:47','2016-03-02 23:03:47','ch_17ki4ME9uRZbbBoesWctQQop',1,66.00),(27,'0',10,27,'2016-03-02 23:47:18','2016-03-02 23:47:18','ch_17kikUE9uRZbbBoeKmT1l6cH',1,78.00);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -206,7 +205,7 @@ CREATE TABLE `products` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -215,7 +214,7 @@ CREATE TABLE `products` (
 
 LOCK TABLES `products` WRITE;
 /*!40000 ALTER TABLE `products` DISABLE KEYS */;
-INSERT INTO `products` VALUES (1,'Red Belt','A super lucky red shirt, for the lucky Red Belt graduates',19.98,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(2,'White Belt','A simple shirt, with a white-belt ninja.',9.99,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(3,'Mystery Shirt','What could this shirt be??',999.97,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(4,'Coding Dojo','An amazing black CodingDojo black shirt! Perfect for Coding Dojo alumni!',19.99,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(5,'Honey Badger Don\'t Care','What does a honey badger do? Well, they certainly don\'t care. Show off your honey badger attitude with this lovely black shirt.',19.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(6,'I\'m on the Ninja Diet','Ninja turtles are known for their stealth, humor, and love of pizza. Do you love pizza? Then you should  love this shirt.',24.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(7,'#TeamEduardo','Show the world who your favorite coding master is by wearing this trendy green shirt!',29.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(8,'#TeamLance','Show the world who your favorite coding master is by wearing this trendy blue shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(9,'#TeamChris','Show the world who your favorite coding master is by wearing this trendy red shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(10,'#TeamKelvin','Show the world who your favorite coding master is by wearing this trendy black shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(11,'Yellow Belt','The Yellow belt is earned for the first exam taken at the Dojo. Why not put the Yellow Belt ninja on a bright blue shirt?',12.99,NULL,NULL,'2016-02-28 22:15:48','2016-02-28 22:15:48');
+INSERT INTO `products` VALUES (1,'Red Belt','A super lucky red shirt, for the lucky Red Belt graduates',19.98,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(2,'White Belt','A simple shirt, with a white-belt ninja.',9.99,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(3,'Mystery Shirt','What could this shirt be??',999.97,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(4,'Coding Dojo','An amazing black CodingDojo black shirt! Perfect for Coding Dojo alumni!',19.99,NULL,NULL,'2016-02-25 11:24:00','2016-02-25 11:24:00'),(5,'Honey Badger Don\'t Care','What does a honey badger do? Well, they certainly don\'t care. Show off your honey badger attitude with this lovely black shirt.',19.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(6,'I\'m on the Ninja Diet','Ninja turtles are known for their stealth, humor, and love of pizza. Do you love pizza? Then you should  love this shirt.',24.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(7,'#TeamEduardo','Show the world who your favorite coding master is by wearing this trendy green shirt!',29.99,NULL,NULL,'2016-02-28 21:58:03','2016-02-28 21:58:03'),(8,'#TeamLance','Show the world who your favorite coding master is by wearing this trendy blue shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(9,'#TeamChris','Show the world who your favorite coding master is by wearing this trendy red shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(10,'#TeamKelvin','Show the world who your favorite coding master is by wearing this trendy black shirt!',29.99,NULL,NULL,'2016-02-28 21:58:04','2016-02-28 21:58:04'),(11,'Yellow Belt','The Yellow belt is earned for the first exam taken at the Dojo. Why not put the Yellow Belt ninja on a bright blue shirt?',12.99,NULL,NULL,'2016-02-28 22:15:48','2016-02-28 22:15:48'),(12,'Ninja, Please','Ninja, please! Wear your sass on your shirt with this cool white tee!',14.49,NULL,NULL,'2016-03-03 19:28:00','2016-03-03 19:28:00');
 /*!40000 ALTER TABLE `products` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -230,14 +229,13 @@ CREATE TABLE `products_has_orders` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `product_id` int(11) NOT NULL,
   `order_id` int(11) NOT NULL,
-  `qty` int(11) NOT NULL,
+  `qty` int(11) DEFAULT NULL,
   `size` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`,`product_id`,`order_id`),
   KEY `fk_products_has_orders_products1_idx` (`product_id`),
   KEY `fk_products_has_orders_orders1_idx` (`order_id`),
-  CONSTRAINT `fk_products_has_orders_orders1` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_products_has_orders_products1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -246,7 +244,7 @@ CREATE TABLE `products_has_orders` (
 
 LOCK TABLES `products_has_orders` WRITE;
 /*!40000 ALTER TABLE `products_has_orders` DISABLE KEYS */;
-INSERT INTO `products_has_orders` VALUES (1,1,1,5,'small_w'),(15,2,1,10,'small_w'),(16,1,2,5,'small_w'),(17,2,2,5,'small_w'),(18,1,3,5,'small_w'),(19,3,3,5,'small_w');
+INSERT INTO `products_has_orders` VALUES (23,1,24,1,'small_w'),(24,2,24,1,'medium_m'),(25,1,24,1,'xlarge_w'),(26,1,25,1,'small_w'),(27,3,26,1,'small_w'),(28,2,26,2,'medium_w'),(29,1,26,4,'large_m'),(30,1,27,1,'small_w'),(31,2,27,1,'small_w');
 /*!40000 ALTER TABLE `products_has_orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -268,7 +266,7 @@ CREATE TABLE `users` (
   `updated_at` datetime DEFAULT NULL,
   `customer_id` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -277,7 +275,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Mollie','Knute','mollie@knute.com','5f4dcc3b5aa765d61d8327deb882cf99',1,NULL,NULL,'0'),(2,'Malibu','Cat','malibu@cat.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(3,'Charlie','Tango','charlie@tango.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(4,'Mary','Mary','mary@mary.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(5,'Suzy','Sheep','suzy@sheep.com','5f4dcc3b5aa765d61d8327deb882cf99',0,NULL,NULL,'0'),(6,'pete','kang','pete@kang.com','5f4dcc3b5aa765d61d8327deb882cf99',1,'2016-02-29 19:05:57',NULL,'0'),(7,'ken','fury','ken@fury.com','5f4dcc3b5aa765d61d8327deb882cf99',0,'2016-02-29 19:47:30',NULL,'0');
+INSERT INTO `users` VALUES (1,'Pete','Kang','pete@kang.com','5f4dcc3b5aa765d61d8327deb882cf99',1,'2016-02-10 18:45:24',NULL,NULL),(6,'David','Macias','david@macias.com','5f4dcc3b5aa765d61d8327deb882cf99',1,'2016-03-01 22:07:48','2016-03-01 13:32:46','cus_80LoxefHaaIcnT'),(7,'David','Macias','davymac@gmail.com','5f4dcc3b5aa765d61d8327deb882cf99',0,'2016-03-02 04:43:49','2016-03-01 19:44:20','cus_80Roucd1Ed6HKy'),(9,'Fake','User','fake@user.com','5f4dcc3b5aa765d61d8327deb882cf99',0,'2016-03-02 08:35:25','2016-03-01 23:36:41','cus_80VYMyjVbsKUZv'),(10,'Johnny','User','johnny@user.com','5f4dcc3b5aa765d61d8327deb882cf99',0,'2016-03-02 23:46:47','2016-03-02 14:47:17','cus_80kEkaH4yPfqUN'),(11,'Samir','Sam','sam@sam.com','5f4dcc3b5aa765d61d8327deb882cf99',0,'2016-03-04 16:53:46','2016-03-04 16:53:46','0');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -290,4 +288,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-03-02 19:05:34
+-- Dump completed on 2016-03-04 12:20:05
