@@ -2,7 +2,8 @@
 body {
   /*padding-top: 80px;*/
   font-family: Arial, Helvetica, sans-serif;
-  background-color: #6fa8dc;
+  /*background-color: #6fa8dc;*/
+  background-color: #86bdf3;
 }
 .navbar {
   margin-top: 10px;
@@ -57,7 +58,7 @@ address strong, address em {
   color: #6fa8dc;
 }
 .blend-with-bg {
-  border: 0 none;
+  border: 0 none transparent;
   background-color: #FFF;
 }
 .navbar-right {

@@ -23,7 +23,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
               <!-- List group -->
                 <ul class="nav nav-stacked">
 
-                  <li>
+                  <li class="blend-with-bg">
                     <!-- <div class="row">
                     <div class="col-lg-12"> -->
                       <form class="list-group-item" id="searchbar" role="search" action="/search/searchterm" method="post">

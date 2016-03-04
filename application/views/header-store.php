@@ -112,14 +112,14 @@ require_once 'vendor/autoload.php'
                </form> -->
             <!-- </li> -->
             
-            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn">About Us</a></li>
+            <li><a href="/about_us" type="button" class="btn btn-default navbar-btn btn-lg">About Us</a></li>
 
 
             <? if ($this->session->userdata('user_id')) { ?>
-              <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn">Log Out</a></li>
+              <li><a href="/Users/logout" type="button" class="btn btn-default navbar-btn btn-lg">Log Out</a></li>
               
             <? } else { ?>
-              <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn">Log In / Register</a></li>
+              <li><a href="/signin_register" type="button" class="btn btn-default navbar-btn btn-lg">Log In / Register</a></li>
             <? }; ?>
 
             <?php 
