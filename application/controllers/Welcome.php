@@ -168,4 +168,18 @@ class Welcome extends CI_Controller {
 		$this->load->view('footer-store');
 
 	}
+
+	public function cssoptions()
+	{
+		$option = $this->input->post('cssoption');
+		if ($option == "gameboy") {
+		$this->session->set_userdata('cssoption','stylesheet');
+		// var_dump($this->session->userdata('cssoption')); die();
+		redirect("/");
+		}
+		elseif ($option == "nes") {
+			$this->session->set_userdata('cssoption','nofollow');
+			redirect("/");
+		}
+	}
 }

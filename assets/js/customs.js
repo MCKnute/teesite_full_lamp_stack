@@ -74,12 +74,12 @@ $(document).ready(function(){
 
 	// 
 
-	$('#gameboy-option').click(function(){
-		$('#gameboyfile').attr('rel','stylesheet');
-	});
-	$('#nes-option').click(function(){
-		$('#gameboyfile').attr('rel','nofollow');
-	});
+	// $('#gameboy-option').click(function(){
+	// 	$('#gameboyfile').attr('rel','stylesheet');
+	// });
+	// $('#nes-option').click(function(){
+	// 	$('#gameboyfile').attr('rel','nofollow');
+	// });
 });
 
 $(function () {

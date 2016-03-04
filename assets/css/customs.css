@@ -244,8 +244,8 @@ footer {
 .orders-table thead {
   /*width: 90%;*/
 }
-.orders-table th {
-  /*width: 23%;*/
+table.orders-table tr td {
+    vertical-align: middle;
 }
 .order-id-only {
   /*width: 8%;*/

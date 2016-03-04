@@ -6,14 +6,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <footer>
     <p>© 2016 Mollie Knute, David Macias, and Peter Kang</p>
 
-    
-        <button class="btn btn-info" id="nes-option">NES</button>
-        <button class="btn btn-info" id="gameboy-option">Gameboy</button>
+        <form action="/welcome/cssoptions" method="post">
+        <button type="submit" class="btn btn-info" id="nes-option" name="cssoption" value="nes">NES</button>
+        <button type="/submit" class="btn btn-info" id="gameboy-option" name="cssoption" value="gameboy">Gameboy</button>
+    </form>
     <hr>
     <h5>debug sandbox:</h5>
     <p><strong>$_POST</strong> data:</p>
         <? var_dump($_POST) ;?>
         <hr />
+
+        
     <p><strong>"$this->session->userdata()"</strong> data:</p>	
     	<? var_dump($this->session->userdata()) ;?>
     	<hr />
