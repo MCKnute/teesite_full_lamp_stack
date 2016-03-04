@@ -8,9 +8,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <p>© 2016 Mollie Knute, David Macias, and Pete Kang</p>
         <hr>
         <h5>debug sandbox:</h5>
-        <p><b>$_SESSION</b> data:</p>
-        	<? var_dump($_SESSION) ;?>
+        <p><b>$_POST</b> data:</p>
+        	<? var_dump($_POST) ;?>
         	<hr>
+        <p><b>$_SESSION</b> data:</p>
+            <? var_dump($_SESSION) ;?>
+            <hr>
     </footer>
       <!-- Le javascript
     ================================================== -->

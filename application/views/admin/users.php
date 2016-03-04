@@ -225,7 +225,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</div> <!-- end of Edit Modal -->
 								</li>
 							  	<li>
-							  		<form action="/users/delete_user/<?=$user['id']?>" method="post">
+							  		<form action="/users/admin_delete_user/<?=$user['id']?>" method="post">
 							  			<button class="btn-delete btn-xs btn-danger" type="submit">delete</button>
 							  		</form>
 							  	</li>

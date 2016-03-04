@@ -42,6 +42,7 @@
 							{	?>
 								<div class="alert alert-success">
 									<?php echo $this->session->flashdata('success_message');?>
+									<?php echo $data['success_message'];?>
 								</div>	
 <?php 						}  ?>
 						    </div>
@@ -50,34 +51,35 @@
 							{	?>
 								<div class="alert alert-danger">
 									<?php echo $this->session->flashdata('error_message');?>
+									<?php echo $data['error_message'];?>
 								</div>	
 <?php 						}  ?>
 						    </div>
 						    <!-- Edit user Form -->
-					    	<form action="/Users/add_new" method="post" enctype="multipart/form-data">
+					    	<form action="/Users/update_user" method="post" enctype="multipart/form-data">
 					    		<input type="hidden" class="form-control" name="id" value="<?=$user['id'];?>"/>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">First Name</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="first_name"/>
+				                        <input type="text" class="form-control" name="first_name" value="<?=$user['first_name'];?>"/>
 				                    </div>
 					    		</div>	
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Last Name</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="last_name"/>
+				                        <input type="text" class="form-control" name="last_name" value="<?=$user['last_name'];?>"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Email</label>
 						    		<div class="col-sm-8">
-				                        <input type="text" class="form-control" name="email"/>
+				                        <input type="text" class="form-control" name="email" value="<?=$user['email'];?>"/>
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Password</label>
 						    		<div class="col-sm-8">
-				                        <input type="password" class="form-control" name="password"/>
+				                        <input type="password" class="form-control" name="password" />
 				                    </div>
 					    		</div>
 					    		<div class="form-group">
@@ -95,7 +97,7 @@
 				</div> <!-- end of Edit Modal -->
 								</li>
 							  	<li>
-							  		<form action="/users/delete_user/<?=$user['id']?>" method="post">
+							  		<form action="/users/admin_delete_user/<?=$user['id']?>" method="post">
 							  			<button class="btn-delete btn-xs btn-danger" type="submit">delete</button>
 							  		</form>
 							  	</li>

@@ -6,6 +6,7 @@ $(document).ready(function(){
 
 	$('#searchbar-users').submit(function(){
 		$.post('/Users/search_admin', $(this).serialize(), function(res) {
+			console.log(res);
 	        $('#ajax-admin-users').html(res);
 	      });
 

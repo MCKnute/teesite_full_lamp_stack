@@ -215,13 +215,29 @@ class Users extends CI_Controller {
 		$info['users'] = $users;
 		$info['searchterm'] = $searchterm;
 		$this->load->view('/admin/header-admin');
-		$this->load->view('/admin/users', $info);
+		$this->load->view('/admin/users/admin_index', $info);
 		$this->load->view('/admin/footer-admin');
 	}
 
-	public function delete_user($user_id = NULL)
+	public function admin_delete_user($user_id)
 	{
-		if(is_numeric($user_id) && $this->is_admin())
+		if(is_numeric($user_id) && $this->is_admin=1)
+		{
+			$this->load->model('User');
+			$delete = $this->User->delete_user($user_id);
+
+			if($delete)
+				redirect(base_url('/users/admin_index'));
+			else
+				show_404();
+		}
+		else
+			show_404();
+	}
+
+	public function delete_user($user_id)
+	{
+		if(is_numeric($user_id) && $this->is_admin=1)
 		{
 			$this->load->model('User');
 			$delete = $this->User->delete_user($user_id);

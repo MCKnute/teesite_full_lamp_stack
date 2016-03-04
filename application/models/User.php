@@ -78,7 +78,9 @@ class User extends CI_Model {
 		$keyword = strtolower($searchterm);
 		$uppercase = ucfirst($keyword);
 		$query = "SELECT * FROM users 
-			WHERE first_name OR last_name LIKE '%$keyword%' OR '%$uppercase%'";
+			WHERE first_name LIKE '%$keyword%' OR '%$uppercase%'";
+		// $query = "SELECT * FROM users 
+		// 	WHERE first_name OR last_name LIKE '%$keyword%' OR '%$uppercase%'";
 		return $this->db->query($query)->result_array();
 	}
 
