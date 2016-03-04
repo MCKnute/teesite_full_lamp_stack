@@ -60,6 +60,7 @@ $route['products_to_category/(:any)'] = 'welcome/products_to_category/$1';
 $route['signin_register'] = 'welcome/signin_register';
 $route['search'] = 'welcome/search';
 $route['about_us'] = 'welcome/about_us';
+$route['admin'] = 'Products';
 $route['myorders'] = 'orders/myorders';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
