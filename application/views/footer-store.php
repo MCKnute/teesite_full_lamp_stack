@@ -5,6 +5,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 	</div>
   <footer>
     <p>© 2016 Mollie Knute, David Macias, and Peter Kang</p>
+
+    
+        <button class="btn btn-info" id="nes-option">NES</button>
+        <button class="btn btn-info" id="gameboy-option">Gameboy</button>
     <hr>
     <h5>debug sandbox:</h5>
     <p><strong>$_POST</strong> data:</p>

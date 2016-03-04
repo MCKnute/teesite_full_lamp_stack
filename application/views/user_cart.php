@@ -28,7 +28,7 @@ require_once 'vendor/stripe_key.php';
 					$total+=$product['price'] * $product['qty'];
 ?>
 					<tr>
-						<td><img src="assets/img/products/<?=$product['size']['ShirtID'];?>-small.png"></td>
+						<td><img style="width: 75px; height: 75px;" src="assets/img/products/<?=$product['size']['ShirtID'];?>-small.png"></td>
 						<td><?= $product['name']; ?></td>
 						<td><?=$product['size']['Size'];?></td>
 						<td><?= $product['qty']; ?></td>

@@ -14,11 +14,7 @@ require_once 'vendor/autoload.php'
     <meta name="author" content="Mollie Knute, David Macias, and Pete Kang">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.css" />
     <link rel="stylesheet" type="text/css" href="/assets/css/customs.css" />
-    <? 
-      $gameboy = false;
-      if ($gameboy) { ?>
-      <link rel="stylesheet" type="text/css" href="/assets/css/gameboy.css" />
-    <? } ?>
+    <link rel="nofollow" id="gameboyfile" type="text/css" href="/assets/css/gameboy.css" />
     
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->
     <!-- <link rel="stylesheet" type="text/css" href="assets/css/main.css"> -->

@@ -28,8 +28,11 @@ class Order extends CI_Model {
 	public function get_orders_from_user2($id)
 	{
 		$query = "SELECT * FROM orders
-				  JOIN addresses ON orders.addresses_id = addresses.id 
+				  JOIN addresses ON orders.addresses_id = addresses.id
+				  JOIN products_has_orders ON orders.id = products_has_orders.order_id 
+				  LEFT JOIN products ON products_has_orders.product_id = products.id
 				  WHERE orders.user_id = $id";
+				  // GROUP BY products_has_orders.order_id";
 		return $this->db->query($query)->result_array();
 	}
 

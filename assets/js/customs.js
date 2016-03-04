@@ -71,7 +71,36 @@ $(document).ready(function(){
 	// 	$('#filterheadliner').html('Searching for '+searchingfor);
 	// 	return false;
 	// }
+
+	// 
+
+	$('#gameboy-option').click(function(){
+		$('#gameboyfile').attr('rel','stylesheet');
+	});
+	$('#nes-option').click(function(){
+		$('#gameboyfile').attr('rel','nofollow');
+	});
 });
+
+$(function () {
+  $('[data-toggle="popover"]').popover()
+});
+
+
+
+// $(document).on('click', '#gameboy-option', function(){
+// 	 	alert('you did teh change!'); 
+// 	}   
+// 	return false;
+//  );
+
+// $('input:radio[name="cssoptions"]').click(function(){
+// 	if ($('#gameboy-option').is(':checked')) {
+// 	 	alert('you did the thing!');
+// 	    $('#gameboyfile').attr('rel','stylesheet');
+// 	 });
+
+
 
 $(document).on('click', "a.ajax-list", function() {
     var categorysend = $(this).attr('id');
