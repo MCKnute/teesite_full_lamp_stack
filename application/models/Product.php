@@ -11,6 +11,7 @@ class Product extends CI_Model {
 	public function get_one_product($id)
 	{
 		$query = "SELECT * FROM products WHERE id = ?";
+		$values = $id;
 		return $this->db->query($query, $values)->row_array();
 	}
 
