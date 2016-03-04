@@ -11,6 +11,7 @@ class Product extends CI_Model {
 	public function get_one_product($id)
 	{
 		$query = "SELECT * FROM products WHERE id = ?";
+		$values = $id;
 		return $this->db->query($query, $values)->row_array();
 	}
 
@@ -34,7 +35,7 @@ class Product extends CI_Model {
 		return $this->db->query($query)->result_array();
 	}
 
-	public function get_reccomend_products($currid)
+	public function get_recommended_products($currid)
 	{
 		$query = "SELECT * FROM products WHERE id != $currid ORDER BY RAND() LIMIT 4";
 		return $this->db->query($query)->result_array();
