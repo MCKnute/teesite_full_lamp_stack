@@ -27,7 +27,7 @@ class Products extends CI_Controller {
 		$this->load->helper(array('form', 'url'));
 
    		$this->form_validation->set_rules("name", "name", "trim|required");
-		$this->form_validation->set_rules('price', 'price', 'integer|required');
+		$this->form_validation->set_rules('price', 'price', 'decimal|required');
 		$this->form_validation->set_rules('description', 'description', 'trim|required');
 
 		// post data
