@@ -115,10 +115,16 @@ class Product extends CI_Model {
 		}
 	}
 
-	function edit_product($product_data)
+	function edit_product($post_data)
 	{
 		$update_query = "UPDATE products SET name = ?, price = ?, description = ?, updated_at = ? WHERE id = ?";
-		$values = array($product_data['name'], $product_data['price'], $product_data['description'], date("Y-m-d, H:i:s"), $product_data['id']);
+		$values = array(
+			$post_data['name'], 
+			$post_data['price'], 
+			$post_data['description'], 
+			date("Y-m-d, H:i:s"), 
+			$post_data['id']
+			);
 		return $this->db->query($update_query, $values);
 	}
 

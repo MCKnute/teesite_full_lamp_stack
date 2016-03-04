@@ -24,10 +24,12 @@ class Products extends CI_Controller {
 	{
 		$this->load->library("form_validation");
 
+		$this->load->helper(array('form', 'url'));
+
    		$this->form_validation->set_rules("name", "name", "trim|required");
 		$this->form_validation->set_rules('price', 'price', 'integer|required');
 		$this->form_validation->set_rules('description', 'description', 'trim|required');
-		
+
 		// post data
 		if($this->form_validation->run() === FALSE)
 		{
@@ -39,32 +41,11 @@ class Products extends CI_Controller {
 
 			$product = $this->Product->add_new_product($post_data);
 
-			if(count($product) > 0)
-			{	
-				$product_data = array(
-					'product_id' => $product->id,
-					'product_name' => $product->name,
-					'product_price' => $product->price,
-					'product_description' => $product->description,
-					'product_created' == TRUE
-					// 'product_image' => $product->image
-					// 'product_categories' => $product->categories
-				);
-
-				//session is being set in here with index session, remember session is in a form of array
-				$this->session->set_flashdata("success_message","Product Added");
-				redirect('/Products');
-			}
-			else
-			{
-				$this->session->set_flashdata("error_message","You didn't enter all the info. Try Again");
-				redirect('/Products');
-			}
-
 			// image upload
 			$config['upload_path'] = './assets/img/products/';
 			$config['allowed_types'] = 'gif|jpg|png|jpeg';
-			// $config['file_name'] = '"12" . "-" . "small.jpg"';
+			// $config['file_name'] = '';
+			// var_dump($config['file_name']); die;
 			// $config['overwrite'] = TRUE;
 			$config["max_size"] = 1024;
 	        $config["max_width"] = 400;
@@ -74,22 +55,31 @@ class Products extends CI_Controller {
 
 			if ( ! $this->upload->do_upload("image"))
 			{
-				echo ("this->upload");
-				var_dump($this->upload);
-				echo("\n\n");
-				$error = array('error_message' => $this->upload->display_errors());
-				echo "Error display:\n";
-				var_dump($error); die();
+				$error = array('error' => $this->upload->display_errors());
+				// $this->session->set_flashdata("error_message", "Something isn't right, try adding again.");
 			}
 			else
 			{
 				$data = array('upload_data' => $this->upload->data());
+			
+				if(count($product) > 0)
+				{
+					//session is being set in here with index session, remember session is in a form of array
+					$this->session->set_flashdata("success_message", "Product Added");
+				}
+				else
+				{
+					$this->session->set_flashdata("error_message", "You didn't enter all the info. Try Again");
+				}
 			}
 		}
+		redirect('/Products');
 	}
 
 	public function edit_product()
 	{
+		$post_data = $this->input->post();
+
 		$this->load->library("form_validation");
 
    		$this->form_validation->set_rules("name", "name", "trim|required");
@@ -103,20 +93,17 @@ class Products extends CI_Controller {
 		}
 		else
 		{
-			$post_data = $this->input->post();
-			
-			$product_data = array(
-				'product_id' => $post_data->id,
-				'product_name' => $post_data->name,
-				'product_price' => $post_data->price,
-				'product_description' => $post_data->description,
-				// 'product_image' => $product->image
-				// 'product_categories' => $product->categories
-			);
+			$edited_product = $this->Product->edit_product($post_data);
 
-			$edited_product = $this->Product->edit_product($product_data);
-			$this->session->set_flashdata("success_message", "Product info updated!");
-			redirect('/Products');
+			if ($edited_product) 
+			{
+				$this->session->set_flashdata("success_message", "Product info updated!");
+				redirect('/Products');
+			}
+			else
+			{
+				$this->session->set_flashdata("error_message", "Something isn't right, try updating again.");
+			}
 		}
 	}
 

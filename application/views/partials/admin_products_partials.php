@@ -1,7 +1,5 @@
-<!-- HTML Partial Start -->
-
 <?php 
-	foreach ($products as $product) {
+				foreach ($products as $product) {
 ?>
 					<tr>
 						<td><img src='/assets/img/products/<?php echo $product['id']; ?>-small.png' height=75 width=75></td>
@@ -14,10 +12,10 @@
 							<!-- Special -->
 							  	<!-- <li><a href="#">inventory</a></li> -->
 							  	<li>
-							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal" type="button">edit
+							  		<button class="edit-product btn-xs btn-success" data-toggle="modal" data-target="#EditModal<?=$product['id'];?>" type="button">edit
 				</button>
 				<!-- Modal for "EDITING Product" -->
-				<div class="modal fade" id="EditModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade" id="EditModal<?=$product['id'];?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 					<div class="modal-dialog" role="document">
 					    <div class="modal-content">
 						    <div class="modal-header">
@@ -44,7 +42,7 @@
 						    <!-- Edit Product Form -->
 					    	<form action="/Products/edit_product" method="post" enctype="multipart/form-data">
 					    		
-					    		<input type="hidden" class="form-control" name="name" value="<?=$product['id'];?>"/>
+					    		<input type="hidden" class="form-control" name="id" value="<?=$product['id'];?>"/>
 					    		<div class="form-group">
 					    			<label class="col-sm-3 control-label">Name</label>
 						    		<div class="col-sm-8">
@@ -99,5 +97,5 @@
 						</td>
 					</tr>
 <?php 
-	}
+				}
 ?>
