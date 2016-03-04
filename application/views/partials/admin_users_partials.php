@@ -9,7 +9,7 @@
 						<td>
 							<ul class="nav-action nav nav-pills">
 							<!-- Special -->
-<?php 							if($user['user_level']=="admin") 
+<?php 							if($user['is_admin']== 1) 
 					 			{?>
 								<li>
 									<span class="label label-danger">
@@ -34,7 +34,7 @@
 					    <div class="modal-content">
 						    <div class="modal-header">
 						        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-						        <h4 class="modal-title" id="myModalLabel">Edit <?php echo $user['name']; ?></h4>
+						        <h4 class="modal-title" id="myModalLabel">Edit <?php echo $user['first_name']; ?></h4>
 						    </div>
 							<!-- Error check -->
 							<div>
@@ -87,7 +87,7 @@
 				                    </div>
 					    		</div>			
 								<div class="modal-footer">
-							    	<button type="submit" class="btn btn-success center-block">Add New User</button>
+							    	<button type="submit" class="btn btn-success center-block">Update User</button>
 							    </div>
 						    </form>
 						</div>

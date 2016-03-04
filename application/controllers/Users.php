@@ -83,6 +83,7 @@ class Users extends CI_Controller {
 			}	
 		}
 		echo json_encode($data);
+		redirect('/Users/admin_index');
 	}
 
 	public function update_user()
@@ -133,8 +134,8 @@ class Users extends CI_Controller {
 	}
 
 	public function get_all_users_admin_html() {
-		$data["users"] = $this->User->get_all_users();
-		$this->load->view("partials/admin_users_partials", $data);
+		$users = $this->User->get_all_users();
+		$this->load->view("partials/admin_users_partials", $users);
 	}
 
 	public function user_login()
@@ -197,6 +198,24 @@ class Users extends CI_Controller {
 		}
 		
 		echo json_encode($data);
+	}
+
+	public function search_admin_html() 
+	{
+		$searchterm = $this->input->post('keyword');
+		$users = $this->User->get_users_by_search_ajax($searchterm);
+		$this->load->view("partials/admin_users_partials", $users);
+	}
+
+	public function search_admin()
+	{
+		$searchterm = $this->input->post('keyword');
+		$users = $this->User->get_users_by_search($searchterm);
+		$info['users'] = $users;
+		$info['searchterm'] = $searchterm;
+		$this->load->view('/admin/header-admin');
+		$this->load->view('/admin/users', $info);
+		$this->load->view('/admin/footer-admin');
 	}
 
 	public function delete_user($user_id = NULL)

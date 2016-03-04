@@ -1,11 +1,11 @@
 $(document).ready(function(){
 // users search bar
-	$.get('/Users/get_all_users_admin_html', function(res) {
+	$.get('/User/get_all_users', function(res) {
 	    $('#ajax-admin-users').html(res);
 	});
 
 	$('#searchbar-users').submit(function(){
-		$.post('/users/search_admin_html', $(this).serialize(), function(res) {
+		$.post('/Users/search_admin', $(this).serialize(), function(res) {
 	        $('#ajax-admin-users').html(res);
 	      });
 

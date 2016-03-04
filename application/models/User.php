@@ -60,6 +60,25 @@ class User extends CI_Model {
 		
 		return $this->db->insert('users', $user);
 	}
+
+	public function get_products_by_search_ajax($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucwords($keyword);
+		$query = "SELECT * FROM users 
+			WHERE first_name OR last_name LIKE '%$keyword%'";
+		return $this->db->query($query)->result_array();
+	}
+
+	public function get_users_by_search($searchterm)
+	{
+		$keyword = strtolower($searchterm);
+		$uppercase = ucfirst($keyword);
+		$query = "SELECT * FROM users 
+			WHERE first_name OR last_name LIKE '%$keyword%' OR '%$uppercase%'";
+		return $this->db->query($query)->result_array();
+	}
+
 	public function make_user_admin($user_id)
 	{
 		$user_data = array(
