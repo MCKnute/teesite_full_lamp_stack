@@ -97,7 +97,7 @@ class Users extends CI_Controller {
 			$this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
 			$this->form_validation->set_rules('first_name', 'First name', 'trim|required');
 			$this->form_validation->set_rules('last_name', 'Last name', 'trim|required');
-			$this->form_validation->set_rules('user_level', 'User Level', 'trim|required');
+			// $this->form_validation->set_rules('is_admin', 'User Level', 'trim|required');
 		}
 		elseif(array_key_exists("password", $user_data))
 		{
@@ -129,8 +129,9 @@ class Users extends CI_Controller {
 				$data["error_message"] = "Update failed! Please Try Again!";
 			}	
 		}
-
 		echo json_encode($data);
+		redirect('users/admin_index');
+		// return json_encode($data);
 	}
 
 	public function get_all_users_admin_html() {

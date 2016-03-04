@@ -15,9 +15,12 @@ class User extends CI_Model {
 
 	public function update_user($user_data)
 	{
-		$query = "UPDATE users SET updated_at=NOW(), WHERE id=?";
-        $values = $user_data['id'];
-        return $this->db->query($query, $values);
+		$update_data =  array('first_name' => $user_data['first_name'], 
+                          'last_name'  => $user_data['last_name'] ,
+                          'email'      => $user_data['email']           
+                    );
+	    $this->db->where('id', $user_data['id']);
+	    return $this->db->update('users', $update_data);
 	}
 
 	public function delete_user($user_id)
